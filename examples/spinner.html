@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spinner - shadcn/ui HTML</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        border: "hsl(var(--border))",
+                        background: "hsl(var(--background))",
+                        foreground: "hsl(var(--foreground))",
+                        primary: {
+                            DEFAULT: "hsl(var(--primary))",
+                            foreground: "hsl(var(--primary-foreground))",
+                        },
+                        muted: {
+                            DEFAULT: "hsl(var(--muted))",
+                            foreground: "hsl(var(--muted-foreground))",
+                        },
+                    },
+                    borderRadius: {
+                        lg: "var(--radius)",
+                        md: "calc(var(--radius) - 2px)",
+                        sm: "calc(var(--radius) - 4px)",
+                    },
+                    animation: {
+                        spin: 'spin 1s linear infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 222.2 84% 4.9%;
+            --primary: 222.2 47.4% 11.2%;
+            --primary-foreground: 210 40% 98%;
+            --muted: 210 40% 96.1%;
+            --muted-foreground: 215.4 16.3% 46.9%;
+            --border: 214.3 31.8% 91.4%;
+            --radius: 0.5rem;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .animate-spin {
+            animation: spin 1s linear infinite;
+        }
+
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground p-8">
+    <div class="max-w-4xl mx-auto space-y-8">
+        <div>
+            <h1 class="text-3xl font-bold mb-2">Spinner</h1>
+            <p class="text-muted-foreground">Loading indicators and spinners.</p>
+        </div>
+
+        <!-- Basic Spinner -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Basic Spinner</h2>
+            <div class="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full"></div>
+        </div>
+
+        <!-- Different Sizes -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Sizes</h2>
+            <div class="flex items-center gap-4">
+                <div class="animate-spin h-4 w-4 border-2 border-primary border-t-transparent rounded-full"></div>
+                <div class="animate-spin h-6 w-6 border-3 border-primary border-t-transparent rounded-full"></div>
+                <div class="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full"></div>
+                <div class="animate-spin h-12 w-12 border-4 border-primary border-t-transparent rounded-full"></div>
+                <div class="animate-spin h-16 w-16 border-4 border-primary border-t-transparent rounded-full"></div>
+            </div>
+        </div>
+
+        <!-- Different Colors -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Colors</h2>
+            <div class="flex items-center gap-4">
+                <div class="animate-spin h-8 w-8 border-4 border-gray-300 border-t-transparent rounded-full"></div>
+                <div class="animate-spin h-8 w-8 border-4 border-blue-500 border-t-transparent rounded-full"></div>
+                <div class="animate-spin h-8 w-8 border-4 border-green-500 border-t-transparent rounded-full"></div>
+                <div class="animate-spin h-8 w-8 border-4 border-red-500 border-t-transparent rounded-full"></div>
+                <div class="animate-spin h-8 w-8 border-4 border-purple-500 border-t-transparent rounded-full"></div>
+            </div>
+        </div>
+
+        <!-- Spinner in Button -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">In Button</h2>
+            <div class="flex gap-4">
+                <button disabled class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 gap-2">
+                    <div class="animate-spin h-4 w-4 border-2 border-primary-foreground border-t-transparent rounded-full"></div>
+                    Loading
+                </button>
+                <button disabled class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 gap-2">
+                    <div class="animate-spin h-4 w-4 border-2 border-foreground border-t-transparent rounded-full"></div>
+                    Processing
+                </button>
+            </div>
+        </div>
+
+        <!-- Dots Spinner -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Dots Spinner</h2>
+            <div class="flex space-x-2">
+                <div class="h-3 w-3 bg-primary rounded-full animate-pulse"></div>
+                <div class="h-3 w-3 bg-primary rounded-full animate-pulse" style="animation-delay: 0.2s"></div>
+                <div class="h-3 w-3 bg-primary rounded-full animate-pulse" style="animation-delay: 0.4s"></div>
+            </div>
+        </div>
+
+        <!-- Bars Spinner -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Bars Spinner</h2>
+            <div class="flex items-end space-x-1 h-8">
+                <div class="w-1.5 bg-primary rounded-full animate-pulse h-4"></div>
+                <div class="w-1.5 bg-primary rounded-full animate-pulse h-6" style="animation-delay: 0.2s"></div>
+                <div class="w-1.5 bg-primary rounded-full animate-pulse h-8" style="animation-delay: 0.4s"></div>
+                <div class="w-1.5 bg-primary rounded-full animate-pulse h-6" style="animation-delay: 0.6s"></div>
+                <div class="w-1.5 bg-primary rounded-full animate-pulse h-4" style="animation-delay: 0.8s"></div>
+            </div>
+        </div>
+
+        <!-- With Text -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">With Text</h2>
+            <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                    <div class="animate-spin h-5 w-5 border-2 border-primary border-t-transparent rounded-full"></div>
+                    <span class="text-sm text-muted-foreground">Loading data...</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="animate-spin h-5 w-5 border-2 border-primary border-t-transparent rounded-full"></div>
+                    <span class="text-sm text-muted-foreground">Processing your request...</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="animate-spin h-5 w-5 border-2 border-primary border-t-transparent rounded-full"></div>
+                    <span class="text-sm text-muted-foreground">Please wait...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Centered in Container -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Centered in Container</h2>
+            <div class="h-48 rounded-lg border bg-muted/20 flex items-center justify-center">
+                <div class="flex flex-col items-center gap-3">
+                    <div class="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full"></div>
+                    <span class="text-sm text-muted-foreground">Loading content...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Full Page Overlay Example -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Full Page Overlay</h2>
+            <button onclick="showOverlay()" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+                Show Loading Overlay
+            </button>
+        </div>
+
+        <!-- Card with Loading State -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Card Loading State</h2>
+            <div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold">Dashboard Stats</h3>
+                    <div class="animate-spin h-5 w-5 border-2 border-primary border-t-transparent rounded-full"></div>
+                </div>
+                <div class="space-y-2">
+                    <div class="h-4 bg-muted animate-pulse rounded"></div>
+                    <div class="h-4 bg-muted animate-pulse rounded w-3/4"></div>
+                    <div class="h-4 bg-muted animate-pulse rounded w-1/2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay Template (Hidden by default) -->
+    <div id="loadingOverlay" class="hidden fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center">
+        <div class="flex flex-col items-center gap-4">
+            <div class="animate-spin h-16 w-16 border-4 border-primary border-t-transparent rounded-full"></div>
+            <p class="text-lg font-medium">Loading...</p>
+        </div>
+    </div>
+
+    <script>
+        function showOverlay() {
+            const overlay = document.getElementById('loadingOverlay');
+            overlay.classList.remove('hidden');
+
+            // Hide after 3 seconds
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

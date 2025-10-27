@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Native Select - shadcn/ui HTML</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        border: "hsl(var(--border))",
+                        input: "hsl(var(--input))",
+                        background: "hsl(var(--background))",
+                        foreground: "hsl(var(--foreground))",
+                        primary: {
+                            DEFAULT: "hsl(var(--primary))",
+                            foreground: "hsl(var(--primary-foreground))",
+                        },
+                        destructive: {
+                            DEFAULT: "hsl(var(--destructive))",
+                            foreground: "hsl(var(--destructive-foreground))",
+                        },
+                        muted: {
+                            DEFAULT: "hsl(var(--muted))",
+                            foreground: "hsl(var(--muted-foreground))",
+                        },
+                    },
+                    borderRadius: {
+                        lg: "var(--radius)",
+                        md: "calc(var(--radius) - 2px)",
+                        sm: "calc(var(--radius) - 4px)",
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 222.2 84% 4.9%;
+            --primary: 222.2 47.4% 11.2%;
+            --primary-foreground: 210 40% 98%;
+            --destructive: 0 84.2% 60.2%;
+            --destructive-foreground: 210 40% 98%;
+            --muted: 210 40% 96.1%;
+            --muted-foreground: 215.4 16.3% 46.9%;
+            --border: 214.3 31.8% 91.4%;
+            --input: 214.3 31.8% 91.4%;
+            --radius: 0.5rem;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        /* Native Select Wrapper */
+        .native-select-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .native-select-wrapper select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+        }
+
+        .native-select-wrapper select:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .native-select-wrapper select:focus {
+            outline: none;
+        }
+
+        /* Icon wrapper for better styling */
+        .select-icon {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: hsl(var(--muted-foreground));
+        }
+
+        .benefit-card {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            border: 1px solid hsl(var(--border));
+            border-radius: var(--radius);
+            background: hsl(var(--muted) / 0.3);
+        }
+
+        .benefit-icon {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: var(--radius);
+            background: hsl(var(--primary) / 0.1);
+            color: hsl(var(--primary));
+            flex-shrink: 0;
+        }
+
+        .benefit-content h3 {
+            font-weight: 600;
+            margin: 0 0 0.25rem 0;
+        }
+
+        .benefit-content p {
+            margin: 0;
+            font-size: 0.875rem;
+            color: hsl(var(--muted-foreground));
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground p-8">
+    <div class="max-w-4xl mx-auto space-y-8">
+        <div>
+            <h1 class="text-3xl font-bold mb-2">Native Select</h1>
+            <p class="text-muted-foreground">Styled wrapper around the native HTML select element for optimal mobile experience and accessibility.</p>
+        </div>
+
+        <!-- Benefits Section ------>
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Why Native Select?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M7 12l5 5 5-5"/></svg>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Mobile Optimized</h3>
+                        <p>Native OS select picker provides familiar interface on mobile devices</p>
+                    </div>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Accessibility</h3>
+                        <p>Built-in keyboard navigation and screen reader support</p>
+                    </div>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>No JavaScript Required</h3>
+                        <p>Works perfectly without any additional JavaScript functionality</p>
+                    </div>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Consistent Styling</h3>
+                        <p>Custom styling applied while maintaining native behavior</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Basic Native Select ------>
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Basic Native Select</h2>
+            <div class="w-full max-w-md">
+                <div class="space-y-2">
+                    <label class="text-sm font-medium" for="basic-select">Choose an option</label>
+                    <div class="native-select-wrapper">
+                        <select id="basic-select" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+                            <option value="">Select an option</option>
+                            <option value="opt1">Option 1</option>
+                            <option value="opt2">Option 2</option>
+                            <option value="opt3">Option 3</option>
+                            <option value="opt4">Option 4</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grouped Options ------>
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Grouped Options</h2>
+            <div class="w-full max-w-md">
+                <div class="space-y-2">
+                    <label class="text-sm font-medium" for="grouped-select">Choose a country</label>
+                    <div class="native-select-wrapper">
+                        <select id="grouped-select" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+                            <option value="">Select a country</option>
+                            <optgroup label="North America">
+                                <option value="usa">United States</option>
+                                <option value="ca">Canada</option>
+                                <option value="mx">Mexico</option>
+                            </optgroup>
+                            <optgroup label="Europe">
+                                <option value="uk">United Kingdom</option>
+                                <option value="fr">France</option>
+                                <option value="de">Germany</option>
+                            </optgroup>
+                            <optgroup label="Asia">
+                                <option value="jp">Japan</option>
+                                <option value="cn">China</option>
+                                <option value="in">India</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Disabled State ------>
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Disabled State</h2>
+            <div class="grid grid-cols-2 gap-6">
+                <div class="w-full">
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium" for="enabled-select">Enabled Select</label>
+                        <div class="native-select-wrapper">
+                            <select id="enabled-select" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+                                <option value="">Select an option</option>
+                                <option value="opt1">Available Option 1</option>
+                                <option value="opt2">Available Option 2</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full">
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium text-muted-foreground" for="disabled-select">Disabled Select</label>
+                        <div class="native-select-wrapper">
+                            <select id="disabled-select" disabled class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+                                <option value="">Cannot select</option>
+                                <option value="opt1">Option 1</option>
+                                <option value="opt2">Option 2</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Size Variants ------>
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Size Variants</h2>
+            <div class="space-y-4">
+                <div class="w-full max-w-md">
+                    <label class="text-sm font-medium" for="small-select">Small Select</label>
+                    <div class="native-select-wrapper">
+                        <select id="small-select" class="flex h-8 w-full rounded-md border border-input bg-background px-2 py-1 text-xs ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+                            <option value="">Small option</option>
+                            <option value="opt1">Option 1</option>
+                            <option value="opt2">Option 2</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="w-full max-w-md">
+                    <label class="text-sm font-medium" for="medium-select">Medium Select</label>
+                    <div class="native-select-wrapper">
+                        <select id="medium-select" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+                            <option value="">Medium option</option>
+                            <option value="opt1">Option 1</option>
+                            <option value="opt2">Option 2</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="w-full max-w-md">
+                    <label class="text-sm font-medium" for="large-select">Large Select</label>
+                    <div class="native-select-wrapper">
+                        <select id="large-select" class="flex h-12 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+                            <option value="">Large option</option>
+                            <option value="opt1">Option 1</option>
+                            <option value="opt2">Option 2</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Integration ------>
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Form Integration</h2>
+            <form class="w-full max-w-2xl rounded-lg border bg-card p-6 space-y-6">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium" for="form-country">Country</label>
+                        <div class="native-select-wrapper">
+                            <select id="form-country" required class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+                                <option value="">Select a country</option>
+                                <option value="usa">United States</option>
+                                <option value="ca">Canada</option>
+                                <option value="uk">United Kingdom</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium" for="form-state">State/Province</label>
+                        <div class="native-select-wrapper">
+                            <select id="form-state" required class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+                                <option value="">Select a state</option>
+                                <option value="ca">California</option>
+                                <option value="ny">New York</option>
+                                <option value="tx">Texas</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-sm font-medium" for="form-category">Product Category</label>
+                    <div class="native-select-wrapper">
+                        <select id="form-category" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+                            <option value="">Select a category</option>
+                            <optgroup label="Electronics">
+                                <option value="phone">Phones</option>
+                                <option value="laptop">Laptops</option>
+                                <option value="tablet">Tablets</option>
+                            </optgroup>
+                            <optgroup label="Clothing">
+                                <option value="mens">Men's</option>
+                                <option value="womens">Women's</option>
+                                <option value="kids">Kids</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full">
+                    Submit Form
+                </button>
+            </form>
+        </div>
+
+        <!-- Comparison Table ------>
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Native Select vs Custom Select</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead class="bg-muted">
+                        <tr>
+                            <th class="text-left px-4 py-2 font-semibold">Feature</th>
+                            <th class="text-center px-4 py-2 font-semibold">Native Select</th>
+                            <th class="text-center px-4 py-2 font-semibold">Custom Select</th>
+                        </tr>
+                    </thead>
+                    <tbody class="border-t">
+                        <tr class="border-b">
+                            <td class="px-4 py-2">Mobile UX</td>
+                            <td class="text-center">✓ Native picker</td>
+                            <td class="text-center">⚠ Custom behavior</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="px-4 py-2">Keyboard Nav</td>
+                            <td class="text-center">✓ Built-in</td>
+                            <td class="text-center">⚠ Must implement</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="px-4 py-2">Screen Readers</td>
+                            <td class="text-center">✓ Full support</td>
+                            <td class="text-center">⚠ ARIA needed</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="px-4 py-2">Performance</td>
+                            <td class="text-center">✓ Zero JS</td>
+                            <td class="text-center">⚠ JS bundle</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="px-4 py-2">Browser Support</td>
+                            <td class="text-center">✓ All browsers</td>
+                            <td class="text-center">✓ All browsers</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-2">Custom Styling</td>
+                            <td class="text-center">⚠ Limited</td>
+                            <td class="text-center">✓ Full control</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabs (Hardened) - shadcn-html Examples</title>
+  <link rel="stylesheet" href="../dist/styles/output.css">
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; }
+
+    /* Tablist styling */
+    [role="tablist"] {
+      display: flex;
+      border-bottom: 1px solid hsl(var(--border));
+      gap: 0;
+    }
+
+    /* Tab button styling */
+    [role="tab"] {
+      padding: 1rem 1.5rem;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: hsl(var(--muted-foreground));
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    [role="tab"]:hover:not([aria-selected="true"]) {
+      color: hsl(var(--foreground));
+    }
+
+    [role="tab"][aria-selected="true"] {
+      color: hsl(var(--foreground));
+      border-bottom-color: hsl(var(--primary));
+    }
+
+    [role="tab"]:focus-visible {
+      outline: 2px solid hsl(var(--ring));
+      outline-offset: -2px;
+    }
+
+    /* Tabpanel styling */
+    [role="tabpanel"] {
+      padding: 1.5rem;
+    }
+
+    [role="tabpanel"][hidden] {
+      display: none;
+    }
+
+    /* Live region for announcements */
+    #tabs-announcements {
+      position: absolute;
+      left: -10000px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body class="bg-background text-foreground p-8">
+  <!-- Screen reader live region -->
+  <div id="tabs-announcements" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <div class="max-w-4xl mx-auto space-y-12">
+    <!-- Header -->
+    <div class="space-y-2">
+      <a href="index.html" class="text-sm text-muted-foreground hover:text-foreground">&larr; Back to Examples</a>
+      <h1 class="text-4xl font-bold">Tabs (Hardened)</h1>
+      <p class="text-muted-foreground">WCAG 2.1 AA compliant tabs with arrow key navigation and proper ARIA roles.</p>
+    </div>
+
+    <!-- Default Tabs -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Default Tabs</h2>
+      <p class="text-sm text-muted-foreground">Use <kbd>Left</kbd>/<kbd>Right</kbd> arrows or <kbd>Up</kbd>/<kbd>Down</kbd> to navigate. <kbd>Home</kbd>/<kbd>End</kbd> to jump to first/last.</p>
+
+      <!-- Tablist -->
+      <div role="tablist" aria-label="Configuration Options" id="tablist-1" class="border-b border-border">
+        <!-- Tab 1 -->
+        <button
+          id="tab-1"
+          role="tab"
+          aria-selected="true"
+          aria-controls="panel-1"
+          tabindex="0"
+          class="inline-flex items-center justify-center whitespace-nowrap rounded-none px-3 py-2 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+        >
+          Account
+        </button>
+
+        <!-- Tab 2 -->
+        <button
+          id="tab-2"
+          role="tab"
+          aria-selected="false"
+          aria-controls="panel-2"
+          tabindex="-1"
+          class="inline-flex items-center justify-center whitespace-nowrap rounded-none px-3 py-2 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+        >
+          Password
+        </button>
+
+        <!-- Tab 3 -->
+        <button
+          id="tab-3"
+          role="tab"
+          aria-selected="false"
+          aria-controls="panel-3"
+          tabindex="-1"
+          class="inline-flex items-center justify-center whitespace-nowrap rounded-none px-3 py-2 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+        >
+          Notifications
+        </button>
+      </div>
+
+      <!-- Tab Panels -->
+      <div>
+        <!-- Panel 1 -->
+        <div id="panel-1" role="tabpanel" aria-labelledby="tab-1">
+          <div class="space-y-4">
+            <div class="space-y-2">
+              <label for="name" class="text-sm font-medium">Name</label>
+              <input
+                id="name"
+                type="text"
+                placeholder="Your name"
+                class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              />
+            </div>
+            <div class="space-y-2">
+              <label for="username" class="text-sm font-medium">Username</label>
+              <input
+                id="username"
+                type="text"
+                placeholder="@username"
+                class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              />
+            </div>
+            <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+              Save changes
+            </button>
+          </div>
+        </div>
+
+        <!-- Panel 2 -->
+        <div id="panel-2" role="tabpanel" aria-labelledby="tab-2" hidden>
+          <div class="space-y-4">
+            <div class="space-y-2">
+              <label for="current-password" class="text-sm font-medium">Current password</label>
+              <input
+                id="current-password"
+                type="password"
+                class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              />
+            </div>
+            <div class="space-y-2">
+              <label for="new-password" class="text-sm font-medium">New password</label>
+              <input
+                id="new-password"
+                type="password"
+                class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              />
+            </div>
+            <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+              Change password
+            </button>
+          </div>
+        </div>
+
+        <!-- Panel 3 -->
+        <div id="panel-3" role="tabpanel" aria-labelledby="tab-3" hidden>
+          <div class="space-y-4">
+            <p class="text-sm text-muted-foreground">Configure your notification preferences below.</p>
+            <div class="space-y-2">
+              <label class="flex items-center">
+                <input type="checkbox" checked class="rounded border-input" />
+                <span class="ml-2 text-sm">Email notifications</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="rounded border-input" />
+                <span class="ml-2 text-sm">Push notifications</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="rounded border-input" />
+                <span class="ml-2 text-sm">SMS notifications</span>
+              </label>
+            </div>
+            <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+              Save preferences
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <pre class="bg-muted p-4 rounded-md overflow-x-auto text-xs"><code>&lt;div role="tablist" aria-label="Tabs"&gt;
+  &lt;button role="tab" aria-selected="true" aria-controls="panel-1" tabindex="0"&gt;Tab 1&lt;/button&gt;
+  &lt;button role="tab" aria-selected="false" aria-controls="panel-2" tabindex="-1"&gt;Tab 2&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div id="panel-1" role="tabpanel" aria-labelledby="tab-1"&gt;Content 1&lt;/div&gt;
+&lt;div id="panel-2" role="tabpanel" aria-labelledby="tab-2" hidden&gt;Content 2&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- Implementation Details -->
+    <section class="space-y-4 mt-12 pt-8 border-t">
+      <h2 class="text-2xl font-semibold">Implementation Details</h2>
+
+      <div class="space-y-4 text-sm">
+        <div>
+          <h3 class="font-semibold mb-2">Keyboard Navigation</h3>
+          <ul class="list-disc list-inside space-y-1 text-muted-foreground">
+            <li><kbd>Left Arrow</kbd> or <kbd>Up Arrow</kbd> - Select previous tab</li>
+            <li><kbd>Right Arrow</kbd> or <kbd>Down Arrow</kbd> - Select next tab</li>
+            <li><kbd>Home</kbd> - Select first tab</li>
+            <li><kbd>End</kbd> - Select last tab</li>
+            <li><kbd>Tab</kbd> - Move focus to tab panel content</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-semibold mb-2">ARIA Attributes</h3>
+          <ul class="list-disc list-inside space-y-1 text-muted-foreground">
+            <li><code>role="tablist"</code> - Container for tabs</li>
+            <li><code>role="tab"</code> - Individual tab button</li>
+            <li><code>role="tabpanel"</code> - Tab content area</li>
+            <li><code>aria-selected="true/false"</code> - Indicates selected tab</li>
+            <li><code>aria-controls="..."</code> - Links tab to panel</li>
+            <li><code>aria-labelledby="..."</code> - Links panel to tab</li>
+            <li><code>tabindex="0/-1"</code> - Roving tabindex pattern</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-semibold mb-2">Accessibility Features</h3>
+          <ul class="list-disc list-inside space-y-1 text-muted-foreground">
+            <li>Roving tabindex: Only selected tab is in tab order</li>
+            <li>Arrow keys: Auto-select on arrow navigation</li>
+            <li>Home/End: Quick jump to first/last tab</li>
+            <li>Focus visible: Clear focus ring on keyboard navigation</li>
+            <li>Screen reader: Announced as tab and panel roles</li>
+            <li>ARIA live: Tab selection announced to screen readers</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- JavaScript Module -->
+  <script type="module">
+    import { initTabs } from '../src/js/components/tabs.js';
+
+    // Initialize all tabs when DOM is ready
+    document.addEventListener('DOMContentLoaded', () => {
+      initTabs();
+    });
+
+    // Alternative: Initialize immediately if DOM is already ready
+    if (document.readyState !== 'loading') {
+      initTabs();
+    }
+  </script>
+</body>
+</html>

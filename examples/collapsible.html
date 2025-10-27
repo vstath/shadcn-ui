@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collapsible - shadcn/ui HTML</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        border: "hsl(var(--border))",
+                        background: "hsl(var(--background))",
+                        foreground: "hsl(var(--foreground))",
+                        primary: {
+                            DEFAULT: "hsl(var(--primary))",
+                            foreground: "hsl(var(--primary-foreground))",
+                        },
+                        muted: {
+                            DEFAULT: "hsl(var(--muted))",
+                            foreground: "hsl(var(--muted-foreground))",
+                        },
+                    },
+                    borderRadius: {
+                        lg: "var(--radius)",
+                        md: "calc(var(--radius) - 2px)",
+                        sm: "calc(var(--radius) - 4px)",
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 222.2 84% 4.9%;
+            --primary: 222.2 47.4% 11.2%;
+            --primary-foreground: 210 40% 98%;
+            --muted: 210 40% 96.1%;
+            --muted-foreground: 215.4 16.3% 46.9%;
+            --border: 214.3 31.8% 91.4%;
+            --ring: 222.2 84% 4.9%;
+            --radius: 0.5rem;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .collapsible-content.open {
+            max-height: 500px;
+        }
+
+        .rotate-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .rotate-icon.open {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground p-8">
+    <div class="max-w-4xl mx-auto space-y-8">
+        <div>
+            <h1 class="text-3xl font-bold mb-2">Collapsible</h1>
+            <p class="text-muted-foreground">An interactive component which expands/collapses a panel.</p>
+        </div>
+
+        <!-- Basic Collapsible -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Basic Collapsible</h2>
+            <div class="w-full max-w-md space-y-2">
+                <button onclick="toggleCollapsible('collapsible1')" class="flex w-full items-center justify-between rounded-md p-4 font-medium ring-offset-background transition-all hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+                    <span>@peduarte starred 3 repositories</span>
+                    <svg id="icon1" class="h-4 w-4 rotate-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <div id="collapsible1" class="collapsible-content space-y-2 px-4">
+                    <div class="rounded-md border px-4 py-3 font-mono text-sm">@radix-ui/primitives</div>
+                    <div class="rounded-md border px-4 py-3 font-mono text-sm">@radix-ui/colors</div>
+                    <div class="rounded-md border px-4 py-3 font-mono text-sm">@stitches/react</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Collapsible with Icon -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Collapsible with Icon</h2>
+            <div class="w-full max-w-md rounded-lg border">
+                <button onclick="toggleCollapsible('collapsible2')" class="flex w-full items-center justify-between p-4 font-medium transition-colors hover:bg-muted">
+                    <div class="flex items-center gap-2">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
+                        <span>Project Files</span>
+                    </div>
+                    <svg id="icon2" class="h-4 w-4 rotate-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <div id="collapsible2" class="collapsible-content border-t">
+                    <div class="p-4 space-y-2 text-sm text-muted-foreground">
+                        <div class="flex items-center gap-2 p-2 hover:bg-muted rounded">
+                            <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>
+                            index.html
+                        </div>
+                        <div class="flex items-center gap-2 p-2 hover:bg-muted rounded">
+                            <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>
+                            style.css
+                        </div>
+                        <div class="flex items-center gap-2 p-2 hover:bg-muted rounded">
+                            <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>
+                            script.js
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Multiple Collapsibles (Accordion Style) -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Multiple Collapsibles</h2>
+            <div class="w-full max-w-md space-y-2">
+                <div class="rounded-lg border">
+                    <button onclick="toggleCollapsible('collapsible3a')" class="flex w-full items-center justify-between p-4 font-medium transition-colors hover:bg-muted">
+                        <span>What is shadcn/ui?</span>
+                        <svg id="icon3a" class="h-4 w-4 rotate-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                    </button>
+                    <div id="collapsible3a" class="collapsible-content border-t">
+                        <div class="p-4 text-sm text-muted-foreground">
+                            A collection of re-usable components built using Radix UI and Tailwind CSS.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rounded-lg border">
+                    <button onclick="toggleCollapsible('collapsible3b')" class="flex w-full items-center justify-between p-4 font-medium transition-colors hover:bg-muted">
+                        <span>How do I install it?</span>
+                        <svg id="icon3b" class="h-4 w-4 rotate-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                    </button>
+                    <div id="collapsible3b" class="collapsible-content border-t">
+                        <div class="p-4 text-sm text-muted-foreground">
+                            You can install components individually using the CLI or copy and paste the code from the documentation.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rounded-lg border">
+                    <button onclick="toggleCollapsible('collapsible3c')" class="flex w-full items-center justify-between p-4 font-medium transition-colors hover:bg-muted">
+                        <span>Can I use it in my project?</span>
+                        <svg id="icon3c" class="h-4 w-4 rotate-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                    </button>
+                    <div id="collapsible3c" class="collapsible-content border-t">
+                        <div class="p-4 text-sm text-muted-foreground">
+                            Yes! The components are free to use in your projects under the MIT license.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Collapsible with Complex Content -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Collapsible with Complex Content</h2>
+            <div class="w-full max-w-md rounded-lg border">
+                <button onclick="toggleCollapsible('collapsible4')" class="flex w-full items-center justify-between p-4 font-medium transition-colors hover:bg-muted">
+                    <div class="flex items-center gap-3">
+                        <div class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full bg-muted">
+                            <span class="flex h-full w-full items-center justify-center bg-primary text-primary-foreground font-medium">JD</span>
+                        </div>
+                        <div class="text-left">
+                            <div class="font-semibold">John Doe</div>
+                            <div class="text-xs text-muted-foreground">Senior Developer</div>
+                        </div>
+                    </div>
+                    <svg id="icon4" class="h-4 w-4 rotate-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <div id="collapsible4" class="collapsible-content border-t">
+                    <div class="p-4 space-y-3">
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div>
+                                <div class="text-xs text-muted-foreground mb-1">Email</div>
+                                <div>john@example.com</div>
+                            </div>
+                            <div>
+                                <div class="text-xs text-muted-foreground mb-1">Phone</div>
+                                <div>+1 234 567 890</div>
+                            </div>
+                            <div>
+                                <div class="text-xs text-muted-foreground mb-1">Location</div>
+                                <div>San Francisco, CA</div>
+                            </div>
+                            <div>
+                                <div class="text-xs text-muted-foreground mb-1">Joined</div>
+                                <div>Jan 2023</div>
+                            </div>
+                        </div>
+                        <div class="flex gap-2 pt-2">
+                            <button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-3 flex-1">
+                                Message
+                            </button>
+                            <button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 px-3 flex-1">
+                                View Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleCollapsible(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById('icon' + id.replace('collapsible', ''));
+
+            content.classList.toggle('open');
+            if (icon) {
+                icon.classList.toggle('open');
+            }
+        }
+    </script>
+</body>
+</html>

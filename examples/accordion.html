@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accordion - shadcn-html Examples</title>
+  <link rel="stylesheet" href="../dist/styles/output.css">
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; }
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+    .accordion-content.open {
+      max-height: 500px;
+    }
+    .accordion-icon {
+      transition: transform 0.3s ease;
+    }
+    .accordion-icon.rotate {
+      transform: rotate(180deg);
+    }
+  </style>
+</head>
+<body class="bg-background text-foreground p-8">
+  <div class="max-w-4xl mx-auto space-y-8">
+    <!-- Header -->
+    <div class="space-y-2">
+      <a href="index.html" class="text-sm text-muted-foreground hover:text-foreground">&larr; Back to Examples</a>
+      <h1 class="text-4xl font-bold">Accordion</h1>
+      <p class="text-muted-foreground">A vertically stacked set of interactive headings that each reveal a section of content.</p>
+    </div>
+
+    <!-- Basic Accordion -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Basic Accordion</h2>
+      <div class="rounded-md border">
+        <!-- Item 1 -->
+        <div class="border-b last:border-b-0">
+          <button class="flex w-full items-center justify-between p-4 text-left font-medium transition-all hover:bg-accent/50" onclick="toggleAccordion('accordion-1-item-1')">
+            <span>Is it accessible?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accordion-icon h-4 w-4 shrink-0 transition-transform duration-200" id="icon-accordion-1-item-1">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-content" id="accordion-1-item-1">
+            <div class="p-4 pt-0 text-sm text-muted-foreground">
+              Yes. It adheres to the WAI-ARIA design pattern and is fully accessible via keyboard navigation.
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="border-b last:border-b-0">
+          <button class="flex w-full items-center justify-between p-4 text-left font-medium transition-all hover:bg-accent/50" onclick="toggleAccordion('accordion-1-item-2')">
+            <span>Is it styled?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accordion-icon h-4 w-4 shrink-0 transition-transform duration-200" id="icon-accordion-1-item-2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-content" id="accordion-1-item-2">
+            <div class="p-4 pt-0 text-sm text-muted-foreground">
+              Yes. It comes with default styles that match the other components' aesthetic.
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="border-b last:border-b-0">
+          <button class="flex w-full items-center justify-between p-4 text-left font-medium transition-all hover:bg-accent/50" onclick="toggleAccordion('accordion-1-item-3')">
+            <span>Is it animated?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accordion-icon h-4 w-4 shrink-0 transition-transform duration-200" id="icon-accordion-1-item-3">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-content" id="accordion-1-item-3">
+            <div class="p-4 pt-0 text-sm text-muted-foreground">
+              Yes. It's animated by default with smooth transitions for opening and closing.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <pre class="bg-muted p-4 rounded-md overflow-x-auto"><code>&lt;div class="rounded-md border"&gt;
+  &lt;div class="border-b"&gt;
+    &lt;button class="flex w-full items-center justify-between p-4 text-left font-medium" onclick="toggleAccordion('item-id')"&gt;
+      &lt;span&gt;Question&lt;/span&gt;
+      &lt;svg class="accordion-icon h-4 w-4" id="icon-item-id"&gt;...&lt;/svg&gt;
+    &lt;/button&gt;
+    &lt;div class="accordion-content" id="item-id"&gt;
+      &lt;div class="p-4 pt-0"&gt;Answer content&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- Single Open at a Time -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Single Open (Collapsible)</h2>
+      <div class="rounded-md border">
+        <div class="border-b last:border-b-0">
+          <button class="flex w-full items-center justify-between p-4 text-left font-medium transition-all hover:bg-accent/50" onclick="toggleAccordionSingle('accordion-2', 'accordion-2-item-1')">
+            <span>What is shadcn-ui?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accordion-icon h-4 w-4 shrink-0 transition-transform duration-200" id="icon-accordion-2-item-1">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-content" id="accordion-2-item-1" data-group="accordion-2">
+            <div class="p-4 pt-0 text-sm text-muted-foreground">
+              shadcn-ui is a collection of re-usable components built using Radix UI and Tailwind CSS.
+            </div>
+          </div>
+        </div>
+
+        <div class="border-b last:border-b-0">
+          <button class="flex w-full items-center justify-between p-4 text-left font-medium transition-all hover:bg-accent/50" onclick="toggleAccordionSingle('accordion-2', 'accordion-2-item-2')">
+            <span>How do I install it?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accordion-icon h-4 w-4 shrink-0 transition-transform duration-200" id="icon-accordion-2-item-2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-content" id="accordion-2-item-2" data-group="accordion-2">
+            <div class="p-4 pt-0 text-sm text-muted-foreground">
+              You can install components individually using the CLI or copy-paste the code directly into your project.
+            </div>
+          </div>
+        </div>
+
+        <div class="border-b last:border-b-0">
+          <button class="flex w-full items-center justify-between p-4 text-left font-medium transition-all hover:bg-accent/50" onclick="toggleAccordionSingle('accordion-2', 'accordion-2-item-3')">
+            <span>Can I customize it?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accordion-icon h-4 w-4 shrink-0 transition-transform duration-200" id="icon-accordion-2-item-3">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-content" id="accordion-2-item-3" data-group="accordion-2">
+            <div class="p-4 pt-0 text-sm text-muted-foreground">
+              Yes! The components are highly customizable. You own the code and can modify it as needed.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- With Icons -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">With Icons</h2>
+      <div class="rounded-md border">
+        <div class="border-b last:border-b-0">
+          <button class="flex w-full items-center justify-between p-4 text-left font-medium transition-all hover:bg-accent/50" onclick="toggleAccordion('accordion-3-item-1')">
+            <div class="flex items-center gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-primary"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+              <span>Getting Started</span>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accordion-icon h-4 w-4 shrink-0 transition-transform duration-200" id="icon-accordion-3-item-1">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-content" id="accordion-3-item-1">
+            <div class="p-4 pt-0 pl-12 text-sm text-muted-foreground">
+              Learn the basics of setting up your project with our components.
+            </div>
+          </div>
+        </div>
+
+        <div class="border-b last:border-b-0">
+          <button class="flex w-full items-center justify-between p-4 text-left font-medium transition-all hover:bg-accent/50" onclick="toggleAccordion('accordion-3-item-2')">
+            <div class="flex items-center gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-primary"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+              <span>Customization</span>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accordion-icon h-4 w-4 shrink-0 transition-transform duration-200" id="icon-accordion-3-item-2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-content" id="accordion-3-item-2">
+            <div class="p-4 pt-0 pl-12 text-sm text-muted-foreground">
+              Customize colors, spacing, and other design tokens to match your brand.
+            </div>
+          </div>
+        </div>
+
+        <div class="border-b last:border-b-0">
+          <button class="flex w-full items-center justify-between p-4 text-left font-medium transition-all hover:bg-accent/50" onclick="toggleAccordion('accordion-3-item-3')">
+            <div class="flex items-center gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-primary"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span>Best Practices</span>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accordion-icon h-4 w-4 shrink-0 transition-transform duration-200" id="icon-accordion-3-item-3">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-content" id="accordion-3-item-3">
+            <div class="p-4 pt-0 pl-12 text-sm text-muted-foreground">
+              Follow our recommended patterns for building scalable and maintainable applications.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Example -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">FAQ Example</h2>
+      <div class="space-y-4">
+        <div class="rounded-lg border bg-card">
+          <button class="flex w-full items-center justify-between p-6 text-left" onclick="toggleAccordion('faq-1')">
+            <h3 class="font-semibold">What payment methods do you accept?</h3>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accordion-icon h-5 w-5 shrink-0" id="icon-faq-1">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-content" id="faq-1">
+            <div class="px-6 pb-6 text-sm text-muted-foreground">
+              We accept all major credit cards (Visa, Mastercard, American Express), PayPal, and bank transfers for enterprise customers.
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-lg border bg-card">
+          <button class="flex w-full items-center justify-between p-6 text-left" onclick="toggleAccordion('faq-2')">
+            <h3 class="font-semibold">Do you offer refunds?</h3>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accordion-icon h-5 w-5 shrink-0" id="icon-faq-2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-content" id="faq-2">
+            <div class="px-6 pb-6 text-sm text-muted-foreground">
+              Yes, we offer a 30-day money-back guarantee. If you're not satisfied with your purchase, contact our support team for a full refund.
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-lg border bg-card">
+          <button class="flex w-full items-center justify-between p-6 text-left" onclick="toggleAccordion('faq-3')">
+            <h3 class="font-semibold">How do I contact support?</h3>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accordion-icon h-5 w-5 shrink-0" id="icon-faq-3">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-content" id="faq-3">
+            <div class="px-6 pb-6 text-sm text-muted-foreground">
+              You can reach our support team via email at support@example.com, through our live chat, or by calling our toll-free number at 1-800-123-4567.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JavaScript Implementation -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">JavaScript Implementation</h2>
+      <pre class="bg-muted p-4 rounded-md overflow-x-auto"><code>&lt;script&gt;
+// Toggle individual accordion item (allows multiple open)
+function toggleAccordion(itemId) {
+  const content = document.getElementById(itemId);
+  const icon = document.getElementById('icon-' + itemId);
+
+  content.classList.toggle('open');
+  icon.classList.toggle('rotate');
+}
+
+// Toggle accordion with single open at a time
+function toggleAccordionSingle(groupName, itemId) {
+  const allItems = document.querySelectorAll(`[data-group="${groupName}"]`);
+  const content = document.getElementById(itemId);
+  const icon = document.getElementById('icon-' + itemId);
+
+  // Close all items in the group
+  allItems.forEach(item =&gt; {
+    if (item.id !== itemId && item.classList.contains('open')) {
+      item.classList.remove('open');
+      const itemIcon = document.getElementById('icon-' + item.id);
+      if (itemIcon) itemIcon.classList.remove('rotate');
+    }
+  });
+
+  // Toggle the clicked item
+  content.classList.toggle('open');
+  icon.classList.toggle('rotate');
+}
+&lt;/script&gt;</code></pre>
+    </section>
+  </div>
+
+  <script>
+    function toggleAccordion(itemId) {
+      const content = document.getElementById(itemId);
+      const icon = document.getElementById('icon-' + itemId);
+
+      content.classList.toggle('open');
+      if (icon) {
+        icon.classList.toggle('rotate');
+      }
+    }
+
+    function toggleAccordionSingle(groupName, itemId) {
+      const allItems = document.querySelectorAll(`[data-group="${groupName}"]`);
+      const content = document.getElementById(itemId);
+      const icon = document.getElementById('icon-' + itemId);
+
+      // Close all items in the group
+      allItems.forEach(item => {
+        if (item.id !== itemId && item.classList.contains('open')) {
+          item.classList.remove('open');
+          const itemIcon = document.getElementById('icon-' + item.id);
+          if (itemIcon) itemIcon.classList.remove('rotate');
+        }
+      });
+
+      // Toggle the clicked item
+      content.classList.toggle('open');
+      if (icon) {
+        icon.classList.toggle('rotate');
+      }
+    }
+  </script>
+</body>
+</html>

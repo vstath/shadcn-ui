@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Group - shadcn/ui HTML</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        border: "hsl(var(--border))",
+                        background: "hsl(var(--background))",
+                        foreground: "hsl(var(--foreground))",
+                        primary: {
+                            DEFAULT: "hsl(var(--primary))",
+                            foreground: "hsl(var(--primary-foreground))",
+                        },
+                    },
+                    borderRadius: {
+                        lg: "var(--radius)",
+                        md: "calc(var(--radius) - 2px)",
+                        sm: "calc(var(--radius) - 4px)",
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 222.2 84% 4.9%;
+            --primary: 222.2 47.4% 11.2%;
+            --primary-foreground: 210 40% 98%;
+            --border: 214.3 31.8% 91.4%;
+            --radius: 0.5rem;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground p-8">
+    <div class="max-w-4xl mx-auto space-y-8">
+        <div>
+            <h1 class="text-3xl font-bold mb-2">Button Group</h1>
+            <p class="text-muted-foreground">A group of buttons with a unified appearance.</p>
+        </div>
+
+        <!-- Basic Button Group ---->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Basic Button Group</h2>
+            <div class="inline-flex rounded-md border border-input">
+                <button class="px-4 py-2 text-sm font-medium border-r border-input hover:bg-muted">Left</button>
+                <button class="px-4 py-2 text-sm font-medium border-r border-input hover:bg-muted">Center</button>
+                <button class="px-4 py-2 text-sm font-medium hover:bg-muted">Right</button>
+            </div>
+        </div>
+
+        <!-- With Active State ---->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">With Active State</h2>
+            <div class="inline-flex rounded-md border border-input">
+                <button class="px-4 py-2 text-sm font-medium border-r border-input hover:bg-muted">Option 1</button>
+                <button class="px-4 py-2 text-sm font-medium border-r border-input bg-primary text-primary-foreground hover:bg-primary">Option 2</button>
+                <button class="px-4 py-2 text-sm font-medium hover:bg-muted">Option 3</button>
+            </div>
+        </div>
+
+        <!-- Icon Button Group ---->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Icon Button Group</h2>
+            <div class="inline-flex rounded-md border border-input">
+                <button class="p-2 border-r border-input hover:bg-muted" title="Bold">
+                    <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H6z"/><path d="M6 14h12a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H6z"/></svg>
+                </button>
+                <button class="p-2 border-r border-input hover:bg-muted" title="Italic">
+                    <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" x2="10" y1="4" y2="4"/><line x1="14" x2="5" y1="20" y2="20"/><line x1="15" x2="9" y1="4" y2="20"/></svg>
+                </button>
+                <button class="p-2 hover:bg-muted" title="Underline">
+                    <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4v7a6 6 0 0 0 6 6 6 6 0 0 0 6-6V4"/><line x1="4" x2="20" y1="21" y2="21"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Vertical Button Group ---->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Vertical Button Group</h2>
+            <div class="inline-flex flex-col rounded-md border border-input">
+                <button class="px-4 py-2 text-sm font-medium border-b border-input hover:bg-muted">Up</button>
+                <button class="px-4 py-2 text-sm font-medium border-b border-input hover:bg-muted">Center</button>
+                <button class="px-4 py-2 text-sm font-medium hover:bg-muted">Down</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

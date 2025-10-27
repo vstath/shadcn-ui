@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pins Input - shadcn/ui HTML</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        border: "hsl(var(--border))",
+                        background: "hsl(var(--background))",
+                        foreground: "hsl(var(--foreground))",
+                        primary: {
+                            DEFAULT: "hsl(var(--primary))",
+                            foreground: "hsl(var(--primary-foreground))",
+                        },
+                        muted: {
+                            DEFAULT: "hsl(var(--muted))",
+                            foreground: "hsl(var(--muted-foreground))",
+                        },
+                    },
+                    borderRadius: {
+                        lg: "var(--radius)",
+                        md: "calc(var(--radius) - 2px)",
+                        sm: "calc(var(--radius) - 4px)",
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 222.2 84% 4.9%;
+            --primary: 222.2 47.4% 11.2%;
+            --primary-foreground: 210 40% 98%;
+            --muted: 210 40% 96.1%;
+            --muted-foreground: 215.4 16.3% 46.9%;
+            --border: 214.3 31.8% 91.4%;
+            --ring: 222.2 84% 4.9%;
+            --radius: 0.5rem;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .pin-input {
+            width: 3rem;
+            height: 3rem;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .pin-input:focus {
+            outline: none;
+            border-color: hsl(var(--ring));
+            box-shadow: 0 0 0 2px hsl(var(--ring) / 0.2);
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground p-8">
+    <div class="max-w-4xl mx-auto space-y-8">
+        <div>
+            <h1 class="text-3xl font-bold mb-2">Pins Input</h1>
+            <p class="text-muted-foreground">Input component for PIN or multi-digit codes.</p>
+        </div>
+
+        <!-- Basic PIN Input ---->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Basic PIN Input</h2>
+            <div>
+                <label class="text-sm font-medium mb-2 block">Enter PIN</label>
+                <div class="flex gap-2">
+                    <input type="text" maxlength="1" class="pin-input rounded-md border border-input bg-background" oninput="handlePinInput(this, 0)" onkeydown="handlePinKeyDown(event, 0)" />
+                    <input type="text" maxlength="1" class="pin-input rounded-md border border-input bg-background" oninput="handlePinInput(this, 1)" onkeydown="handlePinKeyDown(event, 1)" />
+                    <input type="text" maxlength="1" class="pin-input rounded-md border border-input bg-background" oninput="handlePinInput(this, 2)" onkeydown="handlePinKeyDown(event, 2)" />
+                    <input type="text" maxlength="1" class="pin-input rounded-md border border-input bg-background" oninput="handlePinInput(this, 3)" onkeydown="handlePinKeyDown(event, 3)" />
+                </div>
+                <p class="text-xs text-muted-foreground mt-2">Enter your 4-digit PIN</p>
+            </div>
+        </div>
+
+        <!-- 6-Digit PIN ---->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">6-Digit PIN</h2>
+            <div>
+                <label class="text-sm font-medium mb-2 block">Security Code</label>
+                <div class="flex gap-2">
+                    <input type="password" maxlength="1" class="pin-input rounded-md border border-input bg-background" oninput="handlePinInput(this, 0)" onkeydown="handlePinKeyDown(event, 0)" />
+                    <input type="password" maxlength="1" class="pin-input rounded-md border border-input bg-background" oninput="handlePinInput(this, 1)" onkeydown="handlePinKeyDown(event, 1)" />
+                    <input type="password" maxlength="1" class="pin-input rounded-md border border-input bg-background" oninput="handlePinInput(this, 2)" onkeydown="handlePinKeyDown(event, 2)" />
+                    <input type="password" maxlength="1" class="pin-input rounded-md border border-input bg-background" oninput="handlePinInput(this, 3)" onkeydown="handlePinKeyDown(event, 3)" />
+                    <input type="password" maxlength="1" class="pin-input rounded-md border border-input bg-background" oninput="handlePinInput(this, 4)" onkeydown="handlePinKeyDown(event, 4)" />
+                    <input type="password" maxlength="1" class="pin-input rounded-md border border-input bg-background" oninput="handlePinInput(this, 5)" onkeydown="handlePinKeyDown(event, 5)" />
+                </div>
+            </div>
+        </div>
+
+        <!-- With Groups ---->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Grouped PIN</h2>
+            <div>
+                <label class="text-sm font-medium mb-2 block">Card PIN</label>
+                <div class="flex gap-1">
+                    <div class="flex gap-1">
+                        <input type="password" maxlength="1" class="pin-input rounded-md border border-input bg-background" oninput="handlePinInput(this, 0)" onkeydown="handlePinKeyDown(event, 0)" />
+                        <input type="password" maxlength="1" class="pin-input rounded-md border border-input bg-background" oninput="handlePinInput(this, 1)" onkeydown="handlePinKeyDown(event, 1)" />
+                    </div>
+                    <div class="flex gap-1">
+                        <input type="password" maxlength="1" class="pin-input rounded-md border border-input bg-background" oninput="handlePinInput(this, 2)" onkeydown="handlePinKeyDown(event, 2)" />
+                        <input type="password" maxlength="1" class="pin-input rounded-md border border-input bg-background" oninput="handlePinInput(this, 3)" onkeydown="handlePinKeyDown(event, 3)" />
+                    </div>
+                </div>
+                <p class="text-xs text-muted-foreground mt-2">Enter your 4-digit card PIN</p>
+            </div>
+        </div>
+
+        <!-- In Form ---->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">In Form</h2>
+            <form class="w-full max-w-sm rounded-lg border bg-card p-6 space-y-4">
+                <div>
+                    <h3 class="text-lg font-semibold mb-1">Verify PIN</h3>
+                    <p class="text-sm text-muted-foreground mb-4">Enter your security PIN</p>
+                </div>
+
+                <div>
+                    <label class="text-sm font-medium mb-2 block">PIN Code</label>
+                    <div class="flex gap-2" id="formPIN">
+                        <input type="password" maxlength="1" class="pin-input rounded-md border border-input bg-background" oninput="handlePinInput(this, 0)" onkeydown="handlePinKeyDown(event, 0)" />
+                        <input type="password" maxlength="1" class="pin-input rounded-md border border-input bg-background" oninput="handlePinInput(this, 1)" onkeydown="handlePinKeyDown(event, 1)" />
+                        <input type="password" maxlength="1" class="pin-input rounded-md border border-input bg-background" oninput="handlePinInput(this, 2)" onkeydown="handlePinKeyDown(event, 2)" />
+                        <input type="password" maxlength="1" class="pin-input rounded-md border border-input bg-background" oninput="handlePinInput(this, 3)" onkeydown="handlePinKeyDown(event, 3)" />
+                    </div>
+                </div>
+
+                <button type="submit" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full">
+                    Verify PIN
+                </button>
+
+                <div class="text-center">
+                    <button type="button" class="text-sm text-primary hover:underline">Forgot PIN?</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function handlePinInput(input, index) {
+            const value = input.value;
+
+            if (!/^\d*$/.test(value)) {
+                input.value = '';
+                return;
+            }
+
+            if (value && index < 5) {
+                const inputs = input.closest('.flex').querySelectorAll('input');
+                const nextInput = inputs[index + 1];
+                if (nextInput) {
+                    nextInput.focus();
+                }
+            }
+        }
+
+        function handlePinKeyDown(event, index) {
+            const input = event.target;
+            const inputs = input.closest('.flex').querySelectorAll('input');
+
+            if (event.key === 'Backspace' && !input.value && index > 0) {
+                inputs[index - 1].focus();
+            }
+
+            if (event.key === 'ArrowLeft' && index > 0) {
+                inputs[index - 1].focus();
+            }
+            if (event.key === 'ArrowRight' && index < inputs.length - 1) {
+                inputs[index + 1].focus();
+            }
+        }
+    </script>
+</body>
+</html>

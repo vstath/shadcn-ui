@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart - shadcn/ui HTML</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        border: "hsl(var(--border))",
+                        background: "hsl(var(--background))",
+                        foreground: "hsl(var(--foreground))",
+                        muted: {
+                            DEFAULT: "hsl(var(--muted))",
+                            foreground: "hsl(var(--muted-foreground))",
+                        },
+                        primary: {
+                            DEFAULT: "hsl(var(--primary))",
+                            foreground: "hsl(var(--primary-foreground))",
+                        },
+                    },
+                    borderRadius: {
+                        lg: "var(--radius)",
+                        md: "calc(var(--radius) - 2px)",
+                        sm: "calc(var(--radius) - 4px)",
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 222.2 84% 4.9%;
+            --primary: 222.2 47.4% 11.2%;
+            --primary-foreground: 210 40% 98%;
+            --muted: 210 40% 96.1%;
+            --muted-foreground: 215.4 16.3% 46.9%;
+            --border: 214.3 31.8% 91.4%;
+            --radius: 0.5rem;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-bottom: 2rem;
+        }
+
+        .simple-bar {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 250px;
+            padding: 1rem;
+            border: 1px solid hsl(var(--border));
+            border-radius: var(--radius);
+            background: hsl(var(--background));
+        }
+
+        .bar {
+            width: 60px;
+            background: linear-gradient(to top, hsl(var(--primary)), hsl(var(--primary) / 0.5));
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .bar:hover {
+            opacity: 0.8;
+        }
+
+        .bar-label {
+            text-align: center;
+            font-size: 0.875rem;
+            color: hsl(var(--muted-foreground));
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground p-8">
+    <div class="max-w-4xl mx-auto space-y-8">
+        <div>
+            <h1 class="text-3xl font-bold mb-2">Chart</h1>
+            <p class="text-muted-foreground">Chart components for data visualization.</p>
+        </div>
+
+        <!-- Simple Bar Chart ---->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Simple Bar Chart</h2>
+            <div class="rounded-lg border bg-card p-6">
+                <h3 class="font-semibold mb-4">Monthly Revenue</h3>
+                <div class="simple-bar">
+                    <div style="height: 60%;" class="bar" title="January: $4200"></div>
+                    <div style="height: 85%;" class="bar" title="February: $5950"></div>
+                    <div style="height: 45%;" class="bar" title="March: $3150"></div>
+                    <div style="height: 70%;" class="bar" title="April: $4900"></div>
+                    <div style="height: 90%;" class="bar" title="May: $6300"></div>
+                    <div style="height: 75%;" class="bar" title="June: $5250"></div>
+                </div>
+                <div class="flex justify-around mt-4 text-xs text-muted-foreground">
+                    <span>Jan</span>
+                    <span>Feb</span>
+                    <span>Mar</span>
+                    <span>Apr</span>
+                    <span>May</span>
+                    <span>Jun</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Line Chart (using Chart.js) ---->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Line Chart</h2>
+            <div class="rounded-lg border bg-card p-6">
+                <h3 class="font-semibold mb-4">Sales Trend</h3>
+                <div class="chart-container">
+                    <canvas id="lineChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pie Chart (using Chart.js) ---->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Pie Chart</h2>
+            <div class="rounded-lg border bg-card p-6">
+                <h3 class="font-semibold mb-4">Market Share</h3>
+                <div style="position: relative; height: 300px; width: 300px;">
+                    <canvas id="pieChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Overview ---->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Stats Overview</h2>
+            <div class="grid grid-cols-4 gap-4">
+                <div class="rounded-lg border bg-card p-4 text-center">
+                    <div class="text-3xl font-bold text-primary">$12.5K</div>
+                    <p class="text-sm text-muted-foreground mt-2">Total Revenue</p>
+                    <p class="text-xs text-green-600 mt-1">↑ 12.5% from last month</p>
+                </div>
+                <div class="rounded-lg border bg-card p-4 text-center">
+                    <div class="text-3xl font-bold text-primary">847</div>
+                    <p class="text-sm text-muted-foreground mt-2">Total Users</p>
+                    <p class="text-xs text-green-600 mt-1">↑ 4.2% from last month</p>
+                </div>
+                <div class="rounded-lg border bg-card p-4 text-center">
+                    <div class="text-3xl font-bold text-primary">2,456</div>
+                    <p class="text-sm text-muted-foreground mt-2">Orders</p>
+                    <p class="text-xs text-green-600 mt-1">↑ 8.1% from last month</p>
+                </div>
+                <div class="rounded-lg border bg-card p-4 text-center">
+                    <div class="text-3xl font-bold text-primary">94%</div>
+                    <p class="text-sm text-muted-foreground mt-2">Satisfaction</p>
+                    <p class="text-xs text-green-600 mt-1">↑ 2.3% from last month</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Line Chart
+        const lineCtx = document.getElementById('lineChart').getContext('2d');
+        new Chart(lineCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Sales',
+                    data: [4200, 5950, 3150, 4900, 6300, 5250],
+                    borderColor: 'hsl(222.2 47.4% 11.2%)',
+                    backgroundColor: 'hsl(222.2 47.4% 11.2% / 0.1)',
+                    tension: 0.4,
+                    fill: true,
+                    pointRadius: 4,
+                    pointBackgroundColor: 'hsl(222.2 47.4% 11.2%)',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 7000,
+                        grid: {
+                            color: 'hsl(214.3 31.8% 91.4%)'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: 'hsl(214.3 31.8% 91.4%)'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Pie Chart
+        const pieCtx = document.getElementById('pieChart').getContext('2d');
+        new Chart(pieCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Product A', 'Product B', 'Product C', 'Product D'],
+                datasets: [{
+                    data: [30, 25, 25, 20],
+                    backgroundColor: [
+                        'hsl(222.2 47.4% 11.2%)',
+                        'hsl(222.2 47.4% 11.2% / 0.8)',
+                        'hsl(222.2 47.4% 11.2% / 0.6)',
+                        'hsl(222.2 47.4% 11.2% / 0.4)',
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

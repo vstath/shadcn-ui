@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avatar - shadcn-html Examples</title>
+  <link rel="stylesheet" href="../dist/styles/output.css">
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; }
+  </style>
+</head>
+<body class="bg-background text-foreground p-8">
+  <div class="max-w-4xl mx-auto space-y-8">
+    <!-- Header -->
+    <div class="space-y-2">
+      <a href="index.html" class="text-sm text-muted-foreground hover:text-foreground">&larr; Back to Examples</a>
+      <h1 class="text-4xl font-bold">Avatar</h1>
+      <p class="text-muted-foreground">An image element with a fallback for representing the user.</p>
+    </div>
+
+    <!-- Default Avatar -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Default</h2>
+      <div class="flex flex-wrap gap-4">
+        <span class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
+          <img class="aspect-square h-full w-full" alt="Avatar" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Crect width='40' height='40' fill='%23ddd'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='16' fill='%23999'%3EJD%3C/text%3E%3C/svg%3E" />
+        </span>
+      </div>
+      <pre class="bg-muted p-4 rounded-md overflow-x-auto"><code>&lt;span class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full"&gt;
+  &lt;img class="aspect-square h-full w-full" alt="Avatar" src="..." /&gt;
+&lt;/span&gt;</code></pre>
+    </section>
+
+    <!-- With Fallback -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">With Fallback</h2>
+      <div class="flex flex-wrap gap-4">
+        <span class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
+          <span class="flex h-full w-full items-center justify-center rounded-full bg-muted">JD</span>
+        </span>
+      </div>
+      <pre class="bg-muted p-4 rounded-md overflow-x-auto"><code>&lt;span class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full"&gt;
+  &lt;span class="flex h-full w-full items-center justify-center rounded-full bg-muted"&gt;JD&lt;/span&gt;
+&lt;/span&gt;</code></pre>
+    </section>
+
+    <!-- Sizes -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Sizes</h2>
+      <div class="flex flex-wrap items-center gap-4">
+        <span class="relative flex h-6 w-6 shrink-0 overflow-hidden rounded-full">
+          <span class="flex h-full w-full items-center justify-center rounded-full bg-muted text-xs">SM</span>
+        </span>
+        <span class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
+          <span class="flex h-full w-full items-center justify-center rounded-full bg-muted">MD</span>
+        </span>
+        <span class="relative flex h-14 w-14 shrink-0 overflow-hidden rounded-full">
+          <span class="flex h-full w-full items-center justify-center rounded-full bg-muted text-lg">LG</span>
+        </span>
+        <span class="relative flex h-20 w-20 shrink-0 overflow-hidden rounded-full">
+          <span class="flex h-full w-full items-center justify-center rounded-full bg-muted text-2xl">XL</span>
+        </span>
+      </div>
+    </section>
+
+    <!-- With Different Colors -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Colored Fallbacks</h2>
+      <div class="flex flex-wrap gap-4">
+        <span class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
+          <span class="flex h-full w-full items-center justify-center rounded-full bg-primary text-primary-foreground">AB</span>
+        </span>
+        <span class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
+          <span class="flex h-full w-full items-center justify-center rounded-full bg-secondary text-secondary-foreground">CD</span>
+        </span>
+        <span class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
+          <span class="flex h-full w-full items-center justify-center rounded-full bg-destructive text-destructive-foreground">EF</span>
+        </span>
+        <span class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
+          <span class="flex h-full w-full items-center justify-center rounded-full bg-green-500 text-white">GH</span>
+        </span>
+        <span class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
+          <span class="flex h-full w-full items-center justify-center rounded-full bg-blue-500 text-white">IJ</span>
+        </span>
+      </div>
+    </section>
+
+    <!-- Avatar Group -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Avatar Group</h2>
+      <div class="flex -space-x-4">
+        <span class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-background">
+          <span class="flex h-full w-full items-center justify-center rounded-full bg-primary text-primary-foreground">AB</span>
+        </span>
+        <span class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-background">
+          <span class="flex h-full w-full items-center justify-center rounded-full bg-secondary text-secondary-foreground">CD</span>
+        </span>
+        <span class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-background">
+          <span class="flex h-full w-full items-center justify-center rounded-full bg-green-500 text-white">EF</span>
+        </span>
+        <span class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-background">
+          <span class="flex h-full w-full items-center justify-center rounded-full bg-blue-500 text-white">GH</span>
+        </span>
+        <span class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-background">
+          <span class="flex h-full w-full items-center justify-center rounded-full bg-muted">+5</span>
+        </span>
+      </div>
+      <pre class="bg-muted p-4 rounded-md overflow-x-auto"><code>&lt;div class="flex -space-x-4"&gt;
+  &lt;span class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-background"&gt;
+    &lt;span class="flex h-full w-full items-center justify-center rounded-full bg-primary text-primary-foreground"&gt;AB&lt;/span&gt;
+  &lt;/span&gt;
+  &lt;span class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-background"&gt;
+    &lt;span class="flex h-full w-full items-center justify-center rounded-full bg-secondary text-secondary-foreground"&gt;CD&lt;/span&gt;
+  &lt;/span&gt;
+  &lt;!-- More avatars --&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- With Status Indicator -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">With Status Indicator</h2>
+      <div class="flex flex-wrap gap-6">
+        <div class="relative">
+          <span class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
+            <span class="flex h-full w-full items-center justify-center rounded-full bg-primary text-primary-foreground">AB</span>
+          </span>
+          <span class="absolute bottom-0 right-0 h-3 w-3 rounded-full bg-green-500 border-2 border-background"></span>
+        </div>
+        <div class="relative">
+          <span class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
+            <span class="flex h-full w-full items-center justify-center rounded-full bg-secondary text-secondary-foreground">CD</span>
+          </span>
+          <span class="absolute bottom-0 right-0 h-3 w-3 rounded-full bg-yellow-500 border-2 border-background"></span>
+        </div>
+        <div class="relative">
+          <span class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
+            <span class="flex h-full w-full items-center justify-center rounded-full bg-muted">EF</span>
+          </span>
+          <span class="absolute bottom-0 right-0 h-3 w-3 rounded-full bg-gray-400 border-2 border-background"></span>
+        </div>
+      </div>
+      <pre class="bg-muted p-4 rounded-md overflow-x-auto"><code>&lt;div class="relative"&gt;
+  &lt;span class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full"&gt;
+    &lt;span class="flex h-full w-full items-center justify-center rounded-full bg-primary text-primary-foreground"&gt;AB&lt;/span&gt;
+  &lt;/span&gt;
+  &lt;span class="absolute bottom-0 right-0 h-3 w-3 rounded-full bg-green-500 border-2 border-background"&gt;&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- With Image Fallback Script -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">With Image Fallback (JavaScript)</h2>
+      <div class="flex flex-wrap gap-4">
+        <span class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
+          <img class="aspect-square h-full w-full" alt="User Avatar" src="invalid-url.jpg" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <span class="hidden h-full w-full items-center justify-center rounded-full bg-muted">UN</span>
+        </span>
+      </div>
+      <pre class="bg-muted p-4 rounded-md overflow-x-auto"><code>&lt;span class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full"&gt;
+  &lt;img class="aspect-square h-full w-full" alt="User Avatar"
+       src="invalid-url.jpg"
+       onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" /&gt;
+  &lt;span class="hidden h-full w-full items-center justify-center rounded-full bg-muted"&gt;UN&lt;/span&gt;
+&lt;/span&gt;</code></pre>
+    </section>
+
+    <!-- Square Avatar -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Square Avatar</h2>
+      <div class="flex flex-wrap gap-4">
+        <span class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-md">
+          <span class="flex h-full w-full items-center justify-center bg-muted">SQ</span>
+        </span>
+      </div>
+      <pre class="bg-muted p-4 rounded-md overflow-x-auto"><code>&lt;span class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-md"&gt;
+  &lt;span class="flex h-full w-full items-center justify-center bg-muted"&gt;SQ&lt;/span&gt;
+&lt;/span&gt;</code></pre>
+    </section>
+  </div>
+</body>
+</html>

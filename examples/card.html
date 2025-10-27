@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card - shadcn-html Examples</title>
+  <link rel="stylesheet" href="../dist/styles/output.css">
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; }
+  </style>
+</head>
+<body class="bg-background text-foreground p-8">
+  <div class="max-w-4xl mx-auto space-y-8">
+    <!-- Header -->
+    <div class="space-y-2">
+      <a href="index.html" class="text-sm text-muted-foreground hover:text-foreground">&larr; Back to Examples</a>
+      <h1 class="text-4xl font-bold">Card</h1>
+      <p class="text-muted-foreground">Displays a card with header, content, and footer.</p>
+    </div>
+
+    <!-- Basic Card -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Basic Card</h2>
+      <div class="max-w-md">
+        <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+          <div class="flex flex-col space-y-1.5 p-6">
+            <h3 class="text-2xl font-semibold leading-none tracking-tight">Card Title</h3>
+            <p class="text-sm text-muted-foreground">Card Description</p>
+          </div>
+          <div class="p-6 pt-0">
+            <p>Card content goes here. This is where you can put any content you want to display.</p>
+          </div>
+          <div class="flex items-center p-6 pt-0">
+            <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+              Action
+            </button>
+          </div>
+        </div>
+      </div>
+      <pre class="bg-muted p-4 rounded-md overflow-x-auto"><code>&lt;div class="rounded-lg border bg-card text-card-foreground shadow-sm"&gt;
+  &lt;div class="flex flex-col space-y-1.5 p-6"&gt;
+    &lt;h3 class="text-2xl font-semibold leading-none tracking-tight"&gt;Card Title&lt;/h3&gt;
+    &lt;p class="text-sm text-muted-foreground"&gt;Card Description&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="p-6 pt-0"&gt;
+    &lt;p&gt;Card content goes here.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="flex items-center p-6 pt-0"&gt;
+    &lt;button&gt;Action&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- Card without Footer -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Without Footer</h2>
+      <div class="max-w-md">
+        <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+          <div class="flex flex-col space-y-1.5 p-6">
+            <h3 class="text-2xl font-semibold leading-none tracking-tight">Notifications</h3>
+            <p class="text-sm text-muted-foreground">You have 3 unread messages.</p>
+          </div>
+          <div class="p-6 pt-0">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-4 rounded-md border p-4">
+                <div class="flex-1 space-y-1">
+                  <p class="text-sm font-medium leading-none">Push Notifications</p>
+                  <p class="text-sm text-muted-foreground">Send notifications to device.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Simple Card -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Simple</h2>
+      <div class="max-w-md">
+        <div class="rounded-lg border bg-card text-card-foreground shadow-sm p-6">
+          <h3 class="text-2xl font-semibold leading-none tracking-tight mb-2">Simple Card</h3>
+          <p class="text-sm text-muted-foreground">This is a simple card with just content and no distinct header or footer sections.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Card Grid -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Card Grid</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+          <div class="flex flex-col space-y-1.5 p-6">
+            <h3 class="text-2xl font-semibold leading-none tracking-tight">Downloads</h3>
+          </div>
+          <div class="p-6 pt-0">
+            <div class="text-4xl font-bold">1,234</div>
+            <p class="text-xs text-muted-foreground mt-1">+20% from last month</p>
+          </div>
+        </div>
+        <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+          <div class="flex flex-col space-y-1.5 p-6">
+            <h3 class="text-2xl font-semibold leading-none tracking-tight">Revenue</h3>
+          </div>
+          <div class="p-6 pt-0">
+            <div class="text-4xl font-bold">$45,231</div>
+            <p class="text-xs text-muted-foreground mt-1">+15% from last month</p>
+          </div>
+        </div>
+        <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+          <div class="flex flex-col space-y-1.5 p-6">
+            <h3 class="text-2xl font-semibold leading-none tracking-tight">Active Users</h3>
+          </div>
+          <div class="p-6 pt-0">
+            <div class="text-4xl font-bold">573</div>
+            <p class="text-xs text-muted-foreground mt-1">+5% from last month</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Card -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Interactive (Hover)</h2>
+      <div class="max-w-md">
+        <div class="rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg cursor-pointer">
+          <div class="flex flex-col space-y-1.5 p-6">
+            <h3 class="text-2xl font-semibold leading-none tracking-tight">Hover Me</h3>
+            <p class="text-sm text-muted-foreground">This card has a hover effect</p>
+          </div>
+          <div class="p-6 pt-0">
+            <p>Hover over this card to see the shadow effect change.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

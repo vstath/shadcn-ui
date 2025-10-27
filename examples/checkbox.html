@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkbox - shadcn-html Examples</title>
+  <link rel="stylesheet" href="../dist/styles/output.css">
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; }
+  </style>
+</head>
+<body class="bg-background text-foreground p-8">
+  <div class="max-w-4xl mx-auto space-y-8">
+    <!-- Header -->
+    <div class="space-y-2">
+      <a href="index.html" class="text-sm text-muted-foreground hover:text-foreground">&larr; Back to Examples</a>
+      <h1 class="text-4xl font-bold">Checkbox</h1>
+      <p class="text-muted-foreground">A control that allows the user to toggle between checked and not checked.</p>
+    </div>
+
+    <!-- Default Checkbox -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Default</h2>
+      <div class="flex items-center space-x-2">
+        <button type="button" role="checkbox" aria-checked="false" data-state="unchecked" value="on" class="peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground" id="checkbox-default">
+          <span class="hidden data-[state=checked]:flex items-center justify-center text-current">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </span>
+        </button>
+        <label for="checkbox-default" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+          Accept terms and conditions
+        </label>
+      </div>
+      <pre class="bg-muted p-4 rounded-md overflow-x-auto"><code>&lt;div class="flex items-center space-x-2"&gt;
+  &lt;button type="button" role="checkbox" aria-checked="false" data-state="unchecked"
+          class="peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground"
+          id="checkbox-default"&gt;
+    &lt;span class="hidden data-[state=checked]:flex items-center justify-center text-current"&gt;
+      &lt;svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"&gt;&lt;polyline points="20 6 9 17 4 12"&gt;&lt;/polyline&gt;&lt;/svg&gt;
+    &lt;/span&gt;
+  &lt;/button&gt;
+  &lt;label for="checkbox-default" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"&gt;
+    Accept terms and conditions
+  &lt;/label&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- Checked State -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Checked</h2>
+      <div class="flex items-center space-x-2">
+        <button type="button" role="checkbox" aria-checked="true" data-state="checked" value="on" class="peer h-4 w-4 shrink-0 rounded-sm border border-primary bg-primary text-primary-foreground ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="checkbox-checked">
+          <span class="flex items-center justify-center text-current">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </span>
+        </button>
+        <label for="checkbox-checked" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+          Checked by default
+        </label>
+      </div>
+    </section>
+
+    <!-- Disabled States -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Disabled</h2>
+      <div class="space-y-4">
+        <div class="flex items-center space-x-2">
+          <button type="button" role="checkbox" aria-checked="false" data-state="unchecked" disabled class="peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="checkbox-disabled">
+            <span class="hidden items-center justify-center text-current">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </span>
+          </button>
+          <label for="checkbox-disabled" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+            Disabled unchecked
+          </label>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button type="button" role="checkbox" aria-checked="true" data-state="checked" disabled class="peer h-4 w-4 shrink-0 rounded-sm border border-primary bg-primary text-primary-foreground ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="checkbox-disabled-checked">
+            <span class="flex items-center justify-center text-current">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </span>
+          </button>
+          <label for="checkbox-disabled-checked" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+            Disabled checked
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- With Description -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">With Description</h2>
+      <div class="flex items-start space-x-2">
+        <button type="button" role="checkbox" aria-checked="false" data-state="unchecked" value="on" class="peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground mt-0.5" id="checkbox-description">
+          <span class="hidden data-[state=checked]:flex items-center justify-center text-current">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </span>
+        </button>
+        <div class="grid gap-1.5 leading-none">
+          <label for="checkbox-description" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+            Marketing emails
+          </label>
+          <p class="text-sm text-muted-foreground">
+            Receive emails about new products, features, and more.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Checkbox List -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Checkbox List</h2>
+      <div class="space-y-3">
+        <div class="flex items-center space-x-2">
+          <button type="button" role="checkbox" aria-checked="true" data-state="checked" class="peer h-4 w-4 shrink-0 rounded-sm border border-primary bg-primary text-primary-foreground ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="checkbox-item-1">
+            <span class="flex items-center justify-center text-current">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </span>
+          </button>
+          <label for="checkbox-item-1" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+            Task 1 - Completed
+          </label>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button type="button" role="checkbox" aria-checked="true" data-state="checked" class="peer h-4 w-4 shrink-0 rounded-sm border border-primary bg-primary text-primary-foreground ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="checkbox-item-2">
+            <span class="flex items-center justify-center text-current">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </span>
+          </button>
+          <label for="checkbox-item-2" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+            Task 2 - Completed
+          </label>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button type="button" role="checkbox" aria-checked="false" data-state="unchecked" class="peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground" id="checkbox-item-3">
+            <span class="hidden data-[state=checked]:flex items-center justify-center text-current">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </span>
+          </button>
+          <label for="checkbox-item-3" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+            Task 3 - Pending
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Example -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Interactive Example</h2>
+      <div class="rounded-lg border p-4 space-y-3">
+        <div class="flex items-center space-x-2">
+          <button type="button" role="checkbox" aria-checked="false" data-state="unchecked" value="on" class="peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground" id="checkbox-interactive-1" onclick="toggleCheckbox(this)">
+            <span class="hidden data-[state=checked]:flex items-center justify-center text-current">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </span>
+          </button>
+          <label for="checkbox-interactive-1" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+            Click to toggle
+          </label>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button type="button" role="checkbox" aria-checked="false" data-state="unchecked" value="on" class="peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground" id="checkbox-interactive-2" onclick="toggleCheckbox(this)">
+            <span class="hidden data-[state=checked]:flex items-center justify-center text-current">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </span>
+          </button>
+          <label for="checkbox-interactive-2" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+            Another checkbox
+          </label>
+        </div>
+      </div>
+      <pre class="bg-muted p-4 rounded-md overflow-x-auto"><code>&lt;script&gt;
+function toggleCheckbox(button) {
+  const isChecked = button.getAttribute('data-state') === 'checked';
+  const newState = isChecked ? 'unchecked' : 'checked';
+
+  button.setAttribute('data-state', newState);
+  button.setAttribute('aria-checked', !isChecked);
+
+  const icon = button.querySelector('span');
+  if (newState === 'checked') {
+    button.classList.add('bg-primary', 'text-primary-foreground');
+    icon.classList.remove('hidden');
+    icon.classList.add('flex');
+  } else {
+    button.classList.remove('bg-primary', 'text-primary-foreground');
+    icon.classList.add('hidden');
+    icon.classList.remove('flex');
+  }
+}
+&lt;/script&gt;</code></pre>
+    </section>
+  </div>
+
+  <script>
+    function toggleCheckbox(button) {
+      const isChecked = button.getAttribute('data-state') === 'checked';
+      const newState = isChecked ? 'unchecked' : 'checked';
+
+      button.setAttribute('data-state', newState);
+      button.setAttribute('aria-checked', !isChecked);
+
+      const icon = button.querySelector('span');
+      if (newState === 'checked') {
+        button.classList.add('bg-primary', 'text-primary-foreground');
+        icon.classList.remove('hidden');
+        icon.classList.add('flex');
+      } else {
+        button.classList.remove('bg-primary', 'text-primary-foreground');
+        icon.classList.add('hidden');
+        icon.classList.remove('flex');
+      }
+    }
+  </script>
+</body>
+</html>

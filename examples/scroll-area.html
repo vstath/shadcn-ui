@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Area - shadcn/ui HTML</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        border: "hsl(var(--border))",
+                        background: "hsl(var(--background))",
+                        foreground: "hsl(var(--foreground))",
+                        muted: {
+                            DEFAULT: "hsl(var(--muted))",
+                            foreground: "hsl(var(--muted-foreground))",
+                        },
+                    },
+                    borderRadius: {
+                        lg: "var(--radius)",
+                        md: "calc(var(--radius) - 2px)",
+                        sm: "calc(var(--radius) - 4px)",
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 222.2 84% 4.9%;
+            --muted: 210 40% 96.1%;
+            --muted-foreground: 215.4 16.3% 46.9%;
+            --border: 214.3 31.8% 91.4%;
+            --radius: 0.5rem;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        /* Custom scrollbar styles */
+        .scroll-area {
+            overflow: auto;
+        }
+
+        .scroll-area::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        .scroll-area::-webkit-scrollbar-track {
+            background: hsl(var(--muted));
+            border-radius: 10px;
+        }
+
+        .scroll-area::-webkit-scrollbar-thumb {
+            background: hsl(var(--muted-foreground) / 0.3);
+            border-radius: 10px;
+        }
+
+        .scroll-area::-webkit-scrollbar-thumb:hover {
+            background: hsl(var(--muted-foreground) / 0.5);
+        }
+
+        /* Thin scrollbar variant */
+        .scroll-area-thin::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground p-8">
+    <div class="max-w-4xl mx-auto space-y-8">
+        <div>
+            <h1 class="text-3xl font-bold mb-2">Scroll Area</h1>
+            <p class="text-muted-foreground">Augments native scroll functionality for custom, cross-browser styling.</p>
+        </div>
+
+        <!-- Basic Scroll Area -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Basic Scroll Area</h2>
+            <div class="rounded-md border">
+                <div class="scroll-area h-72 p-4">
+                    <h3 class="text-lg font-semibold mb-4">Article Title</h3>
+                    <p class="text-sm text-muted-foreground mb-4">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+                    </p>
+                    <p class="text-sm text-muted-foreground mb-4">
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                    <p class="text-sm text-muted-foreground mb-4">
+                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                    </p>
+                    <p class="text-sm text-muted-foreground mb-4">
+                        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+                    </p>
+                    <p class="text-sm text-muted-foreground mb-4">
+                        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.
+                    </p>
+                    <p class="text-sm text-muted-foreground">
+                        Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Thin Scrollbar -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Thin Scrollbar</h2>
+            <div class="rounded-md border">
+                <div class="scroll-area scroll-area-thin h-48 p-4">
+                    {[...Array(20)].map((_, i) => (
+                        <div class="py-2 border-b last:border-0">
+                            <p class="text-sm">Item {i + 1}</p>
+                        </div>
+                    ))}
+                    <div class="py-2 border-b"><p class="text-sm">Item 1</p></div>
+                    <div class="py-2 border-b"><p class="text-sm">Item 2</p></div>
+                    <div class="py-2 border-b"><p class="text-sm">Item 3</p></div>
+                    <div class="py-2 border-b"><p class="text-sm">Item 4</p></div>
+                    <div class="py-2 border-b"><p class="text-sm">Item 5</p></div>
+                    <div class="py-2 border-b"><p class="text-sm">Item 6</p></div>
+                    <div class="py-2 border-b"><p class="text-sm">Item 7</p></div>
+                    <div class="py-2 border-b"><p class="text-sm">Item 8</p></div>
+                    <div class="py-2 border-b"><p class="text-sm">Item 9</p></div>
+                    <div class="py-2 border-b"><p class="text-sm">Item 10</p></div>
+                    <div class="py-2 border-b"><p class="text-sm">Item 11</p></div>
+                    <div class="py-2 border-b"><p class="text-sm">Item 12</p></div>
+                    <div class="py-2"><p class="text-sm">Item 13</p></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Horizontal Scroll -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Horizontal Scroll</h2>
+            <div class="rounded-md border">
+                <div class="scroll-area overflow-x-auto p-4">
+                    <div class="flex gap-4" style="width: 1200px;">
+                        <div class="flex-shrink-0 w-64 h-32 rounded-md border bg-muted flex items-center justify-center">Card 1</div>
+                        <div class="flex-shrink-0 w-64 h-32 rounded-md border bg-muted flex items-center justify-center">Card 2</div>
+                        <div class="flex-shrink-0 w-64 h-32 rounded-md border bg-muted flex items-center justify-center">Card 3</div>
+                        <div class="flex-shrink-0 w-64 h-32 rounded-md border bg-muted flex items-center justify-center">Card 4</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tag List -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Tag List</h2>
+            <div class="rounded-md border">
+                <div class="p-4">
+                    <h3 class="font-semibold mb-3">Tags</h3>
+                    <div class="scroll-area h-48">
+                        <div class="flex flex-col gap-2">
+                            <div class="flex items-center justify-between py-2 border-b">
+                                <span class="text-sm">JavaScript</span>
+                                <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold">235</span>
+                            </div>
+                            <div class="flex items-center justify-between py-2 border-b">
+                                <span class="text-sm">React</span>
+                                <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold">189</span>
+                            </div>
+                            <div class="flex items-center justify-between py-2 border-b">
+                                <span class="text-sm">TypeScript</span>
+                                <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold">156</span>
+                            </div>
+                            <div class="flex items-center justify-between py-2 border-b">
+                                <span class="text-sm">Node.js</span>
+                                <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold">142</span>
+                            </div>
+                            <div class="flex items-center justify-between py-2 border-b">
+                                <span class="text-sm">Python</span>
+                                <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold">128</span>
+                            </div>
+                            <div class="flex items-center justify-between py-2 border-b">
+                                <span class="text-sm">CSS</span>
+                                <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold">98</span>
+                            </div>
+                            <div class="flex items-center justify-between py-2 border-b">
+                                <span class="text-sm">HTML</span>
+                                <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold">87</span>
+                            </div>
+                            <div class="flex items-center justify-between py-2 border-b">
+                                <span class="text-sm">Vue.js</span>
+                                <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold">76</span>
+                            </div>
+                            <div class="flex items-center justify-between py-2 border-b">
+                                <span class="text-sm">Angular</span>
+                                <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold">54</span>
+                            </div>
+                            <div class="flex items-center justify-between py-2">
+                                <span class="text-sm">Svelte</span>
+                                <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold">42</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Message List -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Message List</h2>
+            <div class="rounded-md border">
+                <div class="p-4">
+                    <h3 class="font-semibold mb-3">Recent Messages</h3>
+                    <div class="scroll-area h-64">
+                        <div class="space-y-4">
+                            <div class="flex gap-3">
+                                <div class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full bg-muted">
+                                    <span class="flex h-full w-full items-center justify-center bg-primary text-primary-foreground font-medium">JD</span>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <span class="text-sm font-semibold">John Doe</span>
+                                        <span class="text-xs text-muted-foreground">2m ago</span>
+                                    </div>
+                                    <p class="text-sm text-muted-foreground">Hey, how are you doing?</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-3">
+                                <div class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full bg-muted">
+                                    <span class="flex h-full w-full items-center justify-center bg-primary text-primary-foreground font-medium">JS</span>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <span class="text-sm font-semibold">Jane Smith</span>
+                                        <span class="text-xs text-muted-foreground">5m ago</span>
+                                    </div>
+                                    <p class="text-sm text-muted-foreground">Can you review the PR?</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-3">
+                                <div class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full bg-muted">
+                                    <span class="flex h-full w-full items-center justify-center bg-primary text-primary-foreground font-medium">BJ</span>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <span class="text-sm font-semibold">Bob Johnson</span>
+                                        <span class="text-xs text-muted-foreground">10m ago</span>
+                                    </div>
+                                    <p class="text-sm text-muted-foreground">Meeting at 3pm today</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-3">
+                                <div class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full bg-muted">
+                                    <span class="flex h-full w-full items-center justify-center bg-primary text-primary-foreground font-medium">AW</span>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <span class="text-sm font-semibold">Alice Williams</span>
+                                        <span class="text-xs text-muted-foreground">15m ago</span>
+                                    </div>
+                                    <p class="text-sm text-muted-foreground">Great work on the design!</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-3">
+                                <div class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full bg-muted">
+                                    <span class="flex h-full w-full items-center justify-center bg-primary text-primary-foreground font-medium">CT</span>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <span class="text-sm font-semibold">Chris Taylor</span>
+                                        <span class="text-xs text-muted-foreground">1h ago</span>
+                                    </div>
+                                    <p class="text-sm text-muted-foreground">Updated the documentation</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

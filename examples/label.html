@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Label - shadcn-html Examples</title>
+  <link rel="stylesheet" href="../dist/styles/output.css">
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; }
+  </style>
+</head>
+<body class="bg-background text-foreground p-8">
+  <div class="max-w-4xl mx-auto space-y-8">
+    <!-- Header -->
+    <div class="space-y-2">
+      <a href="index.html" class="text-sm text-muted-foreground hover:text-foreground">&larr; Back to Examples</a>
+      <h1 class="text-4xl font-bold">Label</h1>
+      <p class="text-muted-foreground">Renders an accessible label associated with controls.</p>
+    </div>
+
+    <!-- Default Label -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Default</h2>
+      <div class="space-y-2">
+        <label for="default-input" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+          Your email
+        </label>
+        <input type="email" id="default-input" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="email@example.com" />
+      </div>
+      <pre class="bg-muted p-4 rounded-md overflow-x-auto"><code>&lt;label for="input-id" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"&gt;
+  Your email
+&lt;/label&gt;
+&lt;input type="email" id="input-id" /&gt;</code></pre>
+    </section>
+
+    <!-- With Required Indicator -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">With Required Indicator</h2>
+      <div class="space-y-2">
+        <label for="required-input" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+          Username <span class="text-destructive">*</span>
+        </label>
+        <input type="text" id="required-input" required class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Enter username" />
+      </div>
+    </section>
+
+    <!-- With Description -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">With Description</h2>
+      <div class="space-y-2">
+        <label for="description-input" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+          Display name
+        </label>
+        <input type="text" id="description-input" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="John Doe" />
+        <p class="text-sm text-muted-foreground">
+          This is your public display name. It can be your real name or a pseudonym.
+        </p>
+      </div>
+    </section>
+
+    <!-- With Checkbox -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">With Checkbox</h2>
+      <div class="flex items-center space-x-2">
+        <button type="button" role="checkbox" aria-checked="false" data-state="unchecked" value="on" class="peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground" id="checkbox-label">
+          <span class="hidden data-[state=checked]:flex items-center justify-center text-current">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </span>
+        </button>
+        <label for="checkbox-label" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+          Accept terms and conditions
+        </label>
+      </div>
+    </section>
+
+    <!-- With Radio Button -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">With Radio Buttons</h2>
+      <div class="space-y-3">
+        <label class="text-sm font-medium leading-none">Choose a plan</label>
+        <div class="space-y-2">
+          <div class="flex items-center space-x-2">
+            <input type="radio" id="radio-1" name="plan" class="h-4 w-4 border-primary text-primary focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background" />
+            <label for="radio-1" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+              Free Plan
+            </label>
+          </div>
+          <div class="flex items-center space-x-2">
+            <input type="radio" id="radio-2" name="plan" class="h-4 w-4 border-primary text-primary focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background" />
+            <label for="radio-2" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+              Pro Plan
+            </label>
+          </div>
+          <div class="flex items-center space-x-2">
+            <input type="radio" id="radio-3" name="plan" class="h-4 w-4 border-primary text-primary focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background" />
+            <label for="radio-3" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+              Enterprise Plan
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- With Switch -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">With Switch</h2>
+      <div class="flex items-center space-x-2">
+        <button type="button" role="switch" aria-checked="false" data-state="unchecked" class="peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 bg-input" id="switch-label">
+          <span class="pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0" data-state="unchecked"></span>
+        </button>
+        <label for="switch-label" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+          Enable notifications
+        </label>
+      </div>
+    </section>
+
+    <!-- With Textarea -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">With Textarea</h2>
+      <div class="space-y-2">
+        <label for="textarea-label" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+          Your message
+        </label>
+        <textarea id="textarea-label" class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Type your message here."></textarea>
+      </div>
+    </section>
+
+    <!-- With Select -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">With Select</h2>
+      <div class="space-y-2">
+        <label for="select-label" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+          Country
+        </label>
+        <select id="select-label" class="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+          <option value="">Select a country</option>
+          <option value="us">United States</option>
+          <option value="uk">United Kingdom</option>
+          <option value="ca">Canada</option>
+          <option value="au">Australia</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Disabled State -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Disabled</h2>
+      <div class="space-y-2">
+        <label for="disabled-input" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+          Disabled field
+        </label>
+        <input type="text" id="disabled-input" disabled class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="This field is disabled" />
+      </div>
+    </section>
+
+    <!-- Different Label Styles -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Different Styles</h2>
+      <div class="space-y-4">
+        <div class="space-y-2">
+          <label for="label-bold" class="text-sm font-bold leading-none">
+            Bold Label
+          </label>
+          <input type="text" id="label-bold" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" />
+        </div>
+        <div class="space-y-2">
+          <label for="label-semibold" class="text-sm font-semibold leading-none">
+            Semibold Label
+          </label>
+          <input type="text" id="label-semibold" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" />
+        </div>
+        <div class="space-y-2">
+          <label for="label-normal" class="text-sm font-normal leading-none">
+            Normal Weight Label
+          </label>
+          <input type="text" id="label-normal" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" />
+        </div>
+        <div class="space-y-2">
+          <label for="label-large" class="text-base font-medium leading-none">
+            Larger Label
+          </label>
+          <input type="text" id="label-large" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Form Example -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Complete Form Example</h2>
+      <form class="space-y-6 max-w-md rounded-lg border p-6">
+        <div class="space-y-2">
+          <label for="form-name" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+            Full Name <span class="text-destructive">*</span>
+          </label>
+          <input type="text" id="form-name" required class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="John Doe" />
+        </div>
+        <div class="space-y-2">
+          <label for="form-email" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+            Email <span class="text-destructive">*</span>
+          </label>
+          <input type="email" id="form-email" required class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="john@example.com" />
+        </div>
+        <div class="space-y-2">
+          <label for="form-role" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+            Role
+          </label>
+          <select id="form-role" class="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+            <option value="">Select a role</option>
+            <option value="developer">Developer</option>
+            <option value="designer">Designer</option>
+            <option value="manager">Manager</option>
+          </select>
+        </div>
+        <div class="space-y-2">
+          <label for="form-bio" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+            Bio
+          </label>
+          <textarea id="form-bio" class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Tell us about yourself..."></textarea>
+        </div>
+        <div class="flex items-center space-x-2">
+          <button type="button" role="checkbox" aria-checked="false" data-state="unchecked" class="peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground" id="form-terms">
+            <span class="hidden data-[state=checked]:flex items-center justify-center text-current">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </span>
+          </button>
+          <label for="form-terms" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+            I agree to the terms and conditions
+          </label>
+        </div>
+        <button type="submit" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+          Submit
+        </button>
+      </form>
+    </section>
+  </div>
+</body>
+</html>

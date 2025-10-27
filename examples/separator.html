@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Separator - shadcn-html Examples</title>
+  <link rel="stylesheet" href="../dist/styles/output.css">
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; }
+  </style>
+</head>
+<body class="bg-background text-foreground p-8">
+  <div class="max-w-4xl mx-auto space-y-8">
+    <!-- Header -->
+    <div class="space-y-2">
+      <a href="index.html" class="text-sm text-muted-foreground hover:text-foreground">&larr; Back to Examples</a>
+      <h1 class="text-4xl font-bold">Separator</h1>
+      <p class="text-muted-foreground">Visually or semantically separates content.</p>
+    </div>
+
+    <!-- Horizontal Separator -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Horizontal</h2>
+      <div class="space-y-4">
+        <p class="text-sm">Content above the separator</p>
+        <div class="shrink-0 bg-border h-[1px] w-full"></div>
+        <p class="text-sm">Content below the separator</p>
+      </div>
+      <pre class="bg-muted p-4 rounded-md overflow-x-auto"><code>&lt;div class="shrink-0 bg-border h-[1px] w-full"&gt;&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- Vertical Separator -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Vertical</h2>
+      <div class="flex h-20 items-center space-x-4">
+        <p class="text-sm">Left content</p>
+        <div class="shrink-0 bg-border w-[1px] h-full"></div>
+        <p class="text-sm">Right content</p>
+      </div>
+      <pre class="bg-muted p-4 rounded-md overflow-x-auto"><code>&lt;div class="flex h-20 items-center space-x-4"&gt;
+  &lt;p&gt;Left content&lt;/p&gt;
+  &lt;div class="shrink-0 bg-border w-[1px] h-full"&gt;&lt;/div&gt;
+  &lt;p&gt;Right content&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- In Text -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">In Text</h2>
+      <div>
+        <h3 class="text-lg font-medium">Section Title</h3>
+        <div class="shrink-0 bg-border h-[1px] w-full my-4"></div>
+        <p class="text-sm text-muted-foreground">
+          This is the section content. The separator helps divide different sections of content to improve readability and visual hierarchy.
+        </p>
+      </div>
+    </section>
+
+    <!-- In Menu -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">In Menu</h2>
+      <div class="w-56 rounded-md border bg-popover p-1 text-popover-foreground shadow-md">
+        <div class="px-2 py-1.5 text-sm font-semibold cursor-pointer hover:bg-accent hover:text-accent-foreground rounded-sm">
+          Profile
+        </div>
+        <div class="px-2 py-1.5 text-sm font-semibold cursor-pointer hover:bg-accent hover:text-accent-foreground rounded-sm">
+          Settings
+        </div>
+        <div class="shrink-0 bg-border h-[1px] w-full my-1"></div>
+        <div class="px-2 py-1.5 text-sm font-semibold cursor-pointer hover:bg-accent hover:text-accent-foreground rounded-sm">
+          Team
+        </div>
+        <div class="px-2 py-1.5 text-sm font-semibold cursor-pointer hover:bg-accent hover:text-accent-foreground rounded-sm">
+          Subscription
+        </div>
+        <div class="shrink-0 bg-border h-[1px] w-full my-1"></div>
+        <div class="px-2 py-1.5 text-sm font-semibold cursor-pointer hover:bg-accent hover:text-accent-foreground rounded-sm text-destructive">
+          Log out
+        </div>
+      </div>
+    </section>
+
+    <!-- In Card -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">In Card</h2>
+      <div class="rounded-lg border bg-card text-card-foreground shadow-sm max-w-md">
+        <div class="p-6 space-y-1.5">
+          <h3 class="text-2xl font-semibold leading-none tracking-tight">Card Title</h3>
+          <p class="text-sm text-muted-foreground">Card description goes here</p>
+        </div>
+        <div class="shrink-0 bg-border h-[1px] w-full"></div>
+        <div class="p-6">
+          <p class="text-sm">
+            This is the main content of the card. The separator divides the header from the body.
+          </p>
+        </div>
+        <div class="shrink-0 bg-border h-[1px] w-full"></div>
+        <div class="p-6 flex items-center gap-4">
+          <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+            Action
+          </button>
+          <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Different Thicknesses -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Different Thicknesses</h2>
+      <div class="space-y-6">
+        <div class="space-y-2">
+          <p class="text-sm font-medium">Thin (1px)</p>
+          <div class="shrink-0 bg-border h-[1px] w-full"></div>
+        </div>
+        <div class="space-y-2">
+          <p class="text-sm font-medium">Medium (2px)</p>
+          <div class="shrink-0 bg-border h-[2px] w-full"></div>
+        </div>
+        <div class="space-y-2">
+          <p class="text-sm font-medium">Thick (4px)</p>
+          <div class="shrink-0 bg-border h-[4px] w-full"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- With Different Colors -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">With Different Colors</h2>
+      <div class="space-y-6">
+        <div class="space-y-2">
+          <p class="text-sm font-medium">Default (border)</p>
+          <div class="shrink-0 bg-border h-[1px] w-full"></div>
+        </div>
+        <div class="space-y-2">
+          <p class="text-sm font-medium">Primary</p>
+          <div class="shrink-0 bg-primary h-[1px] w-full"></div>
+        </div>
+        <div class="space-y-2">
+          <p class="text-sm font-medium">Muted</p>
+          <div class="shrink-0 bg-muted h-[2px] w-full"></div>
+        </div>
+        <div class="space-y-2">
+          <p class="text-sm font-medium">Accent</p>
+          <div class="shrink-0 bg-accent h-[2px] w-full"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- With Text -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">With Text</h2>
+      <div class="relative">
+        <div class="absolute inset-0 flex items-center">
+          <span class="w-full border-t"></span>
+        </div>
+        <div class="relative flex justify-center text-xs uppercase">
+          <span class="bg-background px-2 text-muted-foreground">Or continue with</span>
+        </div>
+      </div>
+      <pre class="bg-muted p-4 rounded-md overflow-x-auto"><code>&lt;div class="relative"&gt;
+  &lt;div class="absolute inset-0 flex items-center"&gt;
+    &lt;span class="w-full border-t"&gt;&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="relative flex justify-center text-xs uppercase"&gt;
+    &lt;span class="bg-background px-2 text-muted-foreground"&gt;Or continue with&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- Navigation Example -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Navigation Example</h2>
+      <div class="flex items-center space-x-4 text-sm">
+        <a href="#" class="hover:underline">Home</a>
+        <div class="shrink-0 bg-border w-[1px] h-4"></div>
+        <a href="#" class="hover:underline">Products</a>
+        <div class="shrink-0 bg-border w-[1px] h-4"></div>
+        <a href="#" class="hover:underline">About</a>
+        <div class="shrink-0 bg-border w-[1px] h-4"></div>
+        <a href="#" class="hover:underline">Contact</a>
+      </div>
+    </section>
+
+    <!-- Stats Example -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Stats Example</h2>
+      <div class="grid grid-cols-3 gap-4">
+        <div class="text-center">
+          <div class="text-2xl font-bold">1,234</div>
+          <div class="text-sm text-muted-foreground">Users</div>
+        </div>
+        <div class="flex items-center justify-center">
+          <div class="shrink-0 bg-border w-[1px] h-12"></div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl font-bold">567</div>
+          <div class="text-sm text-muted-foreground">Projects</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Semantic Separator -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Semantic (HR)</h2>
+      <div class="space-y-4">
+        <p class="text-sm">Using the semantic &lt;hr&gt; element with styling:</p>
+        <hr class="shrink-0 bg-border border-0 h-[1px] w-full" />
+        <p class="text-sm">This maintains semantic meaning while matching the design system.</p>
+      </div>
+      <pre class="bg-muted p-4 rounded-md overflow-x-auto"><code>&lt;hr class="shrink-0 bg-border border-0 h-[1px] w-full" /&gt;</code></pre>
+    </section>
+  </div>
+</body>
+</html>

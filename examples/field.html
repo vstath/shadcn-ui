@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Field - shadcn/ui HTML</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        border: "hsl(var(--border))",
+                        input: "hsl(var(--input))",
+                        background: "hsl(var(--background))",
+                        foreground: "hsl(var(--foreground))",
+                        primary: {
+                            DEFAULT: "hsl(var(--primary))",
+                            foreground: "hsl(var(--primary-foreground))",
+                        },
+                        destructive: {
+                            DEFAULT: "hsl(var(--destructive))",
+                            foreground: "hsl(var(--destructive-foreground))",
+                        },
+                        muted: {
+                            DEFAULT: "hsl(var(--muted))",
+                            foreground: "hsl(var(--muted-foreground))",
+                        },
+                    },
+                    borderRadius: {
+                        lg: "var(--radius)",
+                        md: "calc(var(--radius) - 2px)",
+                        sm: "calc(var(--radius) - 4px)",
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 222.2 84% 4.9%;
+            --primary: 222.2 47.4% 11.2%;
+            --primary-foreground: 210 40% 98%;
+            --destructive: 0 84.2% 60.2%;
+            --destructive-foreground: 210 40% 98%;
+            --muted: 210 40% 96.1%;
+            --muted-foreground: 215.4 16.3% 46.9%;
+            --border: 214.3 31.8% 91.4%;
+            --input: 214.3 31.8% 91.4%;
+            --radius: 0.5rem;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .field-error input,
+        .field-error textarea,
+        .field-error select {
+            border-color: hsl(var(--destructive));
+        }
+
+        .field-error .field-description {
+            color: hsl(var(--destructive));
+        }
+
+        .field-horizontal {
+            flex-direction: row;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .field-horizontal .field-label {
+            min-width: 150px;
+        }
+
+        .field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            border: 1px solid hsl(var(--border));
+            border-radius: var(--radius);
+        }
+
+        .field-legend {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .field-description {
+            font-size: 0.875rem;
+            color: hsl(var(--muted-foreground));
+        }
+
+        .field-error-message {
+            font-size: 0.875rem;
+            color: hsl(var(--destructive));
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        input:invalid ~ .field-error-message,
+        textarea:invalid ~ .field-error-message {
+            display: flex;
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground p-8">
+    <div class="max-w-4xl mx-auto space-y-8">
+        <div>
+            <h1 class="text-3xl font-bold mb-2">Field</h1>
+            <p class="text-muted-foreground">Composable form field components with labels, descriptions, and validation.</p>
+        </div>
+
+        <!-- Basic Field ---->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Basic Field</h2>
+            <div class="w-full max-w-md">
+                <div class="field">
+                    <label class="field-label text-sm font-medium" for="name">Name</label>
+                    <input type="text" id="name" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" placeholder="John Doe" />
+                    <p class="field-description">Enter your full name</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Field with Error ---->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Field with Error</h2>
+            <div class="w-full max-w-md">
+                <div class="field field-error">
+                    <label class="field-label text-sm font-medium" for="email">Email</label>
+                    <input type="email" id="email" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" placeholder="email@example.com" required />
+                    <p class="field-description">This field is required</p>
+                    <p class="field-error-message">
+                        <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+                        Please enter a valid email
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Field with Helper Text ---->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Field with Helper Text</h2>
+            <div class="w-full max-w-md">
+                <div class="field">
+                    <label class="field-label text-sm font-medium" for="password">Password</label>
+                    <input type="password" id="password" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" placeholder="••••••••" />
+                    <p class="field-description">Must be at least 8 characters with uppercase, lowercase, and numbers</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Horizontal Layout ---->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Horizontal Layout</h2>
+            <div class="w-full max-w-2xl">
+                <div class="field field-horizontal">
+                    <label class="field-label text-sm font-medium" for="company">Company</label>
+                    <div class="flex-1">
+                        <input type="text" id="company" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" placeholder="Acme Inc." />
+                        <p class="field-description mt-1">Your company or organization name</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Field Group (Fieldset) ---->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Field Group (Fieldset)</h2>
+            <fieldset class="field-group">
+                <legend class="field-legend">Billing Address</legend>
+
+                <div class="field">
+                    <label class="field-label text-sm font-medium" for="street">Street Address</label>
+                    <input type="text" id="street" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" placeholder="123 Main St" />
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="field">
+                        <label class="field-label text-sm font-medium" for="city">City</label>
+                        <input type="text" id="city" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" placeholder="New York" />
+                    </div>
+                    <div class="field">
+                        <label class="field-label text-sm font-medium" for="zip">ZIP Code</label>
+                        <input type="text" id="zip" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" placeholder="10001" />
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="field-label text-sm font-medium" for="country">Country</label>
+                    <select id="country" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+                        <option value="">Select a country</option>
+                        <option value="us">United States</option>
+                        <option value="uk">United Kingdom</option>
+                        <option value="ca">Canada</option>
+                    </select>
+                </div>
+            </fieldset>
+        </div>
+
+        <!-- Field with Textarea ---->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Field with Textarea</h2>
+            <div class="w-full max-w-md">
+                <div class="field">
+                    <label class="field-label text-sm font-medium" for="message">Message</label>
+                    <textarea id="message" class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" placeholder="Enter your message..."></textarea>
+                    <p class="field-description">Maximum 500 characters</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Complete Form Example ---->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Complete Form Example</h2>
+            <form class="w-full max-w-2xl rounded-lg border bg-card p-6 space-y-6">
+                <div class="field">
+                    <label class="field-label text-sm font-medium" for="form-name">Full Name</label>
+                    <input type="text" id="form-name" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" placeholder="John Doe" required />
+                    <p class="field-description">Your legal name</p>
+                </div>
+
+                <div class="field">
+                    <label class="field-label text-sm font-medium" for="form-email">Email Address</label>
+                    <input type="email" id="form-email" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" placeholder="john@example.com" required />
+                    <p class="field-description">We'll never share your email</p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="field">
+                        <label class="field-label text-sm font-medium" for="form-phone">Phone</label>
+                        <input type="tel" id="form-phone" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" placeholder="(555) 123-4567" />
+                    </div>
+                    <div class="field">
+                        <label class="field-label text-sm font-medium" for="form-role">Role</label>
+                        <select id="form-role" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+                            <option value="">Select a role</option>
+                            <option value="developer">Developer</option>
+                            <option value="designer">Designer</option>
+                            <option value="manager">Manager</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="field-label text-sm font-medium" for="form-bio">Bio</label>
+                    <textarea id="form-bio" class="flex min-h-[100px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" placeholder="Tell us about yourself..."></textarea>
+                    <p class="field-description">Brief description (max 250 characters)</p>
+                </div>
+
+                <button type="submit" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full">
+                    Submit Form
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

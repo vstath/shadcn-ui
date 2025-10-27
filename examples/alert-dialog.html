@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alert Dialog - shadcn-html Examples</title>
+  <link rel="stylesheet" href="../dist/styles/output.css">
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; }
+    .dialog-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    .dialog-overlay.open {
+      display: block;
+      animation: fadeIn 0.2s ease-out;
+    }
+    .dialog-content {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 51;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body class="bg-background text-foreground p-8">
+  <div class="max-w-4xl mx-auto space-y-8">
+    <!-- Header -->
+    <div class="space-y-2">
+      <a href="index.html" class="text-sm text-muted-foreground hover:text-foreground">&larr; Back to Examples</a>
+      <h1 class="text-4xl font-bold">Alert Dialog</h1>
+      <p class="text-muted-foreground">A modal dialog that interrupts the user with important content and expects a response.</p>
+    </div>
+
+    <!-- Default Alert Dialog -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Default</h2>
+      <button onclick="openDialog('dialog-1')" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+        Show Dialog
+      </button>
+
+      <!-- Dialog Overlay -->
+      <div id="dialog-1" class="dialog-overlay" onclick="closeDialog('dialog-1')">
+        <div class="dialog-content w-full max-w-lg rounded-lg border bg-background p-6 shadow-lg" onclick="event.stopPropagation()">
+          <div class="space-y-4">
+            <div class="space-y-2">
+              <h2 class="text-lg font-semibold">Are you absolutely sure?</h2>
+              <p class="text-sm text-muted-foreground">
+                This action cannot be undone. This will permanently delete your account and remove your data from our servers.
+              </p>
+            </div>
+            <div class="flex justify-end space-x-2">
+              <button onclick="closeDialog('dialog-1')" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
+                Cancel
+              </button>
+              <button onclick="closeDialog('dialog-1')" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-destructive text-destructive-foreground hover:bg-destructive/90 h-10 px-4 py-2">
+                Continue
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <pre class="bg-muted p-4 rounded-md overflow-x-auto"><code>&lt;!-- Trigger Button --&gt;
+&lt;button onclick="openDialog('dialog-id')"&gt;Show Dialog&lt;/button&gt;
+
+&lt;!-- Dialog Overlay --&gt;
+&lt;div id="dialog-id" class="dialog-overlay" onclick="closeDialog('dialog-id')"&gt;
+  &lt;div class="dialog-content w-full max-w-lg rounded-lg border bg-background p-6 shadow-lg" onclick="event.stopPropagation()"&gt;
+    &lt;div class="space-y-4"&gt;
+      &lt;div class="space-y-2"&gt;
+        &lt;h2 class="text-lg font-semibold"&gt;Are you absolutely sure?&lt;/h2&gt;
+        &lt;p class="text-sm text-muted-foreground"&gt;This action cannot be undone.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="flex justify-end space-x-2"&gt;
+        &lt;button onclick="closeDialog('dialog-id')"&gt;Cancel&lt;/button&gt;
+        &lt;button onclick="closeDialog('dialog-id')"&gt;Continue&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- Delete Confirmation -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Delete Confirmation</h2>
+      <button onclick="openDialog('dialog-2')" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-destructive text-destructive-foreground hover:bg-destructive/90 h-10 px-4 py-2">
+        Delete Account
+      </button>
+
+      <div id="dialog-2" class="dialog-overlay" onclick="closeDialog('dialog-2')">
+        <div class="dialog-content w-full max-w-lg rounded-lg border bg-background p-6 shadow-lg" onclick="event.stopPropagation()">
+          <div class="space-y-4">
+            <div class="flex items-start space-x-4">
+              <div class="flex h-10 w-10 items-center justify-center rounded-full bg-destructive/10 text-destructive">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+              </div>
+              <div class="space-y-2 flex-1">
+                <h2 class="text-lg font-semibold">Delete Account</h2>
+                <p class="text-sm text-muted-foreground">
+                  Are you sure you want to delete your account? This will permanently delete all your data and cannot be undone.
+                </p>
+              </div>
+            </div>
+            <div class="flex justify-end space-x-2">
+              <button onclick="closeDialog('dialog-2')" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
+                Cancel
+              </button>
+              <button onclick="handleDelete('dialog-2')" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-destructive text-destructive-foreground hover:bg-destructive/90 h-10 px-4 py-2">
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Logout Confirmation -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Logout Confirmation</h2>
+      <button onclick="openDialog('dialog-3')" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
+        Logout
+      </button>
+
+      <div id="dialog-3" class="dialog-overlay" onclick="closeDialog('dialog-3')">
+        <div class="dialog-content w-full max-w-md rounded-lg border bg-background p-6 shadow-lg" onclick="event.stopPropagation()">
+          <div class="space-y-4">
+            <div class="space-y-2">
+              <h2 class="text-lg font-semibold">Logout</h2>
+              <p class="text-sm text-muted-foreground">
+                Are you sure you want to logout?
+              </p>
+            </div>
+            <div class="flex justify-end space-x-2">
+              <button onclick="closeDialog('dialog-3')" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
+                Cancel
+              </button>
+              <button onclick="handleLogout('dialog-3')" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+                Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Success Alert -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Success Alert</h2>
+      <button onclick="openDialog('dialog-4')" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+        Show Success
+      </button>
+
+      <div id="dialog-4" class="dialog-overlay" onclick="closeDialog('dialog-4')">
+        <div class="dialog-content w-full max-w-md rounded-lg border bg-background p-6 shadow-lg" onclick="event.stopPropagation()">
+          <div class="space-y-4">
+            <div class="flex flex-col items-center text-center space-y-2">
+              <div class="flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/20">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-green-600 dark:text-green-400"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <h2 class="text-lg font-semibold">Success!</h2>
+              <p class="text-sm text-muted-foreground">
+                Your changes have been saved successfully.
+              </p>
+            </div>
+            <div class="flex justify-center">
+              <button onclick="closeDialog('dialog-4')" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+                OK
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- With Input Field -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">With Input Field</h2>
+      <button onclick="openDialog('dialog-5')" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
+        Change Username
+      </button>
+
+      <div id="dialog-5" class="dialog-overlay" onclick="closeDialog('dialog-5')">
+        <div class="dialog-content w-full max-w-md rounded-lg border bg-background p-6 shadow-lg" onclick="event.stopPropagation()">
+          <div class="space-y-4">
+            <div class="space-y-2">
+              <h2 class="text-lg font-semibold">Change Username</h2>
+              <p class="text-sm text-muted-foreground">
+                Enter your new username below.
+              </p>
+            </div>
+            <div class="space-y-2">
+              <label for="username-input" class="text-sm font-medium leading-none">Username</label>
+              <input type="text" id="username-input" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Enter username" />
+            </div>
+            <div class="flex justify-end space-x-2">
+              <button onclick="closeDialog('dialog-5')" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
+                Cancel
+              </button>
+              <button onclick="saveUsername()" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JavaScript Implementation -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">JavaScript Implementation</h2>
+      <pre class="bg-muted p-4 rounded-md overflow-x-auto"><code>&lt;script&gt;
+function openDialog(dialogId) {
+  const dialog = document.getElementById(dialogId);
+  dialog.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDialog(dialogId) {
+  const dialog = document.getElementById(dialogId);
+  dialog.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Close on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.dialog-overlay.open').forEach(dialog =&gt; {
+      closeDialog(dialog.id);
+    });
+  }
+});
+&lt;/script&gt;</code></pre>
+    </section>
+  </div>
+
+  <script>
+    function openDialog(dialogId) {
+      const dialog = document.getElementById(dialogId);
+      dialog.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDialog(dialogId) {
+      const dialog = document.getElementById(dialogId);
+      dialog.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function handleDelete(dialogId) {
+      alert('Account deleted!');
+      closeDialog(dialogId);
+    }
+
+    function handleLogout(dialogId) {
+      alert('Logged out!');
+      closeDialog(dialogId);
+    }
+
+    function saveUsername() {
+      const username = document.getElementById('username-input').value;
+      if (username) {
+        alert('Username changed to: ' + username);
+        closeDialog('dialog-5');
+      } else {
+        alert('Please enter a username');
+      }
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.dialog-overlay.open').forEach(dialog => {
+          closeDialog(dialog.id);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

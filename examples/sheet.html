@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sheet - shadcn/ui HTML</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        border: "hsl(var(--border))",
+                        background: "hsl(var(--background))",
+                        foreground: "hsl(var(--foreground))",
+                        primary: {
+                            DEFAULT: "hsl(var(--primary))",
+                            foreground: "hsl(var(--primary-foreground))",
+                        },
+                        muted: {
+                            DEFAULT: "hsl(var(--muted))",
+                            foreground: "hsl(var(--muted-foreground))",
+                        },
+                    },
+                    borderRadius: {
+                        lg: "var(--radius)",
+                        md: "calc(var(--radius) - 2px)",
+                        sm: "calc(var(--radius) - 4px)",
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 222.2 84% 4.9%;
+            --primary: 222.2 47.4% 11.2%;
+            --primary-foreground: 210 40% 98%;
+            --muted: 210 40% 96.1%;
+            --muted-foreground: 215.4 16.3% 46.9%;
+            --border: 214.3 31.8% 91.4%;
+            --radius: 0.5rem;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .sheet-overlay {
+            display: none;
+            animation: fadeIn 0.2s ease-in-out;
+        }
+
+        .sheet-overlay.show {
+            display: flex;
+        }
+
+        .sheet-content {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .sheet-content.left {
+            transform: translateX(-100%);
+        }
+
+        .sheet-content.top {
+            transform: translateY(-100%);
+        }
+
+        .sheet-content.bottom {
+            transform: translateY(100%);
+        }
+
+        .sheet-overlay.show .sheet-content {
+            transform: translate(0, 0);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground p-8">
+    <div class="max-w-4xl mx-auto space-y-8">
+        <div>
+            <h1 class="text-3xl font-bold mb-2">Sheet</h1>
+            <p class="text-muted-foreground">Extends the Dialog component to display content that complements the main content of the screen.</p>
+        </div>
+
+        <!-- Different Sides -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Different Sides</h2>
+            <div class="flex flex-wrap gap-4">
+                <button onclick="openSheet('right')" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
+                    Open Right
+                </button>
+                <button onclick="openSheet('left')" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
+                    Open Left
+                </button>
+                <button onclick="openSheet('top')" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
+                    Open Top
+                </button>
+                <button onclick="openSheet('bottom')" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
+                    Open Bottom
+                </button>
+            </div>
+        </div>
+
+        <!-- With Form -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">With Form</h2>
+            <button onclick="openSheet('form')" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+                Edit Profile
+            </button>
+        </div>
+    </div>
+
+    <!-- Sheet Overlays -->
+    <!-- Right Sheet -->
+    <div id="sheet-right" class="sheet-overlay fixed inset-0 z-50 bg-background/80 backdrop-blur-sm" onclick="closeSheet('right')">
+        <div class="sheet-content fixed inset-y-0 right-0 h-full w-full sm:max-w-sm border-l bg-background shadow-lg" onclick="event.stopPropagation()">
+            <div class="flex flex-col h-full">
+                <div class="flex items-center justify-between p-6 border-b">
+                    <h2 class="text-lg font-semibold">Right Sheet</h2>
+                    <button onclick="closeSheet('right')" class="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100">
+                        <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                    </button>
+                </div>
+                <div class="flex-1 overflow-y-auto p-6">
+                    <p class="text-sm text-muted-foreground">
+                        Make changes to your profile here. Click save when you're done.
+                    </p>
+                    <div class="mt-6 space-y-4">
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium">Name</label>
+                            <input type="text" value="John Doe" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm" />
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium">Email</label>
+                            <input type="email" value="john@example.com" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm" />
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t p-6">
+                    <button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full">
+                        Save changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Left Sheet -->
+    <div id="sheet-left" class="sheet-overlay fixed inset-0 z-50 bg-background/80 backdrop-blur-sm" onclick="closeSheet('left')">
+        <div class="sheet-content left fixed inset-y-0 left-0 h-full w-full sm:max-w-sm border-r bg-background shadow-lg" onclick="event.stopPropagation()">
+            <div class="flex flex-col h-full">
+                <div class="flex items-center justify-between p-6 border-b">
+                    <h2 class="text-lg font-semibold">Left Sheet</h2>
+                    <button onclick="closeSheet('left')" class="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100">
+                        <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                    </button>
+                </div>
+                <div class="flex-1 overflow-y-auto p-6">
+                    <p class="text-sm text-muted-foreground">Navigation or sidebar content goes here.</p>
+                    <nav class="mt-6 space-y-2">
+                        <a href="#" class="block p-2 rounded-md hover:bg-accent">Dashboard</a>
+                        <a href="#" class="block p-2 rounded-md hover:bg-accent">Settings</a>
+                        <a href="#" class="block p-2 rounded-md hover:bg-accent">Profile</a>
+                        <a href="#" class="block p-2 rounded-md hover:bg-accent">Help</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Sheet -->
+    <div id="sheet-top" class="sheet-overlay fixed inset-0 z-50 bg-background/80 backdrop-blur-sm" onclick="closeSheet('top')">
+        <div class="sheet-content top fixed inset-x-0 top-0 border-b bg-background shadow-lg" onclick="event.stopPropagation()">
+            <div class="container mx-auto max-w-3xl">
+                <div class="flex items-center justify-between p-6 border-b">
+                    <h2 class="text-lg font-semibold">Top Sheet</h2>
+                    <button onclick="closeSheet('top')" class="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100">
+                        <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                    </button>
+                </div>
+                <div class="p-6">
+                    <p class="text-sm text-muted-foreground">Content that slides from the top.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Sheet -->
+    <div id="sheet-bottom" class="sheet-overlay fixed inset-0 z-50 bg-background/80 backdrop-blur-sm" onclick="closeSheet('bottom')">
+        <div class="sheet-content bottom fixed inset-x-0 bottom-0 border-t bg-background shadow-lg" onclick="event.stopPropagation()">
+            <div class="container mx-auto max-w-3xl">
+                <div class="flex items-center justify-between p-6 border-b">
+                    <h2 class="text-lg font-semibold">Bottom Sheet</h2>
+                    <button onclick="closeSheet('bottom')" class="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100">
+                        <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                    </button>
+                </div>
+                <div class="p-6">
+                    <p class="text-sm text-muted-foreground">Content that slides from the bottom. Commonly used on mobile.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form Sheet -->
+    <div id="sheet-form" class="sheet-overlay fixed inset-0 z-50 bg-background/80 backdrop-blur-sm" onclick="closeSheet('form')">
+        <div class="sheet-content fixed inset-y-0 right-0 h-full w-full sm:max-w-md border-l bg-background shadow-lg" onclick="event.stopPropagation()">
+            <div class="flex flex-col h-full">
+                <div class="flex items-center justify-between p-6 border-b">
+                    <div>
+                        <h2 class="text-lg font-semibold">Edit Profile</h2>
+                        <p class="text-sm text-muted-foreground">Make changes to your profile here. Click save when you're done.</p>
+                    </div>
+                    <button onclick="closeSheet('form')" class="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100">
+                        <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                    </button>
+                </div>
+                <div class="flex-1 overflow-y-auto p-6">
+                    <div class="space-y-6">
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium leading-none">Name</label>
+                            <input type="text" value="John Doe" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" />
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium leading-none">Username</label>
+                            <input type="text" value="@johndoe" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" />
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium leading-none">Email</label>
+                            <input type="email" value="john@example.com" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" />
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium leading-none">Bio</label>
+                            <textarea class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">I own a computer.</textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t p-6">
+                    <button onclick="closeSheet('form')" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full">
+                        Save changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openSheet(id) {
+            const sheet = document.getElementById('sheet-' + id);
+            sheet.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSheet(id) {
+            const sheet = document.getElementById('sheet-' + id);
+            sheet.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.sheet-overlay.show').forEach(sheet => {
+                    sheet.classList.remove('show');
+                    document.body.style.overflow = '';
+                });
+            }
+        });
+    </script>
+</body>
+</html>

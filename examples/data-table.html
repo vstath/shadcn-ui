@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Table - shadcn/ui HTML</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        border: "hsl(var(--border))",
+                        background: "hsl(var(--background))",
+                        foreground: "hsl(var(--foreground))",
+                        muted: {
+                            DEFAULT: "hsl(var(--muted))",
+                            foreground: "hsl(var(--muted-foreground))",
+                        },
+                    },
+                    borderRadius: {
+                        lg: "var(--radius)",
+                        md: "calc(var(--radius) - 2px)",
+                        sm: "calc(var(--radius) - 4px)",
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 222.2 84% 4.9%;
+            --muted: 210 40% 96.1%;
+            --muted-foreground: 215.4 16.3% 46.9%;
+            --border: 214.3 31.8% 91.4%;
+            --radius: 0.5rem;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        thead tr {
+            border-top: 1px solid hsl(var(--border));
+            border-bottom: 1px solid hsl(var(--border));
+        }
+
+        tbody tr {
+            border-bottom: 1px solid hsl(var(--border));
+            transition: background-color 0.2s;
+        }
+
+        tbody tr:hover {
+            background-color: hsl(var(--muted));
+        }
+
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+        }
+
+        th {
+            font-weight: 600;
+            color: hsl(var(--muted-foreground));
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground p-8">
+    <div class="max-w-6xl mx-auto space-y-8">
+        <div>
+            <h1 class="text-3xl font-bold mb-2">Data Table</h1>
+            <p class="text-muted-foreground">A comprehensive table component for displaying tabular data.</p>
+        </div>
+
+        <!-- Basic Data Table ---->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Basic Data Table</h2>
+            <div class="rounded-lg border bg-card overflow-hidden">
+                <table>
+                    <thead class="bg-muted/50">
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-medium">John Doe</td>
+                            <td>john@example.com</td>
+                            <td><span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Active</span></td>
+                            <td>Admin</td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Jane Smith</td>
+                            <td>jane@example.com</td>
+                            <td><span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Active</span></td>
+                            <td>User</td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Bob Johnson</td>
+                            <td>bob@example.com</td>
+                            <td><span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-yellow-100 text-yellow-800">Inactive</span></td>
+                            <td>User</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- With Actions ---->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">With Actions</h2>
+            <div class="rounded-lg border bg-card overflow-hidden">
+                <table>
+                    <thead class="bg-muted/50">
+                        <tr>
+                            <th><input type="checkbox" class="rounded border border-input" /></th>
+                            <th>Product</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox" class="rounded border border-input" /></td>
+                            <td class="font-medium">Laptop Pro</td>
+                            <td>Electronics</td>
+                            <td>$1,299</td>
+                            <td>45</td>
+                            <td class="space-x-2">
+                                <button class="text-sm text-primary hover:underline">Edit</button>
+                                <button class="text-sm text-red-600 hover:underline">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="rounded border border-input" /></td>
+                            <td class="font-medium">Wireless Mouse</td>
+                            <td>Accessories</td>
+                            <td>$49</td>
+                            <td>128</td>
+                            <td class="space-x-2">
+                                <button class="text-sm text-primary hover:underline">Edit</button>
+                                <button class="text-sm text-red-600 hover:underline">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="rounded border border-input" /></td>
+                            <td class="font-medium">USB-C Cable</td>
+                            <td>Cables</td>
+                            <td>$15</td>
+                            <td>250</td>
+                            <td class="space-x-2">
+                                <button class="text-sm text-primary hover:underline">Edit</button>
+                                <button class="text-sm text-red-600 hover:underline">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Compact Table ---->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Compact Table</h2>
+            <div class="rounded-lg border bg-card overflow-hidden">
+                <table>
+                    <thead class="bg-muted/50">
+                        <tr>
+                            <th class="py-2 px-3 text-xs">ID</th>
+                            <th class="py-2 px-3 text-xs">Date</th>
+                            <th class="py-2 px-3 text-xs">Amount</th>
+                            <th class="py-2 px-3 text-xs">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="py-2 px-3 text-sm">INV-001</td>
+                            <td class="py-2 px-3 text-sm">2024-01-15</td>
+                            <td class="py-2 px-3 text-sm font-medium">$2,500</td>
+                            <td class="py-2 px-3 text-sm"><span class="inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Paid</span></td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-3 text-sm">INV-002</td>
+                            <td class="py-2 px-3 text-sm">2024-01-14</td>
+                            <td class="py-2 px-3 text-sm font-medium">$1,200</td>
+                            <td class="py-2 px-3 text-sm"><span class="inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-3 text-sm">INV-003</td>
+                            <td class="py-2 px-3 text-sm">2024-01-13</td>
+                            <td class="py-2 px-3 text-sm font-medium">$3,450</td>
+                            <td class="py-2 px-3 text-sm"><span class="inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-semibold border-transparent bg-red-100 text-red-800">Overdue</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

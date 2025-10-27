@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Context Menu - shadcn/ui HTML</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        border: "hsl(var(--border))",
+                        background: "hsl(var(--background))",
+                        foreground: "hsl(var(--foreground))",
+                        muted: {
+                            DEFAULT: "hsl(var(--muted))",
+                            foreground: "hsl(var(--muted-foreground))",
+                        },
+                        accent: {
+                            DEFAULT: "hsl(var(--accent))",
+                            foreground: "hsl(var(--accent-foreground))",
+                        },
+                    },
+                    borderRadius: {
+                        lg: "var(--radius)",
+                        md: "calc(var(--radius) - 2px)",
+                        sm: "calc(var(--radius) - 4px)",
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 222.2 84% 4.9%;
+            --muted: 210 40% 96.1%;
+            --muted-foreground: 215.4 16.3% 46.9%;
+            --accent: 210 40% 96.1%;
+            --accent-foreground: 222.2 47.4% 11.2%;
+            --border: 214.3 31.8% 91.4%;
+            --radius: 0.5rem;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .context-menu {
+            display: none;
+            position: fixed;
+            z-index: 50;
+            animation: fadeIn 0.1s ease-in-out;
+        }
+
+        .context-menu.show {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground p-8">
+    <div class="max-w-4xl mx-auto space-y-8">
+        <div>
+            <h1 class="text-3xl font-bold mb-2">Context Menu</h1>
+            <p class="text-muted-foreground">Displays a menu located at the pointer, triggered by a right-click or a long-press.</p>
+        </div>
+
+        <!-- Basic Context Menu -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Basic Context Menu</h2>
+            <div id="contextArea1" oncontextmenu="showContextMenu(event, 'menu1'); return false;" class="flex h-32 w-full items-center justify-center rounded-md border border-dashed text-sm cursor-default select-none">
+                Right click here
+            </div>
+        </div>
+
+        <!-- Context Menu on Card -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Context Menu on Card</h2>
+            <div oncontextmenu="showContextMenu(event, 'menu2'); return false;" class="rounded-lg border bg-card text-card-foreground shadow-sm p-6 cursor-default">
+                <h3 class="text-lg font-semibold mb-2">Project Card</h3>
+                <p class="text-sm text-muted-foreground">Right-click anywhere on this card to see options.</p>
+            </div>
+        </div>
+
+        <!-- Context Menu on Image -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Context Menu on Image</h2>
+            <div oncontextmenu="showContextMenu(event, 'menu3'); return false;" class="relative inline-block cursor-default">
+                <div class="h-48 w-64 rounded-md overflow-hidden border">
+                    <div class="w-full h-full bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-white font-semibold">
+                        Right-click me
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Context Menu 1 - Basic -->
+    <div id="menu1" class="context-menu min-w-[12rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md">
+        <div class="px-2 py-1.5 text-sm font-semibold">Actions</div>
+        <div class="h-px bg-muted my-1"></div>
+        <a href="#" onclick="handleAction('View'); return false;" class="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground">
+            <svg class="mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+            View
+        </a>
+        <a href="#" onclick="handleAction('Edit'); return false;" class="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground">
+            <svg class="mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+            Edit
+        </a>
+        <a href="#" onclick="handleAction('Share'); return false;" class="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground">
+            <svg class="mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" x2="12" y1="2" y2="15"/></svg>
+            Share
+        </a>
+        <div class="h-px bg-muted my-1"></div>
+        <a href="#" onclick="handleAction('Delete'); return false;" class="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground text-red-600">
+            <svg class="mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+            Delete
+        </a>
+    </div>
+
+    <!-- Context Menu 2 - With Shortcuts -->
+    <div id="menu2" class="context-menu min-w-[12rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md">
+        <a href="#" onclick="handleAction('Copy'); return false;" class="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground">
+            <svg class="mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            Copy
+            <span class="ml-auto text-xs tracking-widest opacity-60">⌘C</span>
+        </a>
+        <a href="#" onclick="handleAction('Paste'); return false;" class="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground">
+            <svg class="mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H9a1 1 0 0 0-1 1v2c0 .6.4 1 1 1h6c.6 0 1-.4 1-1V3c0-.6-.4-1-1-1Z"/><path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2"/></svg>
+            Paste
+            <span class="ml-auto text-xs tracking-widest opacity-60">⌘V</span>
+        </a>
+        <div class="h-px bg-muted my-1"></div>
+        <a href="#" onclick="handleAction('Duplicate'); return false;" class="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground">
+            Duplicate
+        </a>
+        <a href="#" onclick="handleAction('Archive'); return false;" class="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground">
+            Archive
+        </a>
+    </div>
+
+    <!-- Context Menu 3 - Image Actions -->
+    <div id="menu3" class="context-menu min-w-[12rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md">
+        <a href="#" onclick="handleAction('Open Image'); return false;" class="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground">
+            Open Image
+        </a>
+        <a href="#" onclick="handleAction('Save Image As'); return false;" class="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground">
+            Save Image As...
+        </a>
+        <a href="#" onclick="handleAction('Copy Image'); return false;" class="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground">
+            Copy Image
+        </a>
+        <a href="#" onclick="handleAction('Copy Image Address'); return false;" class="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground">
+            Copy Image Address
+        </a>
+    </div>
+
+    <script>
+        let currentMenu = null;
+
+        function showContextMenu(event, menuId) {
+            event.preventDefault();
+
+            // Hide any open menu
+            if (currentMenu) {
+                currentMenu.classList.remove('show');
+            }
+
+            const menu = document.getElementById(menuId);
+            menu.style.left = event.pageX + 'px';
+            menu.style.top = event.pageY + 'px';
+            menu.classList.add('show');
+            currentMenu = menu;
+        }
+
+        function handleAction(action) {
+            alert(`Action: ${action}`);
+            if (currentMenu) {
+                currentMenu.classList.remove('show');
+                currentMenu = null;
+            }
+        }
+
+        // Close context menu on click outside
+        document.addEventListener('click', () => {
+            if (currentMenu) {
+                currentMenu.classList.remove('show');
+                currentMenu = null;
+            }
+        });
+
+        // Prevent default context menu
+        document.addEventListener('contextmenu', (e) => {
+            if (!e.target.closest('[oncontextmenu]')) {
+                // Allow default context menu for areas without custom menu
+            }
+        });
+    </script>
+</body>
+</html>

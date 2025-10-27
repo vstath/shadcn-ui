@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aspect Ratio - shadcn/ui HTML</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        border: "hsl(var(--border))",
+                        background: "hsl(var(--background))",
+                        foreground: "hsl(var(--foreground))",
+                        muted: {
+                            DEFAULT: "hsl(var(--muted))",
+                            foreground: "hsl(var(--muted-foreground))",
+                        },
+                    },
+                    borderRadius: {
+                        lg: "var(--radius)",
+                        md: "calc(var(--radius) - 2px)",
+                        sm: "calc(var(--radius) - 4px)",
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 222.2 84% 4.9%;
+            --muted: 210 40% 96.1%;
+            --muted-foreground: 215.4 16.3% 46.9%;
+            --border: 214.3 31.8% 91.4%;
+            --radius: 0.5rem;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground p-8">
+    <div class="max-w-6xl mx-auto space-y-8">
+        <div>
+            <h1 class="text-3xl font-bold mb-2">Aspect Ratio</h1>
+            <p class="text-muted-foreground">Displays content within a desired ratio.</p>
+        </div>
+
+        <!-- 16:9 Aspect Ratio -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">16:9 Aspect Ratio</h2>
+            <div class="w-full max-w-2xl">
+                <div class="relative w-full" style="padding-bottom: 56.25%">
+                    <div class="absolute inset-0 rounded-md overflow-hidden border bg-muted">
+                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 text-white font-semibold text-lg">
+                            16:9 Ratio
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 1:1 Aspect Ratio (Square) -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">1:1 Aspect Ratio (Square)</h2>
+            <div class="w-full max-w-md">
+                <div class="relative w-full" style="padding-bottom: 100%">
+                    <div class="absolute inset-0 rounded-md overflow-hidden border bg-muted">
+                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-green-500 to-teal-600 text-white font-semibold text-lg">
+                            1:1 Ratio
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4:3 Aspect Ratio -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">4:3 Aspect Ratio</h2>
+            <div class="w-full max-w-2xl">
+                <div class="relative w-full" style="padding-bottom: 75%">
+                    <div class="absolute inset-0 rounded-md overflow-hidden border bg-muted">
+                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-orange-500 to-red-600 text-white font-semibold text-lg">
+                            4:3 Ratio
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 21:9 Aspect Ratio (Ultrawide) -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">21:9 Aspect Ratio (Ultrawide)</h2>
+            <div class="w-full">
+                <div class="relative w-full" style="padding-bottom: 42.86%">
+                    <div class="absolute inset-0 rounded-md overflow-hidden border bg-muted">
+                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-pink-500 to-purple-600 text-white font-semibold text-lg">
+                            21:9 Ratio
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- With Image -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">With Image (16:9)</h2>
+            <div class="w-full max-w-2xl">
+                <div class="relative w-full" style="padding-bottom: 56.25%">
+                    <div class="absolute inset-0 rounded-md overflow-hidden border">
+                        <img src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80" alt="Placeholder" class="w-full h-full object-cover" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Multiple Aspect Ratios in Grid -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Multiple Aspect Ratios</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- 1:1 -->
+                <div>
+                    <p class="text-sm font-medium mb-2">1:1 (Square)</p>
+                    <div class="relative w-full" style="padding-bottom: 100%">
+                        <div class="absolute inset-0 rounded-md overflow-hidden border bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-semibold">
+                            1:1
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4:3 -->
+                <div>
+                    <p class="text-sm font-medium mb-2">4:3 (Standard)</p>
+                    <div class="relative w-full" style="padding-bottom: 75%">
+                        <div class="absolute inset-0 rounded-md overflow-hidden border bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-white font-semibold">
+                            4:3
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 16:9 -->
+                <div>
+                    <p class="text-sm font-medium mb-2">16:9 (Widescreen)</p>
+                    <div class="relative w-full" style="padding-bottom: 56.25%">
+                        <div class="absolute inset-0 rounded-md overflow-hidden border bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center text-white font-semibold">
+                            16:9
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Portrait Ratios -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Portrait Ratios</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <!-- 2:3 -->
+                <div>
+                    <p class="text-sm font-medium mb-2">2:3</p>
+                    <div class="relative w-full" style="padding-bottom: 150%">
+                        <div class="absolute inset-0 rounded-md overflow-hidden border bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center text-white font-semibold">
+                            2:3
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3:4 -->
+                <div>
+                    <p class="text-sm font-medium mb-2">3:4</p>
+                    <div class="relative w-full" style="padding-bottom: 133.33%">
+                        <div class="absolute inset-0 rounded-md overflow-hidden border bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center text-white font-semibold">
+                            3:4
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9:16 -->
+                <div>
+                    <p class="text-sm font-medium mb-2">9:16</p>
+                    <div class="relative w-full" style="padding-bottom: 177.78%">
+                        <div class="absolute inset-0 rounded-md overflow-hidden border bg-gradient-to-br from-indigo-400 to-indigo-600 flex items-center justify-center text-white font-semibold">
+                            9:16
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 1:2 -->
+                <div>
+                    <p class="text-sm font-medium mb-2">1:2</p>
+                    <div class="relative w-full" style="padding-bottom: 200%">
+                        <div class="absolute inset-0 rounded-md overflow-hidden border bg-gradient-to-br from-pink-400 to-pink-600 flex items-center justify-center text-white font-semibold">
+                            1:2
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- With Video Embed -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Video Embed Example (16:9)</h2>
+            <div class="w-full max-w-2xl">
+                <div class="relative w-full" style="padding-bottom: 56.25%">
+                    <div class="absolute inset-0 rounded-md overflow-hidden border bg-muted flex items-center justify-center">
+                        <svg class="w-16 h-16 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Custom Ratio -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Custom Ratio (5:2)</h2>
+            <div class="w-full max-w-2xl">
+                <div class="relative w-full" style="padding-bottom: 40%">
+                    <div class="absolute inset-0 rounded-md overflow-hidden border bg-muted">
+                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-cyan-500 to-blue-600 text-white font-semibold text-lg">
+                            5:2 Custom Ratio
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Usage Note -->
+        <div class="rounded-lg border bg-card p-6">
+            <h3 class="text-lg font-semibold mb-2">How to Calculate Padding</h3>
+            <p class="text-sm text-muted-foreground mb-4">
+                The aspect ratio is maintained using padding-bottom percentage:
+            </p>
+            <ul class="space-y-2 text-sm text-muted-foreground list-disc list-inside">
+                <li><strong>16:9</strong> = (9 / 16) × 100 = 56.25%</li>
+                <li><strong>4:3</strong> = (3 / 4) × 100 = 75%</li>
+                <li><strong>1:1</strong> = (1 / 1) × 100 = 100%</li>
+                <li><strong>21:9</strong> = (9 / 21) × 100 = 42.86%</li>
+                <li><strong>Custom (width:height)</strong> = (height / width) × 100</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

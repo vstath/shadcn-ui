@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skeleton - shadcn-html Examples</title>
+  <link rel="stylesheet" href="../dist/styles/output.css">
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    .animate-pulse {
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+  </style>
+</head>
+<body class="bg-background text-foreground p-8">
+  <div class="max-w-4xl mx-auto space-y-8">
+    <!-- Header -->
+    <div class="space-y-2">
+      <a href="index.html" class="text-sm text-muted-foreground hover:text-foreground">&larr; Back to Examples</a>
+      <h1 class="text-4xl font-bold">Skeleton</h1>
+      <p class="text-muted-foreground">Use to show a placeholder while content is loading.</p>
+    </div>
+
+    <!-- Basic Skeleton -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Basic</h2>
+      <div class="space-y-2">
+        <div class="h-4 w-full rounded-md bg-muted animate-pulse"></div>
+      </div>
+      <pre class="bg-muted p-4 rounded-md overflow-x-auto"><code>&lt;div class="h-4 w-full rounded-md bg-muted animate-pulse"&gt;&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- Different Widths -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Different Widths</h2>
+      <div class="space-y-2">
+        <div class="h-4 w-full rounded-md bg-muted animate-pulse"></div>
+        <div class="h-4 w-3/4 rounded-md bg-muted animate-pulse"></div>
+        <div class="h-4 w-1/2 rounded-md bg-muted animate-pulse"></div>
+        <div class="h-4 w-1/4 rounded-md bg-muted animate-pulse"></div>
+      </div>
+    </section>
+
+    <!-- Different Heights -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Different Heights</h2>
+      <div class="space-y-2">
+        <div class="h-2 w-full rounded-md bg-muted animate-pulse"></div>
+        <div class="h-4 w-full rounded-md bg-muted animate-pulse"></div>
+        <div class="h-6 w-full rounded-md bg-muted animate-pulse"></div>
+        <div class="h-8 w-full rounded-md bg-muted animate-pulse"></div>
+        <div class="h-12 w-full rounded-md bg-muted animate-pulse"></div>
+      </div>
+    </section>
+
+    <!-- Circle Skeleton -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Circle</h2>
+      <div class="flex space-x-4">
+        <div class="h-12 w-12 rounded-full bg-muted animate-pulse"></div>
+        <div class="h-16 w-16 rounded-full bg-muted animate-pulse"></div>
+        <div class="h-20 w-20 rounded-full bg-muted animate-pulse"></div>
+      </div>
+      <pre class="bg-muted p-4 rounded-md overflow-x-auto"><code>&lt;div class="h-12 w-12 rounded-full bg-muted animate-pulse"&gt;&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- Card Skeleton -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Card Skeleton</h2>
+      <div class="rounded-lg border bg-card p-6 max-w-md">
+        <div class="space-y-4">
+          <div class="h-6 w-3/4 rounded-md bg-muted animate-pulse"></div>
+          <div class="space-y-2">
+            <div class="h-4 w-full rounded-md bg-muted animate-pulse"></div>
+            <div class="h-4 w-full rounded-md bg-muted animate-pulse"></div>
+            <div class="h-4 w-2/3 rounded-md bg-muted animate-pulse"></div>
+          </div>
+          <div class="h-10 w-24 rounded-md bg-muted animate-pulse"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Profile Skeleton -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Profile Skeleton</h2>
+      <div class="flex items-center space-x-4 max-w-md">
+        <div class="h-12 w-12 rounded-full bg-muted animate-pulse"></div>
+        <div class="space-y-2 flex-1">
+          <div class="h-4 w-1/2 rounded-md bg-muted animate-pulse"></div>
+          <div class="h-3 w-3/4 rounded-md bg-muted animate-pulse"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- List Skeleton -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">List Skeleton</h2>
+      <div class="space-y-3 max-w-md">
+        <div class="flex items-center space-x-4">
+          <div class="h-10 w-10 rounded-full bg-muted animate-pulse"></div>
+          <div class="space-y-2 flex-1">
+            <div class="h-4 w-3/4 rounded-md bg-muted animate-pulse"></div>
+            <div class="h-3 w-1/2 rounded-md bg-muted animate-pulse"></div>
+          </div>
+        </div>
+        <div class="flex items-center space-x-4">
+          <div class="h-10 w-10 rounded-full bg-muted animate-pulse"></div>
+          <div class="space-y-2 flex-1">
+            <div class="h-4 w-3/4 rounded-md bg-muted animate-pulse"></div>
+            <div class="h-3 w-1/2 rounded-md bg-muted animate-pulse"></div>
+          </div>
+        </div>
+        <div class="flex items-center space-x-4">
+          <div class="h-10 w-10 rounded-full bg-muted animate-pulse"></div>
+          <div class="space-y-2 flex-1">
+            <div class="h-4 w-3/4 rounded-md bg-muted animate-pulse"></div>
+            <div class="h-3 w-1/2 rounded-md bg-muted animate-pulse"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Article Skeleton -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Article Skeleton</h2>
+      <div class="space-y-4 max-w-2xl">
+        <div class="h-8 w-3/4 rounded-md bg-muted animate-pulse"></div>
+        <div class="flex items-center space-x-4">
+          <div class="h-8 w-8 rounded-full bg-muted animate-pulse"></div>
+          <div class="h-4 w-32 rounded-md bg-muted animate-pulse"></div>
+        </div>
+        <div class="h-64 w-full rounded-md bg-muted animate-pulse"></div>
+        <div class="space-y-2">
+          <div class="h-4 w-full rounded-md bg-muted animate-pulse"></div>
+          <div class="h-4 w-full rounded-md bg-muted animate-pulse"></div>
+          <div class="h-4 w-full rounded-md bg-muted animate-pulse"></div>
+          <div class="h-4 w-3/4 rounded-md bg-muted animate-pulse"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Table Skeleton -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Table Skeleton</h2>
+      <div class="rounded-lg border">
+        <div class="border-b p-4">
+          <div class="flex space-x-4">
+            <div class="h-4 w-24 rounded-md bg-muted animate-pulse"></div>
+            <div class="h-4 w-32 rounded-md bg-muted animate-pulse"></div>
+            <div class="h-4 w-20 rounded-md bg-muted animate-pulse"></div>
+          </div>
+        </div>
+        <div class="p-4 space-y-3">
+          <div class="flex space-x-4">
+            <div class="h-4 w-24 rounded-md bg-muted animate-pulse"></div>
+            <div class="h-4 w-32 rounded-md bg-muted animate-pulse"></div>
+            <div class="h-4 w-20 rounded-md bg-muted animate-pulse"></div>
+          </div>
+          <div class="flex space-x-4">
+            <div class="h-4 w-24 rounded-md bg-muted animate-pulse"></div>
+            <div class="h-4 w-32 rounded-md bg-muted animate-pulse"></div>
+            <div class="h-4 w-20 rounded-md bg-muted animate-pulse"></div>
+          </div>
+          <div class="flex space-x-4">
+            <div class="h-4 w-24 rounded-md bg-muted animate-pulse"></div>
+            <div class="h-4 w-32 rounded-md bg-muted animate-pulse"></div>
+            <div class="h-4 w-20 rounded-md bg-muted animate-pulse"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Form Skeleton -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Form Skeleton</h2>
+      <div class="space-y-4 max-w-md">
+        <div class="space-y-2">
+          <div class="h-4 w-20 rounded-md bg-muted animate-pulse"></div>
+          <div class="h-10 w-full rounded-md bg-muted animate-pulse"></div>
+        </div>
+        <div class="space-y-2">
+          <div class="h-4 w-24 rounded-md bg-muted animate-pulse"></div>
+          <div class="h-10 w-full rounded-md bg-muted animate-pulse"></div>
+        </div>
+        <div class="space-y-2">
+          <div class="h-4 w-32 rounded-md bg-muted animate-pulse"></div>
+          <div class="h-24 w-full rounded-md bg-muted animate-pulse"></div>
+        </div>
+        <div class="h-10 w-24 rounded-md bg-muted animate-pulse"></div>
+      </div>
+    </section>
+
+    <!-- Grid Skeleton -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Grid Skeleton</h2>
+      <div class="grid grid-cols-3 gap-4">
+        <div class="space-y-3">
+          <div class="h-32 w-full rounded-md bg-muted animate-pulse"></div>
+          <div class="h-4 w-3/4 rounded-md bg-muted animate-pulse"></div>
+          <div class="h-3 w-1/2 rounded-md bg-muted animate-pulse"></div>
+        </div>
+        <div class="space-y-3">
+          <div class="h-32 w-full rounded-md bg-muted animate-pulse"></div>
+          <div class="h-4 w-3/4 rounded-md bg-muted animate-pulse"></div>
+          <div class="h-3 w-1/2 rounded-md bg-muted animate-pulse"></div>
+        </div>
+        <div class="space-y-3">
+          <div class="h-32 w-full rounded-md bg-muted animate-pulse"></div>
+          <div class="h-4 w-3/4 rounded-md bg-muted animate-pulse"></div>
+          <div class="h-3 w-1/2 rounded-md bg-muted animate-pulse"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Demo -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Interactive Demo</h2>
+      <div>
+        <button onclick="toggleContent()" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 mb-4">
+          Toggle Loading State
+        </button>
+        <div id="content-container" class="rounded-lg border bg-card p-6 max-w-md">
+          <div class="flex items-center space-x-4">
+            <div class="h-12 w-12 rounded-full bg-muted animate-pulse"></div>
+            <div class="space-y-2 flex-1">
+              <div class="h-4 w-1/2 rounded-md bg-muted animate-pulse"></div>
+              <div class="h-3 w-3/4 rounded-md bg-muted animate-pulse"></div>
+            </div>
+          </div>
+          <div class="space-y-2 mt-4">
+            <div class="h-4 w-full rounded-md bg-muted animate-pulse"></div>
+            <div class="h-4 w-full rounded-md bg-muted animate-pulse"></div>
+            <div class="h-4 w-2/3 rounded-md bg-muted animate-pulse"></div>
+          </div>
+        </div>
+      </div>
+      <pre class="bg-muted p-4 rounded-md overflow-x-auto"><code>&lt;script&gt;
+function toggleContent() {
+  const container = document.getElementById('content-container');
+  const isLoading = container.querySelector('.animate-pulse') !== null;
+
+  if (isLoading) {
+    // Show actual content
+    container.innerHTML = `
+      &lt;div class="flex items-center space-x-4"&gt;
+        &lt;img src="..." class="h-12 w-12 rounded-full" /&gt;
+        &lt;div&gt;
+          &lt;h3 class="font-semibold"&gt;John Doe&lt;/h3&gt;
+          &lt;p class="text-sm text-muted-foreground"&gt;Software Developer&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;p class="mt-4 text-sm"&gt;Actual content loaded!&lt;/p&gt;
+    `;
+  } else {
+    // Show skeleton
+    container.innerHTML = '...'; // skeleton HTML
+  }
+}
+&lt;/script&gt;</code></pre>
+    </section>
+
+    <!-- Without Animation -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Without Animation</h2>
+      <div class="space-y-2">
+        <div class="h-4 w-full rounded-md bg-muted"></div>
+        <div class="h-4 w-3/4 rounded-md bg-muted"></div>
+        <div class="h-4 w-1/2 rounded-md bg-muted"></div>
+      </div>
+      <p class="text-sm text-muted-foreground">Simply remove the animate-pulse class for a static skeleton.</p>
+    </section>
+  </div>
+
+  <script>
+    let isLoading = true;
+    function toggleContent() {
+      const container = document.getElementById('content-container');
+
+      if (isLoading) {
+        container.innerHTML = `
+          <div class="flex items-center space-x-4">
+            <div class="h-12 w-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-semibold">
+              JD
+            </div>
+            <div>
+              <h3 class="font-semibold">John Doe</h3>
+              <p class="text-sm text-muted-foreground">Software Developer</p>
+            </div>
+          </div>
+          <p class="mt-4 text-sm">
+            This is the actual content that was loaded! Click the button again to show the skeleton loading state.
+          </p>
+        `;
+      } else {
+        container.innerHTML = `
+          <div class="flex items-center space-x-4">
+            <div class="h-12 w-12 rounded-full bg-muted animate-pulse"></div>
+            <div class="space-y-2 flex-1">
+              <div class="h-4 w-1/2 rounded-md bg-muted animate-pulse"></div>
+              <div class="h-3 w-3/4 rounded-md bg-muted animate-pulse"></div>
+            </div>
+          </div>
+          <div class="space-y-2 mt-4">
+            <div class="h-4 w-full rounded-md bg-muted animate-pulse"></div>
+            <div class="h-4 w-full rounded-md bg-muted animate-pulse"></div>
+            <div class="h-4 w-2/3 rounded-md bg-muted animate-pulse"></div>
+          </div>
+        `;
+      }
+      isLoading = !isLoading;
+    }
+  </script>
+</body>
+</html>

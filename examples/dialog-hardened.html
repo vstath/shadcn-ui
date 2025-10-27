@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dialog (Hardened) - shadcn-html Examples</title>
+  <link rel="stylesheet" href="../dist/styles/output.css">
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; }
+
+    /* Dialog overlay styling */
+    [role="dialog"] {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 51;
+      max-height: 90vh;
+      overflow: auto;
+    }
+
+    /* Overlay background */
+    [data-dialog-overlay] {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    /* Show overlay and dialog when not hidden */
+    [role="dialog"]:not([aria-hidden="true"]) ~ [data-dialog-overlay] {
+      display: block;
+      animation: fadeIn 0.2s ease-out;
+    }
+
+    [role="dialog"]:not([aria-hidden="true"]) {
+      animation: slideIn 0.3s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translate(-50%, -48%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+
+    /* Dialog content styling */
+    [data-dialog-content] {
+      width: 100%;
+      border-radius: 0.5rem;
+      border: 1px solid hsl(var(--border));
+      background-color: hsl(var(--background));
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Header/footer borders */
+    [data-dialog-header],
+    [data-dialog-footer] {
+      display: flex;
+      align-items: center;
+      padding: 1.5rem;
+      border-bottom: 1px solid hsl(var(--border));
+    }
+
+    [data-dialog-footer] {
+      border-top: 1px solid hsl(var(--border));
+      border-bottom: none;
+      justify-content: flex-end;
+      gap: 0.5rem;
+    }
+
+    /* Body padding */
+    [data-dialog-body] {
+      padding: 1.5rem;
+    }
+
+    /* Close button styling */
+    [data-dialog-close] {
+      opacity: 0.7;
+      transition: opacity 0.2s;
+      padding: 0.5rem;
+      border-radius: 0.25rem;
+    }
+
+    [data-dialog-close]:hover {
+      opacity: 1;
+    }
+
+    [data-dialog-close]:focus-visible {
+      outline: 2px solid hsl(var(--ring));
+      outline-offset: 2px;
+    }
+
+    /* Live region for screen reader announcements */
+    #dialog-announcements {
+      position: absolute;
+      left: -10000px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    /* Focus visible for keyboard navigation */
+    [role="dialog"] *:focus-visible {
+      outline: 2px solid hsl(var(--ring));
+      outline-offset: 2px;
+    }
+
+    /* Prevent body scroll when dialog is open */
+    body[data-dialog-open] {
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body class="bg-background text-foreground p-8">
+  <!-- Screen reader live region for dialog announcements -->
+  <div id="dialog-announcements" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <div class="max-w-4xl mx-auto space-y-8">
+    <!-- Header -->
+    <div class="space-y-2">
+      <a href="index.html" class="text-sm text-muted-foreground hover:text-foreground">&larr; Back to Examples</a>
+      <h1 class="text-4xl font-bold">Dialog (Hardened)</h1>
+      <p class="text-muted-foreground">WCAG 2.1 AA compliant dialogs with focus trapping, ARIA, and keyboard navigation.</p>
+    </div>
+
+    <!-- Basic Dialog -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Basic Dialog</h2>
+      <p class="text-sm text-muted-foreground">Press <kbd>Escape</kbd> to close. Focus is trapped within the dialog. <kbd>Tab</kbd> to navigate.</p>
+
+      <!-- Trigger Button -->
+      <button
+        data-dialog-trigger="dialog-1"
+        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+      >
+        Open Dialog
+      </button>
+
+      <!-- Dialog -->
+      <div
+        id="dialog-1"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="dialog-1-title"
+        aria-describedby="dialog-1-description"
+        aria-hidden="true"
+      >
+        <!-- Dialog Overlay (click to close) -->
+        <div data-dialog-overlay></div>
+
+        <!-- Dialog Content -->
+        <div data-dialog-content class="max-w-lg">
+          <!-- Header -->
+          <div data-dialog-header class="flex items-center justify-between">
+            <h2 id="dialog-1-title" class="text-lg font-semibold">Edit Profile</h2>
+            <button
+              data-dialog-close
+              aria-label="Close dialog"
+              class="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Body -->
+          <div data-dialog-body>
+            <p id="dialog-1-description" class="text-sm text-muted-foreground">
+              Make changes to your profile here. Click save when you're done.
+            </p>
+            <div class="space-y-4 mt-4">
+              <div class="space-y-2">
+                <label for="dialog-1-name" class="text-sm font-medium">Name</label>
+                <input
+                  id="dialog-1-name"
+                  type="text"
+                  value="John Doe"
+                  placeholder="Enter your name"
+                  class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                />
+              </div>
+              <div class="space-y-2">
+                <label for="dialog-1-username" class="text-sm font-medium">Username</label>
+                <input
+                  id="dialog-1-username"
+                  type="text"
+                  value="@johndoe"
+                  placeholder="Enter your username"
+                  class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div data-dialog-footer>
+            <button
+              data-dialog-close
+              class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
+            >
+              Cancel
+            </button>
+            <button
+              data-dialog-close
+              class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+            >
+              Save changes
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <pre class="bg-muted p-4 rounded-md overflow-x-auto"><code>&lt;button data-dialog-trigger="dialog-id"&gt;Open Dialog&lt;/button&gt;
+
+&lt;div
+  id="dialog-id"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="dialog-title"
+  aria-describedby="dialog-description"
+  aria-hidden="true"
+&gt;
+  &lt;div data-dialog-overlay&gt;&lt;/div&gt;
+  &lt;div data-dialog-content&gt;
+    &lt;div data-dialog-header&gt;
+      &lt;h2 id="dialog-title"&gt;Title&lt;/h2&gt;
+      &lt;button data-dialog-close&gt;✕&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div data-dialog-body&gt;
+      &lt;p id="dialog-description"&gt;Description&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div data-dialog-footer&gt;
+      &lt;button data-dialog-close&gt;Cancel&lt;/button&gt;
+      &lt;button&gt;Save&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- Contact Form Dialog -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Contact Form Dialog</h2>
+
+      <button
+        data-dialog-trigger="dialog-2"
+        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
+      >
+        Contact Us
+      </button>
+
+      <div
+        id="dialog-2"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="dialog-2-title"
+        aria-hidden="true"
+      >
+        <div data-dialog-overlay></div>
+        <div data-dialog-content class="max-w-md">
+          <div data-dialog-header>
+            <h2 id="dialog-2-title" class="text-lg font-semibold">Contact Us</h2>
+            <button
+              data-dialog-close
+              aria-label="Close dialog"
+              class="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+          <div data-dialog-body>
+            <form class="space-y-4">
+              <div class="space-y-2">
+                <label for="dialog-2-email" class="text-sm font-medium">Email</label>
+                <input
+                  id="dialog-2-email"
+                  type="email"
+                  placeholder="your@email.com"
+                  class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                />
+              </div>
+              <div class="space-y-2">
+                <label for="dialog-2-subject" class="text-sm font-medium">Subject</label>
+                <input
+                  id="dialog-2-subject"
+                  type="text"
+                  placeholder="How can we help?"
+                  class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                />
+              </div>
+              <div class="space-y-2">
+                <label for="dialog-2-message" class="text-sm font-medium">Message</label>
+                <textarea
+                  id="dialog-2-message"
+                  placeholder="Your message..."
+                  class="flex min-h-[100px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                ></textarea>
+              </div>
+            </form>
+          </div>
+          <div data-dialog-footer>
+            <button
+              data-dialog-close
+              class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
+            >
+              Cancel
+            </button>
+            <button
+              data-dialog-close
+              class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+            >
+              Send Message
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scrollable Dialog -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Scrollable Content</h2>
+
+      <button
+        data-dialog-trigger="dialog-3"
+        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
+      >
+        View Terms
+      </button>
+
+      <div
+        id="dialog-3"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="dialog-3-title"
+        aria-hidden="true"
+      >
+        <div data-dialog-overlay></div>
+        <div data-dialog-content class="max-w-2xl max-h-[90vh] flex flex-col">
+          <div data-dialog-header>
+            <h2 id="dialog-3-title" class="text-lg font-semibold">Terms and Conditions</h2>
+            <button
+              data-dialog-close
+              aria-label="Close dialog"
+              class="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+          <div data-dialog-body class="overflow-y-auto flex-1">
+            <div class="space-y-4 text-sm text-muted-foreground">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            </div>
+          </div>
+          <div data-dialog-footer>
+            <button
+              data-dialog-close
+              class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+            >
+              I Agree
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Implementation Details -->
+    <section class="space-y-4 mt-12 pt-8 border-t">
+      <h2 class="text-2xl font-semibold">Implementation Details</h2>
+
+      <div class="space-y-4 text-sm">
+        <div>
+          <h3 class="font-semibold mb-2">Keyboard Navigation</h3>
+          <ul class="list-disc list-inside space-y-1 text-muted-foreground">
+            <li><kbd>Tab</kbd> - Move focus to next focusable element (trapped within dialog)</li>
+            <li><kbd>Shift+Tab</kbd> - Move focus to previous focusable element (trapped within dialog)</li>
+            <li><kbd>Escape</kbd> - Close dialog and return focus to trigger button</li>
+            <li><kbd>Click Overlay</kbd> - Close dialog</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-semibold mb-2">ARIA Attributes</h3>
+          <ul class="list-disc list-inside space-y-1 text-muted-foreground">
+            <li><code>role="dialog"</code> - Identifies element as a dialog</li>
+            <li><code>aria-modal="true"</code> - Indicates dialog is modal</li>
+            <li><code>aria-labelledby="..."</code> - Links to dialog title</li>
+            <li><code>aria-describedby="..."</code> - Links to optional description</li>
+            <li><code>aria-hidden="true/false"</code> - Hidden from screen readers when closed</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-semibold mb-2">Accessibility Features</h3>
+          <ul class="list-disc list-inside space-y-1 text-muted-foreground">
+            <li>Focus trap: Tab/Shift+Tab cycle only within dialog</li>
+            <li>Focus restoration: Focus returns to trigger button when dialog closes</li>
+            <li>Initial focus: First focusable element receives focus when dialog opens</li>
+            <li>Body scroll lock: Background cannot be scrolled while dialog is open</li>
+            <li>Screen reader support: Dialog title and description announced</li>
+            <li>Escape key support: Press Escape to close dialog</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-semibold mb-2">CSP Compliance</h3>
+          <ul class="list-disc list-inside space-y-1 text-muted-foreground">
+            <li>No inline event handlers (onclick, onkeydown, etc.)</li>
+            <li>No inline script blocks</li>
+            <li>All behavior in external ES module</li>
+            <li>CSS-only styling (no style attribute)</li>
+            <li>Compatible with strict CSP: <code>script-src 'self'</code></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- JavaScript Module -->
+  <script type="module">
+    import { initDialogs } from '../src/js/components/dialog.js';
+
+    // Initialize all dialogs when DOM is ready
+    document.addEventListener('DOMContentLoaded', () => {
+      initDialogs();
+    });
+
+    // Alternative: Initialize immediately if DOM is already ready
+    if (document.readyState !== 'loading') {
+      initDialogs();
+    }
+  </script>
+</body>
+</html>

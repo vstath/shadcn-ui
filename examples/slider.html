@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider - shadcn/ui HTML</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        border: "hsl(var(--border))",
+                        background: "hsl(var(--background))",
+                        foreground: "hsl(var(--foreground))",
+                        primary: {
+                            DEFAULT: "hsl(var(--primary))",
+                            foreground: "hsl(var(--primary-foreground))",
+                        },
+                        muted: {
+                            DEFAULT: "hsl(var(--muted))",
+                            foreground: "hsl(var(--muted-foreground))",
+                        },
+                    },
+                    borderRadius: {
+                        lg: "var(--radius)",
+                        md: "calc(var(--radius) - 2px)",
+                        sm: "calc(var(--radius) - 4px)",
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 222.2 84% 4.9%;
+            --primary: 222.2 47.4% 11.2%;
+            --primary-foreground: 210 40% 98%;
+            --muted: 210 40% 96.1%;
+            --muted-foreground: 215.4 16.3% 46.9%;
+            --border: 214.3 31.8% 91.4%;
+            --ring: 222.2 84% 4.9%;
+            --radius: 0.5rem;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-webkit-slider-track {
+            background: hsl(var(--muted));
+            border-radius: 9999px;
+            height: 0.5rem;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            background: hsl(var(--primary));
+            border: 2px solid hsl(var(--background));
+            border-radius: 9999px;
+            height: 1.25rem;
+            width: 1.25rem;
+            margin-top: -0.375rem;
+        }
+
+        input[type="range"]:focus::-webkit-slider-thumb {
+            outline: 2px solid hsl(var(--ring));
+            outline-offset: 2px;
+        }
+
+        input[type="range"]::-moz-range-track {
+            background: hsl(var(--muted));
+            border-radius: 9999px;
+            height: 0.5rem;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            background: hsl(var(--primary));
+            border: 2px solid hsl(var(--background));
+            border-radius: 9999px;
+            height: 1.25rem;
+            width: 1.25rem;
+            border: 0;
+        }
+
+        input[type="range"]:focus::-moz-range-thumb {
+            outline: 2px solid hsl(var(--ring));
+            outline-offset: 2px;
+        }
+
+        input[type="range"]:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground p-8">
+    <div class="max-w-4xl mx-auto space-y-8">
+        <div>
+            <h1 class="text-3xl font-bold mb-2">Slider</h1>
+            <p class="text-muted-foreground">An input where the user selects a value from within a given range.</p>
+        </div>
+
+        <!-- Basic Slider -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Basic Slider</h2>
+            <div class="w-full max-w-md">
+                <input type="range" min="0" max="100" value="50" class="w-full" />
+            </div>
+        </div>
+
+        <!-- Slider with Value Display -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Slider with Value Display</h2>
+            <div class="w-full max-w-md space-y-2">
+                <div class="flex justify-between text-sm">
+                    <span>Volume</span>
+                    <span id="value1">50</span>
+                </div>
+                <input type="range" min="0" max="100" value="50" class="w-full" oninput="document.getElementById('value1').textContent = this.value" />
+            </div>
+        </div>
+
+        <!-- Slider with Min and Max Labels -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Slider with Min and Max Labels</h2>
+            <div class="w-full max-w-md space-y-2">
+                <div class="flex justify-between text-sm font-medium">
+                    <span>Brightness</span>
+                    <span id="value2">75%</span>
+                </div>
+                <input type="range" min="0" max="100" value="75" class="w-full" oninput="document.getElementById('value2').textContent = this.value + '%'" />
+                <div class="flex justify-between text-xs text-muted-foreground">
+                    <span>Min</span>
+                    <span>Max</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slider with Step -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Slider with Step</h2>
+            <div class="w-full max-w-md space-y-2">
+                <div class="flex justify-between text-sm">
+                    <span>Price Range</span>
+                    <span id="value3">$500</span>
+                </div>
+                <input type="range" min="0" max="1000" value="500" step="50" class="w-full" oninput="document.getElementById('value3').textContent = '$' + this.value" />
+                <div class="flex justify-between text-xs text-muted-foreground">
+                    <span>$0</span>
+                    <span>$1000</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Disabled Slider -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Disabled Slider</h2>
+            <div class="w-full max-w-md">
+                <input type="range" min="0" max="100" value="30" class="w-full" disabled />
+            </div>
+        </div>
+
+        <!-- Multiple Sliders -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Multiple Sliders</h2>
+            <div class="w-full max-w-md space-y-6">
+                <div class="space-y-2">
+                    <div class="flex justify-between text-sm">
+                        <span class="flex items-center gap-2">
+                            <span class="h-3 w-3 rounded-full bg-red-500"></span>
+                            Red
+                        </span>
+                        <span id="red">128</span>
+                    </div>
+                    <input type="range" min="0" max="255" value="128" class="w-full" oninput="document.getElementById('red').textContent = this.value; updateColor()" />
+                </div>
+                <div class="space-y-2">
+                    <div class="flex justify-between text-sm">
+                        <span class="flex items-center gap-2">
+                            <span class="h-3 w-3 rounded-full bg-green-500"></span>
+                            Green
+                        </span>
+                        <span id="green">128</span>
+                    </div>
+                    <input type="range" min="0" max="255" value="128" class="w-full" oninput="document.getElementById('green').textContent = this.value; updateColor()" />
+                </div>
+                <div class="space-y-2">
+                    <div class="flex justify-between text-sm">
+                        <span class="flex items-center gap-2">
+                            <span class="h-3 w-3 rounded-full bg-blue-500"></span>
+                            Blue
+                        </span>
+                        <span id="blue">128</span>
+                    </div>
+                    <input type="range" min="0" max="255" value="128" class="w-full" oninput="document.getElementById('blue').textContent = this.value; updateColor()" />
+                </div>
+                <div class="h-20 rounded-md border" id="colorPreview" style="background-color: rgb(128, 128, 128);"></div>
+            </div>
+        </div>
+
+        <!-- Slider with Marks -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Slider with Marks</h2>
+            <div class="w-full max-w-md space-y-2">
+                <div class="flex justify-between text-sm">
+                    <span>Temperature</span>
+                    <span id="value4">20°C</span>
+                </div>
+                <input type="range" min="0" max="40" value="20" class="w-full" oninput="document.getElementById('value4').textContent = this.value + '°C'" />
+                <div class="flex justify-between text-xs text-muted-foreground">
+                    <span>0°</span>
+                    <span>10°</span>
+                    <span>20°</span>
+                    <span>30°</span>
+                    <span>40°</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vertical Slider -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Vertical Slider</h2>
+            <div class="flex items-center gap-4">
+                <div class="h-64 flex flex-col items-center">
+                    <input type="range" min="0" max="100" value="60" class="h-full" style="writing-mode: bt-lr; -webkit-appearance: slider-vertical;" oninput="document.getElementById('value5').textContent = this.value" />
+                </div>
+                <div class="text-sm">
+                    <div>Value: <span id="value5" class="font-medium">60</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateColor() {
+            const r = document.getElementById('red').textContent;
+            const g = document.getElementById('green').textContent;
+            const b = document.getElementById('blue').textContent;
+            document.getElementById('colorPreview').style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+        }
+    </script>
+</body>
+</html>

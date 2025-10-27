@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popover - shadcn/ui HTML</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        border: "hsl(var(--border))",
+                        input: "hsl(var(--input))",
+                        ring: "hsl(var(--ring))",
+                        background: "hsl(var(--background))",
+                        foreground: "hsl(var(--foreground))",
+                        primary: {
+                            DEFAULT: "hsl(var(--primary))",
+                            foreground: "hsl(var(--primary-foreground))",
+                        },
+                        muted: {
+                            DEFAULT: "hsl(var(--muted))",
+                            foreground: "hsl(var(--muted-foreground))",
+                        },
+                        popover: {
+                            DEFAULT: "hsl(var(--popover))",
+                            foreground: "hsl(var(--popover-foreground))",
+                        },
+                    },
+                    borderRadius: {
+                        lg: "var(--radius)",
+                        md: "calc(var(--radius) - 2px)",
+                        sm: "calc(var(--radius) - 4px)",
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 222.2 84% 4.9%;
+            --card: 0 0% 100%;
+            --card-foreground: 222.2 84% 4.9%;
+            --popover: 0 0% 100%;
+            --popover-foreground: 222.2 84% 4.9%;
+            --primary: 222.2 47.4% 11.2%;
+            --primary-foreground: 210 40% 98%;
+            --secondary: 210 40% 96.1%;
+            --secondary-foreground: 222.2 47.4% 11.2%;
+            --muted: 210 40% 96.1%;
+            --muted-foreground: 215.4 16.3% 46.9%;
+            --accent: 210 40% 96.1%;
+            --accent-foreground: 222.2 47.4% 11.2%;
+            --destructive: 0 84.2% 60.2%;
+            --destructive-foreground: 210 40% 98%;
+            --border: 214.3 31.8% 91.4%;
+            --input: 214.3 31.8% 91.4%;
+            --ring: 222.2 84% 4.9%;
+            --radius: 0.5rem;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .popover-content {
+            display: none;
+            animation: fadeIn 0.2s ease-in-out;
+        }
+
+        .popover-content.show {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground p-8">
+    <div class="max-w-4xl mx-auto space-y-8">
+        <div>
+            <h1 class="text-3xl font-bold mb-2">Popover</h1>
+            <p class="text-muted-foreground">Displays rich content in a portal, triggered by a button.</p>
+        </div>
+
+        <!-- Basic Popover -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Basic Popover</h2>
+            <div class="relative inline-block">
+                <button onclick="togglePopover('popover1')" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
+                    Open popover
+                </button>
+                <div id="popover1" class="popover-content absolute z-50 w-80 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none mt-2">
+                    <div class="grid gap-4">
+                        <div class="space-y-2">
+                            <h4 class="font-medium leading-none">Dimensions</h4>
+                            <p class="text-sm text-muted-foreground">
+                                Set the dimensions for the layer.
+                            </p>
+                        </div>
+                        <div class="grid gap-2">
+                            <div class="grid grid-cols-3 items-center gap-4">
+                                <label for="width" class="text-sm font-medium leading-none">Width</label>
+                                <input id="width" type="text" value="100%" class="col-span-2 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" />
+                            </div>
+                            <div class="grid grid-cols-3 items-center gap-4">
+                                <label for="maxWidth" class="text-sm font-medium leading-none">Max. width</label>
+                                <input id="maxWidth" type="text" value="300px" class="col-span-2 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" />
+                            </div>
+                            <div class="grid grid-cols-3 items-center gap-4">
+                                <label for="height" class="text-sm font-medium leading-none">Height</label>
+                                <input id="height" type="text" value="25px" class="col-span-2 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" />
+                            </div>
+                            <div class="grid grid-cols-3 items-center gap-4">
+                                <label for="maxHeight" class="text-sm font-medium leading-none">Max. height</label>
+                                <input id="maxHeight" type="text" value="none" class="col-span-2 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Popover with Form -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Popover with Form</h2>
+            <div class="relative inline-block">
+                <button onclick="togglePopover('popover2')" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
+                    <svg class="mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    Add Team Member
+                </button>
+                <div id="popover2" class="popover-content absolute z-50 w-96 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none mt-2">
+                    <div class="grid gap-4">
+                        <div class="space-y-2">
+                            <h4 class="font-medium leading-none">Add team member</h4>
+                            <p class="text-sm text-muted-foreground">
+                                Invite someone to join your team.
+                            </p>
+                        </div>
+                        <div class="grid gap-3">
+                            <div class="grid gap-2">
+                                <label class="text-sm font-medium leading-none">Name</label>
+                                <input type="text" placeholder="John Doe" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" />
+                            </div>
+                            <div class="grid gap-2">
+                                <label class="text-sm font-medium leading-none">Email</label>
+                                <input type="email" placeholder="john@example.com" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" />
+                            </div>
+                            <div class="grid gap-2">
+                                <label class="text-sm font-medium leading-none">Role</label>
+                                <select class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+                                    <option>Member</option>
+                                    <option>Admin</option>
+                                    <option>Owner</option>
+                                </select>
+                            </div>
+                            <button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+                                Send Invite
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Positioned Popovers -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Positioned Popovers</h2>
+            <div class="flex flex-wrap gap-4">
+                <!-- Top -->
+                <div class="relative inline-block">
+                    <button onclick="togglePopover('popover-top')" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
+                        Top
+                    </button>
+                    <div id="popover-top" class="popover-content absolute z-50 w-64 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none bottom-full left-1/2 -translate-x-1/2 mb-2">
+                        <p class="text-sm">This popover appears at the top.</p>
+                    </div>
+                </div>
+
+                <!-- Bottom -->
+                <div class="relative inline-block">
+                    <button onclick="togglePopover('popover-bottom')" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
+                        Bottom
+                    </button>
+                    <div id="popover-bottom" class="popover-content absolute z-50 w-64 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none mt-2 left-1/2 -translate-x-1/2">
+                        <p class="text-sm">This popover appears at the bottom.</p>
+                    </div>
+                </div>
+
+                <!-- Left -->
+                <div class="relative inline-block">
+                    <button onclick="togglePopover('popover-left')" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
+                        Left
+                    </button>
+                    <div id="popover-left" class="popover-content absolute z-50 w-64 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none right-full top-1/2 -translate-y-1/2 mr-2">
+                        <p class="text-sm">This popover appears on the left.</p>
+                    </div>
+                </div>
+
+                <!-- Right -->
+                <div class="relative inline-block">
+                    <button onclick="togglePopover('popover-right')" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
+                        Right
+                    </button>
+                    <div id="popover-right" class="popover-content absolute z-50 w-64 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none left-full top-1/2 -translate-y-1/2 ml-2">
+                        <p class="text-sm">This popover appears on the right.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Popover with Rich Content -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Popover with Rich Content</h2>
+            <div class="relative inline-block">
+                <button onclick="togglePopover('popover3')" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
+                    View Details
+                </button>
+                <div id="popover3" class="popover-content absolute z-50 w-96 rounded-md border bg-popover text-popover-foreground shadow-md outline-none mt-2">
+                    <div class="p-4 border-b">
+                        <div class="flex items-start gap-4">
+                            <div class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full bg-muted">
+                                <span class="flex h-full w-full items-center justify-center bg-primary text-primary-foreground font-medium">JD</span>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="text-sm font-semibold">John Doe</h4>
+                                <p class="text-sm text-muted-foreground">john@example.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 space-y-3">
+                        <div>
+                            <div class="text-xs font-medium text-muted-foreground mb-1">Role</div>
+                            <div class="text-sm">Senior Developer</div>
+                        </div>
+                        <div>
+                            <div class="text-xs font-medium text-muted-foreground mb-1">Department</div>
+                            <div class="text-sm">Engineering</div>
+                        </div>
+                        <div>
+                            <div class="text-xs font-medium text-muted-foreground mb-1">Location</div>
+                            <div class="text-sm">San Francisco, CA</div>
+                        </div>
+                    </div>
+                    <div class="p-4 border-t flex gap-2">
+                        <button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-3 flex-1">
+                            Message
+                        </button>
+                        <button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 px-3 flex-1">
+                            View Profile
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Compact Popover -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Compact Popover</h2>
+            <div class="relative inline-block">
+                <button onclick="togglePopover('popover4')" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
+                    <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                </button>
+                <div id="popover4" class="popover-content absolute z-50 w-72 rounded-md border bg-popover p-3 text-popover-foreground shadow-md outline-none mt-2">
+                    <div class="space-y-2">
+                        <p class="text-sm font-medium">Quick Tip</p>
+                        <p class="text-sm text-muted-foreground">
+                            Press <kbd class="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">⌘</kbd> + <kbd class="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">K</kbd> to open the command palette.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Close popover when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.relative')) {
+                document.querySelectorAll('.popover-content').forEach(popover => {
+                    popover.classList.remove('show');
+                });
+            }
+        });
+
+        function togglePopover(id) {
+            event.stopPropagation();
+            const popover = document.getElementById(id);
+
+            // Close all other popovers
+            document.querySelectorAll('.popover-content').forEach(p => {
+                if (p.id !== id) {
+                    p.classList.remove('show');
+                }
+            });
+
+            popover.classList.toggle('show');
+        }
+    </script>
+</body>
+</html>

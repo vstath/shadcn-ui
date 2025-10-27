@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>shadcn-html Component Examples</title>
+  <link rel="stylesheet" href="../dist/styles/output.css">
+  <style>
+    :root {
+      --background: 0 0% 100%;
+      --foreground: 222.2 84% 4.9%;
+      --primary: 222.2 47.4% 11.2%;
+      --primary-foreground: 210 40% 98%;
+      --secondary: 210 40% 96.1%;
+      --secondary-foreground: 222.2 47.4% 11.2%;
+      --destructive: 0 84.2% 60.2%;
+      --destructive-foreground: 210 40% 98%;
+      --muted: 210 40% 96.1%;
+      --muted-foreground: 215.4 16.3% 46.9%;
+      --border: 214.3 31.8% 91.4%;
+      --input: 214.3 31.8% 91.4%;
+      --card: 0 0% 100%;
+      --card-foreground: 222.2 84% 4.9%;
+      --ring: 222.2 84% 4.9%;
+    }
+
+    [data-theme="dark"] {
+      --background: 222.2 84% 4.9%;
+      --foreground: 210 40% 98%;
+      --primary: 210 40% 98%;
+      --primary-foreground: 222.2 47.4% 11.2%;
+      --secondary: 217.2 32.6% 17.5%;
+      --secondary-foreground: 210 40% 98%;
+      --destructive: 0 84.2% 60.2%;
+      --destructive-foreground: 210 40% 98%;
+      --muted: 217.2 32.6% 17.5%;
+      --muted-foreground: 215 20.2% 65.1%;
+      --border: 217.2 32.6% 17.5%;
+      --input: 217.2 32.6% 17.5%;
+      --card: 222.2 84% 4.9%;
+      --card-foreground: 210 40% 98%;
+      --ring: 212.7 26.8% 83.9%;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background-color: hsl(var(--background));
+      color: hsl(var(--foreground));
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .theme-toggle {
+      position: relative;
+      width: 50px;
+      height: 26px;
+      background-color: hsl(var(--input));
+      border: 1px solid hsl(var(--border));
+      border-radius: 13px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .theme-toggle::after {
+      content: '';
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      background-color: white;
+      border-radius: 50%;
+      top: 2px;
+      left: 2px;
+      transition: left 0.3s;
+    }
+
+    [data-theme="dark"] .theme-toggle::after {
+      left: 26px;
+    }
+  </style>
+</head>
+<body class="bg-background text-foreground" data-theme="light">
+  <!-- Header -->
+  <header class="border-b">
+    <div class="container mx-auto px-4 py-6 flex items-center justify-between">
+      <div>
+        <h1 class="text-4xl font-bold">shadcn-html</h1>
+        <p class="text-muted-foreground mt-2">Pure HTML examples of shadcn-ui components</p>
+      </div>
+      <div class="flex items-center gap-4">
+        <span class="text-sm text-muted-foreground">Dark mode:</span>
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 py-8">
+    <!-- Introduction -->
+    <section class="mb-12">
+      <div class="rounded-lg border bg-card p-6">
+        <h2 class="text-2xl font-semibold mb-2">Welcome</h2>
+        <p class="text-muted-foreground mb-4">
+          This is a comprehensive collection of shadcn-ui components converted to pure HTML and vanilla JavaScript.
+          Each component is fully functional and ready to copy into your projects.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors border-transparent bg-primary text-primary-foreground">Pure HTML</span>
+          <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors border-transparent bg-secondary text-secondary-foreground">Vanilla JavaScript</span>
+          <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors border-transparent bg-secondary text-secondary-foreground">Tailwind CSS</span>
+          <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors border-transparent bg-secondary text-secondary-foreground">No Framework</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Component Grid -->
+    <section>
+      <h2 class="text-3xl font-bold mb-6">Components</h2>
+
+      <!-- Search -->
+      <div class="mb-6">
+        <input
+          type="text"
+          id="search"
+          class="flex h-10 w-full max-w-md rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          placeholder="Search components...">
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="component-grid">
+        <!-- Accordion -->
+        <a href="accordion.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="accordion">
+          <h3 class="text-xl font-semibold mb-2">Accordion</h3>
+          <p class="text-sm text-muted-foreground">A vertically stacked set of interactive headings that reveal content.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Alert -->
+        <a href="alert.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="alert">
+          <h3 class="text-xl font-semibold mb-2">Alert</h3>
+          <p class="text-sm text-muted-foreground">Displays a callout for user attention.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Static</span>
+          </div>
+        </a>
+
+        <!-- Alert Dialog -->
+        <a href="alert-dialog.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="alert dialog">
+          <h3 class="text-xl font-semibold mb-2">Alert Dialog</h3>
+          <p class="text-sm text-muted-foreground">A modal dialog that interrupts the user with important content.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Avatar -->
+        <a href="avatar.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="avatar">
+          <h3 class="text-xl font-semibold mb-2">Avatar</h3>
+          <p class="text-sm text-muted-foreground">An image element with a fallback for representing the user.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Static</span>
+          </div>
+        </a>
+
+        <!-- Badge -->
+        <a href="badge.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="badge">
+          <h3 class="text-xl font-semibold mb-2">Badge</h3>
+          <p class="text-sm text-muted-foreground">Displays a badge or a component that looks like a badge.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Static</span>
+          </div>
+        </a>
+
+        <!-- Button -->
+        <a href="button.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="button">
+          <h3 class="text-xl font-semibold mb-2">Button</h3>
+          <p class="text-sm text-muted-foreground">Displays a button or a component that looks like a button.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Static</span>
+          </div>
+        </a>
+
+        <!-- Card -->
+        <a href="card.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="card">
+          <h3 class="text-xl font-semibold mb-2">Card</h3>
+          <p class="text-sm text-muted-foreground">Displays a card with header, content, and footer.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Static</span>
+          </div>
+        </a>
+
+        <!-- Checkbox -->
+        <a href="checkbox.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="checkbox">
+          <h3 class="text-xl font-semibold mb-2">Checkbox</h3>
+          <p class="text-sm text-muted-foreground">A control that allows the user to toggle between checked and not checked.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Dialog -->
+        <a href="dialog.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="dialog">
+          <h3 class="text-xl font-semibold mb-2">Dialog</h3>
+          <p class="text-sm text-muted-foreground">A window overlaid on either the primary window or another dialog.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Input -->
+        <a href="input.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="input">
+          <h3 class="text-xl font-semibold mb-2">Input</h3>
+          <p class="text-sm text-muted-foreground">A text input field component.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Static</span>
+          </div>
+        </a>
+
+        <!-- Label -->
+        <a href="label.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="label">
+          <h3 class="text-xl font-semibold mb-2">Label</h3>
+          <p class="text-sm text-muted-foreground">Form labels for input elements.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Static</span>
+          </div>
+        </a>
+
+        <!-- Select -->
+        <a href="select.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="select">
+          <h3 class="text-xl font-semibold mb-2">Select</h3>
+          <p class="text-sm text-muted-foreground">Displays a list of options for the user to pick from.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Static</span>
+          </div>
+        </a>
+
+        <!-- Separator -->
+        <a href="separator.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="separator">
+          <h3 class="text-xl font-semibold mb-2">Separator</h3>
+          <p class="text-sm text-muted-foreground">Visually or semantically separates content.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Static</span>
+          </div>
+        </a>
+
+        <!-- Skeleton -->
+        <a href="skeleton.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="skeleton">
+          <h3 class="text-xl font-semibold mb-2">Skeleton</h3>
+          <p class="text-sm text-muted-foreground">Use to show a placeholder while content is loading.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Static</span>
+          </div>
+        </a>
+
+        <!-- Switch -->
+        <a href="switch.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="switch">
+          <h3 class="text-xl font-semibold mb-2">Switch</h3>
+          <p class="text-sm text-muted-foreground">A control that allows the user to toggle between on and off.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Tabs -->
+        <a href="tabs.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="tabs">
+          <h3 class="text-xl font-semibold mb-2">Tabs</h3>
+          <p class="text-sm text-muted-foreground">A set of layered sections of content, only one visible at a time.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Textarea -->
+        <a href="textarea.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="textarea">
+          <h3 class="text-xl font-semibold mb-2">Textarea</h3>
+          <p class="text-sm text-muted-foreground">A multi-line text input field.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Static</span>
+          </div>
+        </a>
+
+        <!-- Tooltip -->
+        <a href="tooltip.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="tooltip">
+          <h3 class="text-xl font-semibold mb-2">Tooltip</h3>
+          <p class="text-sm text-muted-foreground">A popup that displays information related to an element.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Table -->
+        <a href="table.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="table">
+          <h3 class="text-xl font-semibold mb-2">Table</h3>
+          <p class="text-sm text-muted-foreground">A responsive table component for displaying data.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Static</span>
+          </div>
+        </a>
+
+        <!-- Dropdown Menu -->
+        <a href="dropdown-menu.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="dropdown menu">
+          <h3 class="text-xl font-semibold mb-2">Dropdown Menu</h3>
+          <p class="text-sm text-muted-foreground">Displays a menu to the user triggered by a button.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Popover -->
+        <a href="popover.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="popover">
+          <h3 class="text-xl font-semibold mb-2">Popover</h3>
+          <p class="text-sm text-muted-foreground">Displays rich content in a portal, triggered by a button.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Radio Group -->
+        <a href="radio-group.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="radio group">
+          <h3 class="text-xl font-semibold mb-2">Radio Group</h3>
+          <p class="text-sm text-muted-foreground">A set of checkable buttons where only one can be checked at a time.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Progress -->
+        <a href="progress.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="progress">
+          <h3 class="text-xl font-semibold mb-2">Progress</h3>
+          <p class="text-sm text-muted-foreground">Displays an indicator showing the completion progress of a task.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Static</span>
+          </div>
+        </a>
+
+        <!-- Slider -->
+        <a href="slider.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="slider">
+          <h3 class="text-xl font-semibold mb-2">Slider</h3>
+          <p class="text-sm text-muted-foreground">An input where the user selects a value from within a given range.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Toast -->
+        <a href="toast.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="toast notification">
+          <h3 class="text-xl font-semibold mb-2">Toast</h3>
+          <p class="text-sm text-muted-foreground">A succinct message that is displayed temporarily.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Breadcrumb -->
+        <a href="breadcrumb.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="breadcrumb navigation">
+          <h3 class="text-xl font-semibold mb-2">Breadcrumb</h3>
+          <p class="text-sm text-muted-foreground">Displays the path to the current resource using a hierarchy of links.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Static</span>
+          </div>
+        </a>
+
+        <!-- Pagination -->
+        <a href="pagination.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="pagination">
+          <h3 class="text-xl font-semibold mb-2">Pagination</h3>
+          <p class="text-sm text-muted-foreground">Pagination with page navigation, next and previous links.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Static</span>
+          </div>
+        </a>
+
+        <!-- Toggle -->
+        <a href="toggle.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="toggle">
+          <h3 class="text-xl font-semibold mb-2">Toggle</h3>
+          <p class="text-sm text-muted-foreground">A two-state button that can be either on or off.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Collapsible -->
+        <a href="collapsible.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="collapsible">
+          <h3 class="text-xl font-semibold mb-2">Collapsible</h3>
+          <p class="text-sm text-muted-foreground">An interactive component which expands/collapses a panel.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Hover Card -->
+        <a href="hover-card.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="hover card">
+          <h3 class="text-xl font-semibold mb-2">Hover Card</h3>
+          <p class="text-sm text-muted-foreground">For sighted users to preview content available behind a link.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Kbd -->
+        <a href="kbd.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="kbd keyboard">
+          <h3 class="text-xl font-semibold mb-2">Kbd</h3>
+          <p class="text-sm text-muted-foreground">Display keyboard shortcuts and hotkeys.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Static</span>
+          </div>
+        </a>
+
+        <!-- Aspect Ratio -->
+        <a href="aspect-ratio.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="aspect ratio">
+          <h3 class="text-xl font-semibold mb-2">Aspect Ratio</h3>
+          <p class="text-sm text-muted-foreground">Displays content within a desired ratio.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Static</span>
+          </div>
+        </a>
+
+        <!-- Toggle Group -->
+        <a href="toggle-group.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="toggle group">
+          <h3 class="text-xl font-semibold mb-2">Toggle Group</h3>
+          <p class="text-sm text-muted-foreground">A set of two-state buttons that can be toggled on or off.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Spinner -->
+        <a href="spinner.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="spinner loading">
+          <h3 class="text-xl font-semibold mb-2">Spinner</h3>
+          <p class="text-sm text-muted-foreground">Loading indicators and spinners.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Static</span>
+          </div>
+        </a>
+
+        <!-- Sheet -->
+        <a href="sheet.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="sheet drawer">
+          <h3 class="text-xl font-semibold mb-2">Sheet</h3>
+          <p class="text-sm text-muted-foreground">Extends the Dialog component to display content that complements the main content.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Context Menu -->
+        <a href="context-menu.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="context menu right click">
+          <h3 class="text-xl font-semibold mb-2">Context Menu</h3>
+          <p class="text-sm text-muted-foreground">Displays a menu located at the pointer, triggered by a right-click.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Scroll Area -->
+        <a href="scroll-area.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="scroll area scrollbar">
+          <h3 class="text-xl font-semibold mb-2">Scroll Area</h3>
+          <p class="text-sm text-muted-foreground">Augments native scroll functionality for custom, cross-browser styling.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Static</span>
+          </div>
+        </a>
+
+        <!-- Input OTP -->
+        <a href="input-otp.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="input otp code verification">
+          <h3 class="text-xl font-semibold mb-2">Input OTP</h3>
+          <p class="text-sm text-muted-foreground">Accessible one-time password component with copy paste functionality.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Menubar -->
+        <a href="menubar.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="menubar menu">
+          <h3 class="text-xl font-semibold mb-2">Menubar</h3>
+          <p class="text-sm text-muted-foreground">A visually persistent menu common in desktop applications.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Typography -->
+        <a href="typography.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="typography text headings">
+          <h3 class="text-xl font-semibold mb-2">Typography</h3>
+          <p class="text-sm text-muted-foreground">Styles for headings, paragraphs, lists, and other text elements.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Static</span>
+          </div>
+        </a>
+
+        <!-- Command -->
+        <a href="command.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="command palette search">
+          <h3 class="text-xl font-semibold mb-2">Command</h3>
+          <p class="text-sm text-muted-foreground">Fast, composable, unstyled command menu for React.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Navigation Menu -->
+        <a href="navigation-menu.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="navigation menu nav">
+          <h3 class="text-xl font-semibold mb-2">Navigation Menu</h3>
+          <p class="text-sm text-muted-foreground">A collection of links for navigating websites.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Combobox -->
+        <a href="combobox.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="combobox autocomplete select">
+          <h3 class="text-xl font-semibold mb-2">Combobox</h3>
+          <p class="text-sm text-muted-foreground">Autocomplete input and command palette with a list of suggestions.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Calendar -->
+        <a href="calendar.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="calendar date picker">
+          <h3 class="text-xl font-semibold mb-2">Calendar</h3>
+          <p class="text-sm text-muted-foreground">A date picker component with range and multi-select support.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Date Picker -->
+        <a href="date-picker.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="date picker calendar">
+          <h3 class="text-xl font-semibold mb-2">Date Picker</h3>
+          <p class="text-sm text-muted-foreground">A date picker component with calendar popup.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Form -->
+        <a href="form.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="form validation">
+          <h3 class="text-xl font-semibold mb-2">Form</h3>
+          <p class="text-sm text-muted-foreground">Building forms with validation and error handling.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Drawer -->
+        <a href="drawer.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="drawer slide panel">
+          <h3 class="text-xl font-semibold mb-2">Drawer</h3>
+          <p class="text-sm text-muted-foreground">A panel that slides out from the edge of the screen.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Separator -->
+        <a href="separator.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="separator divider">
+          <h3 class="text-xl font-semibold mb-2">Separator</h3>
+          <p class="text-sm text-muted-foreground">Visually or semantically separates content.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Static</span>
+          </div>
+        </a>
+
+        <!-- Skeleton -->
+        <a href="skeleton.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="skeleton loading placeholder">
+          <h3 class="text-xl font-semibold mb-2">Skeleton</h3>
+          <p class="text-sm text-muted-foreground">Use to build loading states that don't shift layout.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Static</span>
+          </div>
+        </a>
+
+        <!-- Tabs -->
+        <a href="tabs.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="tabs navigation">
+          <h3 class="text-xl font-semibold mb-2">Tabs</h3>
+          <p class="text-sm text-muted-foreground">A set of layered sections of content, known as tab panels.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Switch -->
+        <a href="switch.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="switch toggle">
+          <h3 class="text-xl font-semibold mb-2">Switch</h3>
+          <p class="text-sm text-muted-foreground">A control that allows the user to toggle between checked and not checked.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Select -->
+        <a href="select.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="select dropdown options">
+          <h3 class="text-xl font-semibold mb-2">Select</h3>
+          <p class="text-sm text-muted-foreground">Displays a list of options for the user to pick from.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Resizable -->
+        <a href="resizable.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="resizable panels">
+          <h3 class="text-xl font-semibold mb-2">Resizable</h3>
+          <p class="text-sm text-muted-foreground">Resizable panel groups with draggable resize handles.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Pins Input -->
+        <a href="pins-input.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="pins input pin code">
+          <h3 class="text-xl font-semibold mb-2">Pins Input</h3>
+          <p class="text-sm text-muted-foreground">Input component for PIN or multi-digit codes.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Stepper -->
+        <a href="stepper.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="stepper steps progress">
+          <h3 class="text-xl font-semibold mb-2">Stepper</h3>
+          <p class="text-sm text-muted-foreground">A step-by-step progress indicator for forms and workflows.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Static</span>
+          </div>
+        </a>
+
+        <!-- Sidebar -->
+        <a href="sidebar.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="sidebar navigation menu">
+          <h3 class="text-xl font-semibold mb-2">Sidebar</h3>
+          <p class="text-sm text-muted-foreground">Navigation sidebar commonly used in admin panels and dashboards.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Data Table -->
+        <a href="data-table.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="data table columns sorting">
+          <h3 class="text-xl font-semibold mb-2">Data Table</h3>
+          <p class="text-sm text-muted-foreground">A comprehensive table component for displaying tabular data.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Static</span>
+          </div>
+        </a>
+
+        <!-- Search -->
+        <a href="search.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="search input query">
+          <h3 class="text-xl font-semibold mb-2">Search</h3>
+          <p class="text-sm text-muted-foreground">Search input with various styles and configurations.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Button Group -->
+        <a href="button-group.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="button group buttons">
+          <h3 class="text-xl font-semibold mb-2">Button Group</h3>
+          <p class="text-sm text-muted-foreground">A group of buttons with a unified appearance.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Static</span>
+          </div>
+        </a>
+
+        <!-- Input Group -->
+        <a href="input-group.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="input group prefix suffix">
+          <h3 class="text-xl font-semibold mb-2">Input Group</h3>
+          <p class="text-sm text-muted-foreground">Input with icon or button prefix/suffix.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Static</span>
+          </div>
+        </a>
+
+        <!-- Carousel -->
+        <a href="carousel.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="carousel slideshow gallery">
+          <h3 class="text-xl font-semibold mb-2">Carousel</h3>
+          <p class="text-sm text-muted-foreground">A slideshow component for cycling through images.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-blue-100 text-blue-800">Interactive</span>
+          </div>
+        </a>
+
+        <!-- Chart -->
+        <a href="chart.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="chart graph data visualization">
+          <h3 class="text-xl font-semibold mb-2">Chart</h3>
+          <p class="text-sm text-muted-foreground">Chart components for data visualization.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Static</span>
+          </div>
+        </a>
+
+        <!-- Field -->
+        <a href="field.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="field form input validation">
+          <h3 class="text-xl font-semibold mb-2">Field</h3>
+          <p class="text-sm text-muted-foreground">Composable form field components with labels, descriptions, and validation.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Static</span>
+          </div>
+        </a>
+
+        <!-- Item -->
+        <a href="item.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="item list dropdown menu user">
+          <h3 class="text-xl font-semibold mb-2">Item</h3>
+          <p class="text-sm text-muted-foreground">Flexible list item component with media, content, and actions.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Static</span>
+          </div>
+        </a>
+
+        <!-- Native Select -->
+        <a href="native-select.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="native select dropdown mobile accessibility">
+          <h3 class="text-xl font-semibold mb-2">Native Select</h3>
+          <p class="text-sm text-muted-foreground">Styled wrapper around the native HTML select element for optimal mobile experience.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-green-100 text-green-800">Static</span>
+          </div>
+        </a>
+
+        <!-- Theme Customizer -->
+        <a href="theme-customizer.html" class="component-card rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-lg p-6 block" data-name="theme customizer color picker palette">
+          <h3 class="text-xl font-semibold mb-2">🎨 Theme Customizer</h3>
+          <p class="text-sm text-muted-foreground">Create and export custom color themes with live preview and multiple export formats.</p>
+          <div class="mt-4">
+            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold border-transparent bg-purple-100 text-purple-800">Tool</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- No Results Message -->
+      <div id="no-results" class="hidden text-center py-12">
+        <p class="text-muted-foreground text-lg">No components found matching your search.</p>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="rounded-lg border bg-card p-6 text-center">
+        <div class="text-4xl font-bold">67</div>
+        <p class="text-sm text-muted-foreground mt-1">Components</p>
+      </div>
+      <div class="rounded-lg border bg-card p-6 text-center">
+        <div class="text-4xl font-bold">100%</div>
+        <p class="text-sm text-muted-foreground mt-1">Pure HTML</p>
+      </div>
+      <div class="rounded-lg border bg-card p-6 text-center">
+        <div class="text-4xl font-bold">0</div>
+        <p class="text-sm text-muted-foreground mt-1">Dependencies</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t mt-16">
+    <div class="container mx-auto px-4 py-8 text-center text-sm text-muted-foreground">
+      <p>Built with <a href="https://ui.shadcn.com" class="text-primary hover:underline" target="_blank">shadcn/ui</a> and Tailwind CSS</p>
+      <p class="mt-2">Pure HTML • No Framework • Copy and Paste</p>
+    </div>
+  </footer>
+
+  <!-- Theme & Search Functionality -->
+  <script>
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+
+    // Load theme from localStorage
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    html.setAttribute('data-theme', savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    });
+
+    // Search Functionality
+    const searchInput = document.getElementById('search');
+    const componentCards = document.querySelectorAll('.component-card');
+    const noResults = document.getElementById('no-results');
+    const componentGrid = document.getElementById('component-grid');
+
+    searchInput.addEventListener('input', (e) => {
+      const searchTerm = e.target.value.toLowerCase();
+      let visibleCount = 0;
+
+      componentCards.forEach(card => {
+        const name = card.dataset.name.toLowerCase();
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const description = card.querySelector('p').textContent.toLowerCase();
+
+        const matches = name.includes(searchTerm) ||
+                       title.includes(searchTerm) ||
+                       description.includes(searchTerm);
+
+        if (matches) {
+          card.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      if (visibleCount === 0) {
+        componentGrid.classList.add('hidden');
+        noResults.classList.remove('hidden');
+      } else {
+        componentGrid.classList.remove('hidden');
+        noResults.classList.add('hidden');
+      }
+    });
+  </script>
+</body>
+</html>

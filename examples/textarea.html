@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Textarea - shadcn-html Examples</title>
+  <link rel="stylesheet" href="../dist/styles/output.css">
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; }
+  </style>
+</head>
+<body class="bg-background text-foreground p-8">
+  <div class="max-w-4xl mx-auto space-y-8">
+    <!-- Header -->
+    <div class="space-y-2">
+      <a href="index.html" class="text-sm text-muted-foreground hover:text-foreground">&larr; Back to Examples</a>
+      <h1 class="text-4xl font-bold">Textarea</h1>
+      <p class="text-muted-foreground">Displays a form textarea or a component that looks like a textarea.</p>
+    </div>
+
+    <!-- Default Textarea -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Default</h2>
+      <textarea class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Type your message here."></textarea>
+      <pre class="bg-muted p-4 rounded-md overflow-x-auto"><code>&lt;textarea class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Type your message here."&gt;&lt;/textarea&gt;</code></pre>
+    </section>
+
+    <!-- With Label -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">With Label</h2>
+      <div class="space-y-2">
+        <label for="textarea-label" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+          Your message
+        </label>
+        <textarea id="textarea-label" class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Type your message here."></textarea>
+      </div>
+    </section>
+
+    <!-- With Label and Description -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">With Label and Description</h2>
+      <div class="space-y-2">
+        <label for="textarea-description" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+          Bio
+        </label>
+        <textarea id="textarea-description" class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Tell us a little bit about yourself"></textarea>
+        <p class="text-sm text-muted-foreground">
+          You can @mention other users and organizations to link to them.
+        </p>
+      </div>
+    </section>
+
+    <!-- Different Sizes -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Different Sizes</h2>
+      <div class="space-y-4">
+        <div class="space-y-2">
+          <label class="text-sm font-medium">Small (min-h-[60px])</label>
+          <textarea class="flex min-h-[60px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Small textarea"></textarea>
+        </div>
+        <div class="space-y-2">
+          <label class="text-sm font-medium">Medium (min-h-[100px])</label>
+          <textarea class="flex min-h-[100px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Medium textarea"></textarea>
+        </div>
+        <div class="space-y-2">
+          <label class="text-sm font-medium">Large (min-h-[150px])</label>
+          <textarea class="flex min-h-[150px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Large textarea"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- Disabled -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Disabled</h2>
+      <textarea disabled class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="This textarea is disabled"></textarea>
+    </section>
+
+    <!-- Readonly -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Readonly</h2>
+      <textarea readonly class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">This content is readonly and cannot be edited.</textarea>
+    </section>
+
+    <!-- With Character Counter -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">With Character Counter</h2>
+      <div class="space-y-2">
+        <label for="textarea-counter" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+          Comment (max 200 characters)
+        </label>
+        <textarea id="textarea-counter" maxlength="200" class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Type your comment here." oninput="updateCounter(this, 'counter-1')"></textarea>
+        <p class="text-sm text-muted-foreground">
+          <span id="counter-1">0</span> / 200 characters
+        </p>
+      </div>
+      <pre class="bg-muted p-4 rounded-md overflow-x-auto"><code>&lt;textarea maxlength="200" oninput="updateCounter(this, 'counter-id')"&gt;&lt;/textarea&gt;
+&lt;p class="text-sm text-muted-foreground"&gt;
+  &lt;span id="counter-id"&gt;0&lt;/span&gt; / 200 characters
+&lt;/p&gt;
+
+&lt;script&gt;
+function updateCounter(textarea, counterId) {
+  document.getElementById(counterId).textContent = textarea.value.length;
+}
+&lt;/script&gt;</code></pre>
+    </section>
+
+    <!-- With Error State -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">With Error State</h2>
+      <div class="space-y-2">
+        <label for="textarea-error" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+          Message
+        </label>
+        <textarea id="textarea-error" class="flex min-h-[80px] w-full rounded-md border border-destructive bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-destructive focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Type your message here."></textarea>
+        <p class="text-sm text-destructive">
+          This field is required and cannot be empty.
+        </p>
+      </div>
+    </section>
+
+    <!-- Auto-resize Textarea -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Auto-resize (JavaScript)</h2>
+      <div class="space-y-2">
+        <label for="textarea-autoresize" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+          Auto-resizing message
+        </label>
+        <textarea id="textarea-autoresize" class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 resize-none overflow-hidden" placeholder="Type here and watch it grow..." oninput="autoResize(this)"></textarea>
+        <p class="text-sm text-muted-foreground">
+          This textarea automatically adjusts its height as you type.
+        </p>
+      </div>
+      <pre class="bg-muted p-4 rounded-md overflow-x-auto"><code>&lt;textarea class="... resize-none overflow-hidden" oninput="autoResize(this)"&gt;&lt;/textarea&gt;
+
+&lt;script&gt;
+function autoResize(textarea) {
+  textarea.style.height = 'auto';
+  textarea.style.height = textarea.scrollHeight + 'px';
+}
+&lt;/script&gt;</code></pre>
+    </section>
+
+    <!-- Form Example -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-semibold">Form Example</h2>
+      <form class="space-y-4 max-w-md">
+        <div class="space-y-2">
+          <label for="form-subject" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+            Subject
+          </label>
+          <input type="text" id="form-subject" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="What is it about?" />
+        </div>
+        <div class="space-y-2">
+          <label for="form-message" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+            Message
+          </label>
+          <textarea id="form-message" class="flex min-h-[100px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Tell us more details..."></textarea>
+        </div>
+        <button type="submit" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+          Submit
+        </button>
+      </form>
+    </section>
+  </div>
+
+  <script>
+    function updateCounter(textarea, counterId) {
+      document.getElementById(counterId).textContent = textarea.value.length;
+    }
+
+    function autoResize(textarea) {
+      textarea.style.height = 'auto';
+      textarea.style.height = textarea.scrollHeight + 'px';
+    }
+  </script>
+</body>
+</html>

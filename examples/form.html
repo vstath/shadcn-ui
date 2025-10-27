@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form - shadcn/ui HTML</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        border: "hsl(var(--border))",
+                        input: "hsl(var(--input))",
+                        background: "hsl(var(--background))",
+                        foreground: "hsl(var(--foreground))",
+                        primary: {
+                            DEFAULT: "hsl(var(--primary))",
+                            foreground: "hsl(var(--primary-foreground))",
+                        },
+                        destructive: {
+                            DEFAULT: "hsl(var(--destructive))",
+                            foreground: "hsl(var(--destructive-foreground))",
+                        },
+                        muted: {
+                            DEFAULT: "hsl(var(--muted))",
+                            foreground: "hsl(var(--muted-foreground))",
+                        },
+                    },
+                    borderRadius: {
+                        lg: "var(--radius)",
+                        md: "calc(var(--radius) - 2px)",
+                        sm: "calc(var(--radius) - 4px)",
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 222.2 84% 4.9%;
+            --primary: 222.2 47.4% 11.2%;
+            --primary-foreground: 210 40% 98%;
+            --destructive: 0 84.2% 60.2%;
+            --destructive-foreground: 210 40% 98%;
+            --muted: 210 40% 96.1%;
+            --muted-foreground: 215.4 16.3% 46.9%;
+            --border: 214.3 31.8% 91.4%;
+            --input: 214.3 31.8% 91.4%;
+            --radius: 0.5rem;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .error {
+            border-color: hsl(var(--destructive));
+        }
+
+        .error-message {
+            color: hsl(var(--destructive));
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground p-8">
+    <div class="max-w-4xl mx-auto space-y-8">
+        <div>
+            <h1 class="text-3xl font-bold mb-2">Form</h1>
+            <p class="text-muted-foreground">Building forms with validation and error handling.</p>
+        </div>
+
+        <!-- Basic Form ---->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Basic Form</h2>
+            <form id="basic-form" class="w-full max-w-md rounded-lg border bg-card p-6 space-y-4">
+                <div class="space-y-2">
+                    <label for="name" class="text-sm font-medium">Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                        placeholder="Enter your name"
+                    />
+                    <p id="name-error" class="text-xs error-message hidden">Name is required</p>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="email" class="text-sm font-medium">Email</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                        placeholder="your.email@example.com"
+                    />
+                    <p id="email-error" class="text-xs error-message hidden">Please enter a valid email</p>
+                </div>
+
+                <button type="submit" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full">
+                    Submit
+                </button>
+            </form>
+        </div>
+
+        <!-- Form with Validation ---->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">With Validation</h2>
+            <form id="validation-form" class="w-full max-w-md rounded-lg border bg-card p-6 space-y-4">
+                <div class="space-y-2">
+                    <label for="username" class="text-sm font-medium">Username</label>
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        minlength="3"
+                        required
+                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                        placeholder="username"
+                    />
+                    <p class="text-xs text-muted-foreground">At least 3 characters</p>
+                    <p id="username-error" class="text-xs error-message hidden"></p>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="password" class="text-sm font-medium">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        minlength="8"
+                        required
+                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                        placeholder="••••••••"
+                    />
+                    <p class="text-xs text-muted-foreground">Minimum 8 characters</p>
+                    <p id="password-error" class="text-xs error-message hidden"></p>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="confirm-password" class="text-sm font-medium">Confirm Password</label>
+                    <input
+                        type="password"
+                        id="confirm-password"
+                        name="confirm-password"
+                        required
+                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                        placeholder="••••••••"
+                    />
+                    <p id="confirm-password-error" class="text-xs error-message hidden">Passwords do not match</p>
+                </div>
+
+                <button type="submit" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full">
+                    Create Account
+                </button>
+            </form>
+        </div>
+
+        <!-- Complete Form ---->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-semibold">Complete Form</h2>
+            <form id="complete-form" class="w-full max-w-2xl rounded-lg border bg-card p-6 space-y-6">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                        <label for="first-name" class="text-sm font-medium">First Name</label>
+                        <input
+                            type="text"
+                            id="first-name"
+                            name="first-name"
+                            required
+                            class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                            placeholder="John"
+                        />
+                    </div>
+
+                    <div class="space-y-2">
+                        <label for="last-name" class="text-sm font-medium">Last Name</label>
+                        <input
+                            type="text"
+                            id="last-name"
+                            name="last-name"
+                            required
+                            class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                            placeholder="Doe"
+                        />
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="email-complete" class="text-sm font-medium">Email</label>
+                    <input
+                        type="email"
+                        id="email-complete"
+                        name="email-complete"
+                        required
+                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        placeholder="john.doe@example.com"
+                    />
+                    <p class="text-xs text-muted-foreground">We'll never share your email with anyone else.</p>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="bio" class="text-sm font-medium">Bio</label>
+                    <textarea
+                        id="bio"
+                        name="bio"
+                        rows="4"
+                        class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        placeholder="Tell us about yourself..."
+                    ></textarea>
+                    <p class="text-xs text-muted-foreground">Brief description for your profile.</p>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="country" class="text-sm font-medium">Country</label>
+                    <select
+                        id="country"
+                        name="country"
+                        required
+                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    >
+                        <option value="">Select a country</option>
+                        <option value="us">United States</option>
+                        <option value="uk">United Kingdom</option>
+                        <option value="ca">Canada</option>
+                        <option value="au">Australia</option>
+                        <option value="de">Germany</option>
+                        <option value="fr">France</option>
+                    </select>
+                </div>
+
+                <div class="flex items-center space-x-2">
+                    <input
+                        type="checkbox"
+                        id="terms"
+                        name="terms"
+                        required
+                        class="h-4 w-4 rounded border border-input ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    />
+                    <label for="terms" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                        I agree to the <a href="#" class="text-primary underline underline-offset-4">terms and conditions</a>
+                    </label>
+                </div>
+
+                <div class="flex gap-4">
+                    <button type="submit" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+                        Submit
+                    </button>
+                    <button type="reset" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
+                        Reset
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Success Message -->
+        <div id="success-message" class="hidden fixed top-4 right-4 rounded-lg border bg-background p-4 shadow-lg">
+            <div class="flex items-center gap-2">
+                <svg class="h-5 w-5 text-green-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <div>
+                    <p class="font-semibold">Success!</p>
+                    <p class="text-sm text-muted-foreground">Form submitted successfully.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Basic Form
+        document.getElementById('basic-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+
+            let isValid = true;
+
+            if (!name.value.trim()) {
+                document.getElementById('name-error').classList.remove('hidden');
+                name.classList.add('error');
+                isValid = false;
+            } else {
+                document.getElementById('name-error').classList.add('hidden');
+                name.classList.remove('error');
+            }
+
+            if (!email.value.trim() || !email.validity.valid) {
+                document.getElementById('email-error').classList.remove('hidden');
+                email.classList.add('error');
+                isValid = false;
+            } else {
+                document.getElementById('email-error').classList.add('hidden');
+                email.classList.remove('error');
+            }
+
+            if (isValid) {
+                showSuccess();
+                e.target.reset();
+            }
+        });
+
+        // Validation Form
+        document.getElementById('validation-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username');
+            const password = document.getElementById('password');
+            const confirmPassword = document.getElementById('confirm-password');
+
+            let isValid = true;
+
+            if (username.value.length < 3) {
+                document.getElementById('username-error').textContent = 'Username must be at least 3 characters';
+                document.getElementById('username-error').classList.remove('hidden');
+                username.classList.add('error');
+                isValid = false;
+            } else {
+                document.getElementById('username-error').classList.add('hidden');
+                username.classList.remove('error');
+            }
+
+            if (password.value.length < 8) {
+                document.getElementById('password-error').textContent = 'Password must be at least 8 characters';
+                document.getElementById('password-error').classList.remove('hidden');
+                password.classList.add('error');
+                isValid = false;
+            } else {
+                document.getElementById('password-error').classList.add('hidden');
+                password.classList.remove('error');
+            }
+
+            if (password.value !== confirmPassword.value) {
+                document.getElementById('confirm-password-error').classList.remove('hidden');
+                confirmPassword.classList.add('error');
+                isValid = false;
+            } else {
+                document.getElementById('confirm-password-error').classList.add('hidden');
+                confirmPassword.classList.remove('error');
+            }
+
+            if (isValid) {
+                showSuccess();
+                e.target.reset();
+            }
+        });
+
+        // Complete Form
+        document.getElementById('complete-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (e.target.checkValidity()) {
+                showSuccess();
+                e.target.reset();
+            }
+        });
+
+        function showSuccess() {
+            const message = document.getElementById('success-message');
+            message.classList.remove('hidden');
+            setTimeout(() => {
+                message.classList.add('hidden');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
